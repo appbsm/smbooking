@@ -763,10 +763,17 @@ Author:
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
-                                    <h5><a href="hotel-single-page.html">SM 1 - Standard Room</a></h5>
+                                    <h5><a class="en" href="hotel-single-page.html"><?php echo trim($value['room_type_name_en']); ?></a>
+                                        <a class="th" href="hotel-single-page.html"><?php echo trim($value['room_type_name_th']); ?></a>
+                                    </h5>
                                     <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
                                             USA</span></a>
+                                    <br>
+                                    <span class="clr-text">
+                                        <!-- <i class="fas fa-map-marker-alt"></i> -->
+                                            Republic of Cuba,
+                                            USA</span>
                                 </div>
                             </div>
                         </div>
@@ -1939,10 +1946,6 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         const $popup = $('#popup');
