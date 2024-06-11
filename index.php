@@ -2,13 +2,9 @@
 include('includes/connect_sql.php');
 include('includes/fx_project_facility_db.php');
 
-$project_list = get_project($conn);
+$project_list   = get_project($conn);
+$room_list      = get_room_type($conn);
 
-
-// $lang_text = [
-//     'welcome' => 'Welcome',
-//     'change_language' => 'Change Language',
-// ];
 
 
 sqlsrv_close($conn);
@@ -63,6 +59,8 @@ Author:
     <!-- jQuery UI library -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    
 
     <script>
         $(document).ready(function(){
@@ -320,6 +318,47 @@ Author:
     
 </style>
 
+ <style>
+        .occupancy-popup {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            width: 180px; /* เพิ่มขนาดความกว้าง */
+        }
+        .occupancy-display {
+            display: inline-block;
+            width: auto;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+            cursor: pointer; /* เปลี่ยนเป็น cursor pointer เพื่อแสดงให้เห็นว่าสามารถคลิกได้ */
+        }
+        .number-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            background-color: #f8f9fa;
+            font-size: 1.2em;
+        }
+        .btn-circle {
+            width: 1px; /* ลดขนาดความกว้างของปุ่ม */
+            height: 1px; /* ลดขนาดความสูงของปุ่ม */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em; /* ลดขนาดฟอนต์ของปุ่ม */
+        }
+        .btn-outline-secondary:disabled {
+            background-color: #e9ecef;
+        }
+    </style>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <body>
 
     <!-- return-to-top start-->
@@ -340,28 +379,92 @@ Author:
                                 <h2>Book & Experience Amazing Places</h2>
                                 <h3>Compare 3000+ Hotels at once</h3>
                                 <ul>
-                                    <li>
+                                   <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
+                                    </li> -->
+
                                     <li class="s-box">
                                         <span><i class="far fa-user"></i></span>
+                                        <select>
+                                            <!-- <option class="en" id="home_topbar" value="">select project</option> -->
+                                            <!-- <option class="th" value="">เลือกโครงการ</option> -->
+                                            <?php foreach ($project_list as $value) { ?>
+                                                <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
+                                            <? } ?>
+                                            <?php foreach ($project_list as $value) {?>
+                                                <option class="th" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_th']; ?></option>
+                                            <? } ?>
+                                        </select>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder="10-04-2022">
+                                    </li>
+                                    <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder="10-04-2022">
+                                    </li>
+
+                                    <!--  <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder=" Adults 0, Children 0, Rooms 0">
+                                    </li> -->
+
+                                    <li class="s-box">
+                                        <span><i class="far fa-user"></i></span>
+                                        <input id="occupancyValue" type="text" value="Adults 0,Children 0,Rooms 0" readonly>
+                                       
+                                    </li>
+                                        <!-- <span><i class="far fa-user"></i></span>
                                         <select>
                                             <option value="">1 Adult - 0 Child</option>
                                             <option value="">1 Adult - 1 Child</option>
                                             <option value="">2 Adult - 0 Child</option>
                                             <option value="">1 Adult - 0 Child</option>
                                             <option value="">1 Adult - 0 Child</option>
-                                        </select>
-                                    </li>
+                                        </select> -->
+
+<!-- <div class="container"> --> 
+<div class="row">
+    <!-- <span id="occupancyValue" class="occupancy-display" ><div style="color: black;">Adults 0,Children 0,Rooms 0</div></span> -->
+    <!-- <input  id="occupancyValue" class="occupancy-display" type="text" placeholder="Adults 0, Children 0, Rooms 0"> -->
+<!-- </div> -->
+<div id="popup" class="occupancy-popup">
+        <div class="mb-3">
+            <label class="form-label">Adults</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseAdults">-</button>
+                <input  type="text" id="adultsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseAdults">+</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Children</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseChildren">-</button>
+                <input type="text" id="childrenInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseChildren">+</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Rooms</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseRooms">-</button>
+                <input type="text" id="roomsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseRooms">+</button>
+            </div>
+        </div>
+       <!--  <div class="text-end">
+            <button class="btn btn-secondary" id="closePopup">Done</button>
+        </div> -->
+    </div>
+</div>  
+  
+
+                                    
+
                                     <li>
                                         <button type="button" class="btn btn-primary">Search</button>
                                     </li>
@@ -640,15 +743,18 @@ Author:
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <h4><a href="javascript:;">Most Popular Hotels</a></h4>
                     <div class="owl-carousel owl-theme">
+
+                    <?php foreach ($room_list as $value) {  ?>
                         <div class="item">
                             <div class="sub-main">
                                 <div class="img-sec p-rel">
                                     <div class="hover-img p-rel">
                                         <a href="javascript:;"> 
-                                            <img src="images/Type_A/Type_A_1.jpg" alt="">
+                                            <!-- <img src="images/Type_A/Type_A_1.jpg" alt=""> -->
+                                            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
-                                    <span>$77 / Night</span>
+                                    <span><?php echo trim($value['default_rate']); ?> / Night</span>
                                 </div>
                                 <div class="slider-content">
                                     <span>
@@ -664,7 +770,10 @@ Author:
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                    <? } ?>
+
+
+                        <!-- <div class="item">
                             <div class="img-sec p-rel">
                                 <div class="hover-img p-rel">
                                     <a href="javascript:;"> <img src="images/Type_B/Type_B_2.jpg" alt=""></a>
@@ -684,6 +793,7 @@ Author:
                                         USA</span></a>
                             </div>
                         </div>
+
                         <div class="item">
                             <div class="img-sec p-rel">
                                 <div class="hover-img p-rel">
@@ -705,67 +815,8 @@ Author:
                                         Republic of Cuba,
                                         USA</span></a>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/Type_E/Type_E_2.jpg" alt=""></a>
-                                </div>
-                                <span>$65 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 48+
-                                        Review</a>
-                                </span>
-                                <h5><a href="javascript:;">SM 4 - Family Junior Suite</a></h5>
-                                <a href="hotel-single-page.html"><span class="clr-text"><i
-                                            class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-                                </div>
-                                <span>$52 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 58+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">hotel sayaji indore</a></h5>
-                                <span class="clr-text"><i class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                    USA</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-                                </div>
-                                <span>$55 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">Hotel New Sunder</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
+                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -1888,9 +1939,104 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const $popup = $('#popup');
+        const $roomsInput = $('#roomsInput');
+        const $adultsInput = $('#adultsInput');
+        const $childrenInput = $('#childrenInput');
+        const $occupancyValue = $('#occupancyValue');
+        const $closePopup = $('#closePopup');
+        const $increaseRooms = $('#increaseRooms');
+        const $decreaseRooms = $('#decreaseRooms');
+        const $increaseAdults = $('#increaseAdults');
+        const $decreaseAdults = $('#decreaseAdults');
+        const $increaseChildren = $('#increaseChildren');
+        const $decreaseChildren = $('#decreaseChildren');
+
+        function updateOccupancyValue() {
+            const rooms = $roomsInput.val();
+            const adults = $adultsInput.val();
+            const children = $childrenInput.val();
+            $occupancyValue.val(`Adults ${adults}, Children ${children} ,Rooms ${rooms}`);
+        }
+
+        $occupancyValue.on('click', function() {
+            const offset = $(this).offset();
+            $popup.css({
+                top: offset.top + $(this).outerHeight() + 10,
+                left: offset.left - $popup.outerWidth() / 2 + $(this).outerWidth() / 2
+            }).show();
+        });
+
+        $closePopup.on('click', function() {
+            $popup.hide();
+        });
+
+        $increaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            currentValue += 1;
+            $roomsInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $roomsInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $increaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            currentValue += 1;
+            $adultsInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $adultsInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $increaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            currentValue += 1;
+            $childrenInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $childrenInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#popup, #occupancyValue').length) {
+                $popup.hide();
+            }
+        });
+    });
+</script>
+    
 </body>
 
 </html>
 
 <? include('language/text_index.php'); ?>
+
 
