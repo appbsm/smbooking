@@ -766,14 +766,54 @@ Author:
                                     <h5><a class="en" href="hotel-single-page.html"><?php echo trim($value['room_type_name_en']); ?></a>
                                         <a class="th" href="hotel-single-page.html"><?php echo trim($value['room_type_name_th']); ?></a>
                                     </h5>
-                                    <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
+                                    <!-- <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
-                                            USA</span></a>
-                                    <br>
+                                            USA</span></a> -->
+                                    
                                     <span class="clr-text">
                                         <!-- <i class="fas fa-map-marker-alt"></i> -->
-                                            Republic of Cuba,
-                                            USA</span>
+                                        <span  class="en" class="icon-content">
+                                            <object data="images/icons/house.svg" height="18"></object>
+                                            <?php echo trim($value['area_en']); ?>
+                                        </span>
+                                         <span  class="th" class="icon-content">
+                                            <object data="images/icons/house.svg" height="18"></object>
+                                            <?php echo trim($value['area_th']); ?>
+                                        </span>
+
+                                        <br>
+                                        <span class="en" class="icon-content">
+                                            <object data="images/icons/icons8-bedroom-50.png" height="18"></object>
+                                            <?php echo trim($value['room_details_en']); ?>
+                                        </span >
+                                         <span class="th" class="icon-content">
+                                            <object data="images/icons/icons8-bedroom-50.png" height="18"></object>
+                                            <?php echo trim($value['room_details_th']); ?>
+                                        </span>
+
+                                        <br>
+                                        <span class="en" class="icon-content">
+                                            <object data="images/icons/bathroom.png" height="18"></object>
+                                            <?php echo trim($value['room_details_en']); ?>
+                                        </span >
+                                        <span class="th" class="icon-content">
+                                            <object data="images/icons/bathroom.png" height="18"></object>
+                                            <?php echo trim($value['room_details_th']); ?>
+                                        </span>
+
+                                        <br>
+                                        <span class="en" class="icon-content">
+                                            <object data="images/icons/person-fill.svg" height="18"></object>
+                                            <?php echo trim($value['room_details_en']); ?>
+                                        </span >
+                                        <span class="th" class="icon-content">
+                                            <object data="images/icons/person-fill.svg" height="18"></object>
+                                            <?php echo trim($value['room_details_th']); ?>
+                                        </span>
+
+                                    </span>
+                                    
+                                    <br>
                                 </div>
                             </div>
                         </div>
