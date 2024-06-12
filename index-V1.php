@@ -1,3 +1,15 @@
+<?php 
+include('includes/connect_sql.php');
+include('includes/fx_project_facility_db.php');
+
+$project_list   = get_project($conn);
+$room_list      = get_room_type($conn);
+
+
+
+sqlsrv_close($conn);
+?>
+
 <!DOCTYPE html>
 <!-- 
 Template Name: Hotelier
@@ -15,10 +27,12 @@ Author:
     <meta charset="utf-8" />
     <title>SM Smart Booking</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--Template style -->
     <!--Fav icon-->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/sm_resort.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/10.png">
     <!-- datepikar plugin -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <!--animate css-->
@@ -37,37 +51,54 @@ Author:
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <!--favicon-->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI library -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    
+
+    <script>
+        $(document).ready(function(){
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy"
+            });
+        });
+    </script>
+
 
 </head>
 
 <style>
+    .top-menu {
+        background-color: unset !important;
+        padding: 8px 0;
+    }
     .main_menu_wrapper .main_menu_navbar ul li a {
         text-transform: capitalize;
         color: #000;
-        font-size: 18px;
+        font-size: 16px;
     }
     .main_menu_wrapper .btn-outline-dark {
-        color: #fff;
+        /* color: #fff; */
+        color: #000;
         border-color: #000;
-        width: 150px;
-        height: 50px;
+        width: 100px;
+        height: 40px;
     }
-    .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items {
-        /* background-color: #f3f8ff; */
+    .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items, {
         background-color: #f8f9fa;
     }
-    .wrap-nav-item:after {
-        background-color: #000;
+    .main_menu_wrapper .main_menu_navbar {
+        padding: 0px;
     }
     .menu-fixed {
         background-color: #839287 !important;
+        /* background-color: #f8f9fa !important; */
     }
     #sidebar .sidebar_logo {
         background: #839287;
@@ -162,32 +193,209 @@ Author:
     }
 
 
-    .carousel-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        overflow: hidden;
+    .sb_banner_content_wrapper {
+        background-image: url('https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* padding: 50px 0; 
+        color: white;  */
+        max-width: 100%;
+        width: 100%;
+        height: 450px;
     }
-    .carousel-inner {
-        height: 100%;
+    .sb_banner_content_wrapper h2,
+    .sb_banner_content_wrapper h3 {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
     }
-    .carousel-item img {
-        object-fit: cover;
-        height: 100%;
-    }
-    .sb_banner_cont_iner_wrapper {
-        z-index: 2;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.2); /* พื้นหลังโปร่งแสงเพื่อให้เนื้อหาอ่านง่าย */
-        padding: 20px;
-        border-radius: 10px;
-    }
-</style>
 
+    h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
+    button {
+        font-family: 'Prompt', sans-serif;
+    }
+
+    .navbar-nav .nav-item {
+        padding: 8px 0px !important;
+        letter-spacing: 0.5px;
+    }
+    .sub-top-menu .u-list .top-dropdown {
+        position: absolute;
+        z-index: 999999;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #f3f8ff;
+        transition: all 0.5s;
+        /* width: 88px; */
+        top: 49px;
+        width: 100% !important;
+    }
+
+    .services-wrapper .service-box.p-box-4 {
+        min-height: 140px !important;
+    }
+    .services-wrapper .service-box {
+        height: 140px !important;
+        padding: 16px 0px !important;
+    }
+
+    .btn-regis {
+        background-color: #61858e;
+        width: 100px !important;
+        height: 40px !important;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-signin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+	
+	.img-sec span, .gallery_section .img-sec span {
+        position: absolute;
+        background: red;
+        color: #fff;
+        padding: 4px 20px;
+        right: 0;
+        bottom: 24px;
+    }
+    .img-sec span:before, .gallery_section .img-sec span:before {
+        content: "";
+        width: 21px;
+        height: 21px;
+        background: red;
+        position: absolute;
+        left: -10px;
+        top: 4px;
+        transform: rotate(45deg);
+    }
+    .img-sec span:after, .gallery_section .img-sec span:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        position: absolute;
+        top: 10px;
+        border-radius: 50%;
+        left: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .main_menu_wrapper .btn-outline-dark {
+            color: #000;
+            border-color: #000;
+            width: 68px;
+            height: 28px;
+            font-size: smaller;
+        }
+        .btn-regis {
+            background-color: #61858e;
+            width: 68px !important;
+            height: 28px !important;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: smaller;
+            margin: 0 !important;
+        }
+        .th-en {
+            font-size: smaller;
+        }
+        .btn-mobile {
+            margin: 16px 0 0 -48px;
+        }
+    }
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+        .main_menu_wrapper .btn-outline-dark {
+            color: #000;
+            border-color: #000;
+            width: 68px;
+            height: 28px;
+            font-size: smaller;
+            margin: 0 !important;
+        }
+        .btn-regis {
+            background-color: #61858e;
+            width: 68px !important;
+            height: 28px !important;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: smaller;
+            margin: 0 !important;
+        }
+        .th-en {
+            font-size: smaller;
+        }
+        .btn-mobile {
+            margin: -18px 0 0 0;
+        }
+        .main_wrapper .top-menu .sub-top-menu .u-list li {
+            padding: 7px 7px !important;
+        }
+    }
+    @media only screen and (min-width: 1024px) {
+        .betmr {
+            margin: -15px 0 0 0;
+        }
+    }
+
+    
+
+        .occupancy-popup {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            width: 180px; /* เพิ่มขนาดความกว้าง */
+        }
+        .occupancy-display {
+            display: inline-block;
+            width: auto;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+            cursor: pointer; /* เปลี่ยนเป็น cursor pointer เพื่อแสดงให้เห็นว่าสามารถคลิกได้ */
+        }
+        .number-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            background-color: #f8f9fa;
+            font-size: 1.2em;
+        }
+        .btn-circle {
+            width: 1px; /* ลดขนาดความกว้างของปุ่ม */
+            height: 1px; /* ลดขนาดความสูงของปุ่ม */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em; /* ลดขนาดฟอนต์ของปุ่ม */
+        }
+        .btn-outline-secondary:disabled {
+            background-color: #e9ecef;
+        }
+		
+		
+		.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+			width: 100%;
+			padding-right: var(--bs-gutter-x, .75rem);
+			padding-left: var(--bs-gutter-x, .75rem);
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 100% !important;
+		}
+    </style>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <body>
 
     <!-- return-to-top start-->
@@ -195,276 +403,105 @@ Author:
     <!-- return-to-top-end -->
     <!-- HEADER START-->
     <div class="main_wrapper">
-        <div class="top-menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-6 pe-0">
-                        <div class="sub-top-menu">
-                            <ul class="u-list">
-                                <li class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block ">
-                                    <a href="javascript:;"><i class="fas fa-dollar-sign"></i> &nbsp;usd</a>
-                                    <ul class="top-dropdown">
-                                        <li><a href="">usd</a></li>
-                                        <li><a href="">uro</a></li>
-                                        <li><a href="">inr</a></li>
-                                    </ul>
-                                </li>
-                                <li  class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                    <a href="javascript:;"><i class="fas fa-globe"></i> &nbsp;eng</a>
-                                    <ul class="top-dropdown">
-                                        <li><a href="">Hindi</a></li>
-                                        <li><a href="">tamil</a></li>
-                                        <li><a href="">telgu</a></li>
-                                    </ul>
-                                </li>
-                                <li class="n-border">
-                                        <span>km</span>
-                                        <input type="checkbox" hidden="hidden" id="username">
-                                        <label class="switch" for="username"></label>
-                                        <span>miles</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-6">
-                        <div class="sub-top-menu s-menu">
-                            <ul class="u-list">
-                                <li>
-                                    <ul class="social-icon ">
-                                        <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </li>
-                                <li class="n-disp"><a href="javascript:;"><i class="fas fa-phone-alt"></i> &nbsp;+1808
-                                        111 9999</a></li>
-                                <li class="n-border res-pd"><a href="signup.html">SING In</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="main_menu_wrapper">
             <!-- main_menu_navbar start -->
-            <div class="main_menu_navbar" style="background-color: #f8f9fa">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-4 col-lg-2 col-6">
-                            <!-- Brand/logo -->
-                            <a class="navbar-brand" href="index.php">
-                                <img src="images/10.png" alt="" style="width: 70px;">
-                            </a>
-                        </div>
-                        <div class="col-xl-3 col-lg-2 col-6 d-block d-lg-none">
-                            <div class="navbar-toggler" data-toggle="collapse" role="term"
-                            data-target="#sidebar" aria-controls="sidebar" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <!--just add these span here-->
-                            <!-- <i class="fas fa-bars"></i> -->
-                            <ul class="toggle-main-wrapper ">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-10 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                            <nav class="navbar navbar-expand-sm  d-block">
-                                <ul class="navbar-nav ">
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            Home
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li><a href="index-01.html">Home 01</a></li>
-                                            <li><a href="index-02.html">Home 02</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            hotel
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li class="p-rel"><a href="javascript:;">Hotel Listing </a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="listing-grid-left.html">Hotel Left Grid View</a></li>
-                                                    <li><a href="listing-grid-right.html">Hotel Right Grid View</a></li>
-                                                    <li><a href="grid-map-view.html">Hotel Map View</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="hotel-single-page.html">Hotel Single Page</a></li>
-                                            <li><a href="404-style.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            shortcode
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items mega-menu">
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="accordion.html">Accordion</a></li>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="client.html">Client</a></li>
-                                                    <li><a href="counter.html">Counter</a></li>
-                                                    <li><a href="element.html">Element</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="feature_with_icon.html">Feature with icon</a></li>
-                                                    <li><a href="feature_with_images.html">Feature with images</a></li>
-                                                    <li><a href="footer.html">Footer</a></li>
-                                                    <li><a href="form.html">Form</a></li>
-                                                    <li><a href="heading.html">Heading</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="image_box.html">Image Box</a></li>
-                                                    <li><a href="icon.html">Icon</a></li>
-                                                    <li><a href="page-header.html">Page Header</a></li>
-                                                    <li><a href="portfolio.html">Portfolio</a></li>
-                                                    <li><a href="pricing-table.html">Pricing Table</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="progress-skills.html">Progress Skill</a></li>
-                                                    <li><a href="tab.html">Tab</a></li>
-                                                    <li><a href="team.html">Team</a></li>
-                                                    <li><a href="testimonials.html">testimonials</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            blog
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li class="p-rel"><a href="javascript:;">Blog Single</a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="blog-left-singal.html">Single Left Sidebar</a></li>
-                                                    <li><a href="blog-right-single.html">Single Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="p-rel"><a href="javascript:;">Blog Categories </a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="blog-left-singal.html">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-right-single.html">Blog Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item  wrap-nav-item">
-                                        <a href="contact-form.html" class="nav-link">
-                                            contact
-                                        </a>
-                                    </li>
-                                    <li class="nav-item p-rel wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            <i class="fas fa-search"></i>
-                                        </a>
-                                        <div class="search-box dropdown-items">
-                                            <input type="text" class="" placeholder="Search text">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                    </li>
-                                  <li class="nav-item">
-                                        <a href="add-hotel.html" class="btn btn-outline-dark">Add Hotel</a>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-            <!-- main_menu_navbar end -->
-            <!-- sb main header End -->
-            <!-- sb banner content Start -->    
-            <div class="carousel-container">
-                <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg" alt="First slide">
-                        </div>    
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b053f3e2.jpeg" alt="First slide">
-                        </div>
-                    </div>
-                </div>
-                <div class="sb_banner_cont_iner_wrapper">
-                    <ul>
-                        <li>
-                            <span><i class="fas fa-street-view"></i></span>
-                            <input type="text" placeholder="Your Destination?">
-                        </li>
-                        <li>
-                            <span><i class="far fa-calendar-alt"></i></span>
-                            <input type="text" class="datepicker" placeholder="10-04-2022">
-                        </li>
-                        <li>
-                            <span><i class="far fa-calendar-alt"></i></span>
-                            <input type="text" class="datepicker" placeholder="10-04-2022">
-                        </li>
-                        <li class="s-box">
-                            <span><i class="far fa-user"></i></span>
-                            <select>
-                                <option value="">1 Adult - 0 Child</option>
-                                <option value="">1 Adult - 1 Child</option>
-                                <option value="">2 Adult - 0 Child</option>
-                                <option value="">1 Adult - 0 Child</option>
-                                <option value="">1 Adult - 0 Child</option>
-                            </select>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-primary">Search</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             
-            <!-- <div class="sb_banner_content_wrapper animated-row float_left">
+            <? include('includes/topbar.php'); ?>
+           
+            <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
                                 <h2>Book & Experience Amazing Places</h2>
                                 <h3>Compare 3000+ Hotels at once</h3>
-
                                 <ul>
-                                    <li>
+                                   <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
+                                    </li> -->
+
                                     <li class="s-box">
                                         <span><i class="far fa-user"></i></span>
+                                        <select>
+                                            <!-- <option class="en" id="home_topbar" value="">select project</option> -->
+                                            <!-- <option class="th" value="">เลือกโครงการ</option> -->
+                                            <?php foreach ($project_list as $value) { ?>
+                                                <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
+                                            <? } ?>
+                                            <?php foreach ($project_list as $value) {?>
+                                                <option class="th" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_th']; ?></option>
+                                            <? } ?>
+                                        </select>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder="10-04-2022">
+                                    </li>
+                                    <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder="10-04-2022">
+                                    </li>
+
+                                    <!--  <li>
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                        <input type="text" class="datepicker" placeholder=" Adults 0, Children 0, Rooms 0">
+                                    </li> -->
+
+                                    <li class="s-box">
+                                        <span><i class="far fa-user"></i></span>
+                                        <input id="occupancyValue" type="text" value="Adults 0,Children 0,Rooms 0" readonly>
+                                       
+                                    </li>
+                                        <!-- <span><i class="far fa-user"></i></span>
                                         <select>
                                             <option value="">1 Adult - 0 Child</option>
                                             <option value="">1 Adult - 1 Child</option>
                                             <option value="">2 Adult - 0 Child</option>
                                             <option value="">1 Adult - 0 Child</option>
                                             <option value="">1 Adult - 0 Child</option>
-                                        </select>
-                                    </li>
+                                        </select> -->
+
+<!-- <div class="container"> --> 
+<div class="row">
+    <!-- <span id="occupancyValue" class="occupancy-display" ><div style="color: black;">Adults 0,Children 0,Rooms 0</div></span> -->
+    <!-- <input  id="occupancyValue" class="occupancy-display" type="text" placeholder="Adults 0, Children 0, Rooms 0"> -->
+<!-- </div> -->
+<div id="popup" class="occupancy-popup">
+        <div class="mb-3">
+            <label class="form-label">Adults</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseAdults">-</button>
+                <input  type="text" id="adultsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseAdults">+</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Children</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseChildren">-</button>
+                <input type="text" id="childrenInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseChildren">+</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Rooms</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseRooms">-</button>
+                <input type="text" id="roomsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseRooms">+</button>
+            </div>
+        </div>
+       <!--  <div class="text-end">
+            <button class="btn btn-secondary" id="closePopup">Done</button>
+        </div> -->
+    </div>
+</div>  
+  
+
+                                    
+
                                     <li>
                                         <button type="button" class="btn btn-primary">Search</button>
                                     </li>
@@ -473,8 +510,8 @@ Author:
                         </div>
                     </div>
                 </div>
-            </div> -->
-            
+            </div>
+
         </div>
 
         <!-- mobile_menu_main start -->
@@ -743,15 +780,18 @@ Author:
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <h4><a href="javascript:;">Most Popular Hotels</a></h4>
                     <div class="owl-carousel owl-theme">
+
+                    <?php foreach ($room_list as $value) {  ?>
                         <div class="item">
                             <div class="sub-main">
                                 <div class="img-sec p-rel">
                                     <div class="hover-img p-rel">
                                         <a href="javascript:;"> 
-                                            <img src="images/Type_A/Type_A_1.jpg" alt="">
+                                            <!-- <img src="images/Type_A/Type_A_1.jpg" alt=""> -->
+                                            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
-                                    <span>$77 / Night</span>
+                                    <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
                                 </div>
                                 <div class="slider-content">
                                     <span>
@@ -767,7 +807,10 @@ Author:
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                    <? } ?>
+
+
+                        <!-- <div class="item">
                             <div class="img-sec p-rel">
                                 <div class="hover-img p-rel">
                                     <a href="javascript:;"> <img src="images/Type_B/Type_B_2.jpg" alt=""></a>
@@ -787,6 +830,7 @@ Author:
                                         USA</span></a>
                             </div>
                         </div>
+
                         <div class="item">
                             <div class="img-sec p-rel">
                                 <div class="hover-img p-rel">
@@ -808,67 +852,8 @@ Author:
                                         Republic of Cuba,
                                         USA</span></a>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/Type_E/Type_E_2.jpg" alt=""></a>
-                                </div>
-                                <span>$65 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 48+
-                                        Review</a>
-                                </span>
-                                <h5><a href="javascript:;">SM 4 - Family Junior Suite</a></h5>
-                                <a href="hotel-single-page.html"><span class="clr-text"><i
-                                            class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-                                </div>
-                                <span>$52 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 58+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">hotel sayaji indore</a></h5>
-                                <span class="clr-text"><i class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                    USA</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-                                </div>
-                                <span>$55 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">Hotel New Sunder</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
+                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -961,7 +946,7 @@ Author:
         </div>
     </div>
     <!-- video section start -->
-    <div class="video-main-wrapper" style="background-image: url(images/Home_1/Home_6.jpg);" >
+    <div class="video-main-wrapper"  style="background-image: url(images/Home_1/Home_6.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -1979,129 +1964,10 @@ Author:
            
         </div>
     </div>
-    <!-- footer section start -->
-    <footer class="footer-main-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="sb-footer-logo">
-                        <a href="javascript:;" class="f-pd"><img src="images/10.png" alt="" style="width: 70px;"></a>
-                        <p>Travelers are always discoverers,<br> esy those who travel by air. </p>
-                        <ul class="footer-social-icon">
-                            <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                        <p><a href="javascript:;"><span><i class="fas fa-phone-alt"></i></span> &nbsp; Toll free <br>
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;808 111 9999</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-menu">
-                        <h5><a href="javascript:;" class="f-pd">Our company</a></h5>
-                        <ul>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; About</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;"> &nbsp;Services</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; Terms</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; FAQ</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="contact-form.html">&nbsp; Contact us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 ">
-                    <div class="footer-feed">
-                        <h5><a href="javascript:;" class="f-pd">Instagram feed</a></h5>
-                        <div class="row gutter">
-
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-1.jpg" class="p-rel"
-                                        alt="">
-                                    <span><i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-2.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-3.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-4.jpg" class="p-rel"
-                                        alt="">
-                                    <span><i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-5.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-6.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-12 col-sm-12 col-12">
-                                <a href="javascript:;" class="more-feed">view all</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-menu">
-                        <h5><a href="javascript:;" class="f-pd">Download App</a></h5>
-                        <p>Free App Download for best<br>
-                            Tour Experience</p>
-                        <a href="javascript:;"><img src="images/play-store.jpg" alt=""></a>
-                        <a href="javascript:;"><img src="images/app-store-1.jpg" alt=""></a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-   <!-- bottom footer -->
-   <div class="bottom-footer">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                <p>© 2021-22 Webstrot | All Rights Reserved. Design by <a href="http://www.webstrot.com/">Webstrot</a></p>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                <ul>
-                    <li>
-                       <a href=""> <img src="images/icon-logo-1.jpg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="images/icon-logo-2.jpg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="images/icon-logo-3.jpg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="images/icon-logo-4.jpg" alt=""></a>
-                    </li>
-                    <li>
-                      <a href="">  <img src="images/icon-logo-5.jpg" alt=""></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    
+    <? include('includes/footer.php'); ?>
 
     <!-- custom js-->
-
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -2110,6 +1976,104 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const $popup = $('#popup');
+        const $roomsInput = $('#roomsInput');
+        const $adultsInput = $('#adultsInput');
+        const $childrenInput = $('#childrenInput');
+        const $occupancyValue = $('#occupancyValue');
+        const $closePopup = $('#closePopup');
+        const $increaseRooms = $('#increaseRooms');
+        const $decreaseRooms = $('#decreaseRooms');
+        const $increaseAdults = $('#increaseAdults');
+        const $decreaseAdults = $('#decreaseAdults');
+        const $increaseChildren = $('#increaseChildren');
+        const $decreaseChildren = $('#decreaseChildren');
+
+        function updateOccupancyValue() {
+            const rooms = $roomsInput.val();
+            const adults = $adultsInput.val();
+            const children = $childrenInput.val();
+            $occupancyValue.val(`Adults ${adults}, Children ${children} ,Rooms ${rooms}`);
+        }
+
+        $occupancyValue.on('click', function() {
+            const offset = $(this).offset();
+            $popup.css({
+                top: offset.top + $(this).outerHeight() + 10,
+                left: offset.left - $popup.outerWidth() / 2 + $(this).outerWidth() / 2
+            }).show();
+        });
+
+        $closePopup.on('click', function() {
+            $popup.hide();
+        });
+
+        $increaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            currentValue += 1;
+            $roomsInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $roomsInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $increaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            currentValue += 1;
+            $adultsInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $adultsInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $increaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            currentValue += 1;
+            $childrenInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $childrenInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#popup, #occupancyValue').length) {
+                $popup.hide();
+            }
+        });
+    });
+</script>
+    
 </body>
 
 </html>
+
+<? include('language/text_index.php'); ?>
+
+

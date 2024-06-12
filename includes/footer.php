@@ -88,6 +88,104 @@
             </div>
         </div>
     </footer>
+	<div id="footer_2_section">
+        <!-- section-2 start-->
+        <div class="section_2 f-section_2">
+            <div class="container">
+                <div class="section2_wrapper">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6">
+                            <div class="widget_5">
+                                <h4>Products</h4>
+                                <ul>
+                                    <li><a href="#">Popular</a>
+                                    </li>
+                                    <li><a href="#">Trending</a>
+                                    </li>
+                                    <li><a href="#">Catalog</a>
+                                    </li>
+                                    <li><a href="#">Features</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12 col-sm-12">
+                            <div class="widget_6">
+                                <h4>Company</h4>
+                                <ul>
+                                    <li><a href="#">Press Releases</a>
+                                    </li>
+                                    <li><a href="#">Mission</a>
+                                    </li>
+                                    <li><a href="#">Strategy</a>
+                                    </li>
+                                    <li><a href="#">Works</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12 col-sm-12">
+                            <div class="widget_7">
+                                <h4>About More</h4>
+                                <ul>
+                                    <li><a href="#">Support</a>
+                                    </li>
+                                    <li><a href="#">Developers</a>
+                                    </li>
+                                    <li><a href="#">Customer Service</a>
+                                    </li>
+                                    <li><a href="#">Ger Started Guide</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12 col-sm-12">
+                            <div class="widget_8">
+                                <h4>Contact Us</h4>
+                                <div class="widget8_text_wrapper">
+                                    <p>Phasellus placerat rutrum tristique. In hacse platea dictumst.</p>
+                                </div>
+                                <ul>
+                                    <li><i class="fa fa-phone"></i><span>+61 3 8376 6284</span>
+                                    </li>
+                                    <li><i class="fa fa-envelope-o"></i><a href="#">global@example.com</a>
+                                    </li>
+                                    <li><i class="fa fa-map-marker"></i><span>121 Melbourne VIC 3000 Australia.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section2_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12">
+                            <div class="section2_footer_img">
+                                <img src="images/10.png" style="width: 70px;" class="img-responsive" alt="widget3_img" />
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-xs-12 col-sm-12">
+                            <div class="section2_footer_menu">
+                                <ul>
+                                    <li><a href="#">Private policy</a>
+                                    </li>
+                                    <li><a href="#">Terms & Conditions</a>
+                                    </li>
+                                    <li><a href="#">Copyright Notifications</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="close_wrapper">
+        </div>
+        <!-- section-2 end -->
+    </div>
 
 <!-- bottom footer -->
 <div class="bottom-footer">
