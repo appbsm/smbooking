@@ -252,6 +252,35 @@ Author:
         align-items: center;
         justify-content: center;
     }
+	
+	.img-sec span, .gallery_section .img-sec span {
+        position: absolute;
+        background: red;
+        color: #fff;
+        padding: 4px 20px;
+        right: 0;
+        bottom: 24px;
+    }
+    .img-sec span:before, .gallery_section .img-sec span:before {
+        content: "";
+        width: 21px;
+        height: 21px;
+        background: red;
+        position: absolute;
+        left: -10px;
+        top: 4px;
+        transform: rotate(45deg);
+    }
+    .img-sec span:after, .gallery_section .img-sec span:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        position: absolute;
+        top: 10px;
+        border-radius: 50%;
+        left: 0;
+    }
 
     @media only screen and (max-width: 600px) {
         .main_menu_wrapper .btn-outline-dark {
@@ -752,7 +781,7 @@ Author:
                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
-                                    <span><?php echo trim($value['default_rate']); ?> / Night</span>
+                                    <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
                                 </div>
                                 <div class="slider-content">
                                     <span>
@@ -761,57 +790,10 @@ Author:
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
-                                    <h5><a class="en" href="hotel-single-page.html"><?php echo trim($value['room_type_name_en']); ?></a>
-                                        <a class="th" href="hotel-single-page.html"><?php echo trim($value['room_type_name_th']); ?></a>
-                                    </h5>
-                                    <!-- <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
+                                    <h5><a href="hotel-single-page.html">SM 1 - Standard Room</a></h5>
+                                    <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
-                                            USA</span></a> -->
-                                    
-                                    <span class="clr-text">
-                                        <!-- <i class="fas fa-map-marker-alt"></i> -->
-                                        <span  class="en" class="icon-content">
-                                            <object data="images/icons/house.svg" height="18"></object>
-                                            <?php echo trim($value['area_en']); ?>
-                                        </span>
-                                         <span  class="th" class="icon-content">
-                                            <object data="images/icons/house.svg" height="18"></object>
-                                            <?php echo trim($value['area_th']); ?>
-                                        </span>
-
-                                        <br>
-                                        <span class="en" class="icon-content">
-                                            <object data="images/icons/icons8-bedroom-50.png" height="18"></object>
-                                            <?php echo trim($value['room_details_en']); ?>
-                                        </span >
-                                         <span class="th" class="icon-content">
-                                            <object data="images/icons/icons8-bedroom-50.png" height="18"></object>
-                                            <?php echo trim($value['room_details_th']); ?>
-                                        </span>
-
-                                        <br>
-                                        <span class="en" class="icon-content">
-                                            <object data="images/icons/bathroom.png" height="18"></object>
-                                            <?php echo trim($value['room_details_en']); ?>
-                                        </span >
-                                        <span class="th" class="icon-content">
-                                            <object data="images/icons/bathroom.png" height="18"></object>
-                                            <?php echo trim($value['room_details_th']); ?>
-                                        </span>
-
-                                        <br>
-                                        <span class="en" class="icon-content">
-                                            <object data="images/icons/person-fill.svg" height="18"></object>
-                                            <?php echo trim($value['room_details_en']); ?>
-                                        </span >
-                                        <span class="th" class="icon-content">
-                                            <object data="images/icons/person-fill.svg" height="18"></object>
-                                            <?php echo trim($value['room_details_th']); ?>
-                                        </span>
-
-                                    </span>
-                                    
-                                    <br>
+                                            USA</span></a>
                                 </div>
                             </div>
                         </div>
@@ -1984,6 +1966,10 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         const $popup = $('#popup');
