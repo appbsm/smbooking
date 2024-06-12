@@ -107,15 +107,12 @@ Author:
     }
     .sb_banner_cont_iner_wrapper ul li span {
         color: #839287;
-        height: 20px;
     }
     .sb_banner_cont_iner_wrapper ul li input {
         border-bottom: 2px solid #839287;
-        height: 20px;
     }
     .sb_banner_cont_iner_wrapper ul li select {
         border-bottom: 2px solid #839287;
-        height: 20px;
     }
     .slider-wrapper {
         background-color: #f8f9fa;
@@ -194,11 +191,9 @@ Author:
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        /* padding: 50px 0; 
-        color: white;  */
-        max-width: 100%;
+        /*max-width: 100%;
         width: 100%;
-        height: 450px;
+        height: 450px;*/
     }
     .sb_banner_content_wrapper h2,
     .sb_banner_content_wrapper h3 {
@@ -413,8 +408,8 @@ Author:
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                                <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3>
+                               <!--  <h2>Book & Experience Amazing Places</h2>
+                                <h3>Compare 3000+ Hotels at once</h3> -->
                                 <ul>
                                    <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
@@ -556,7 +551,7 @@ Author:
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="hotel-single-page.html">Hotel Single Page</a>
+                            <li><a href="hotel-single-page.php">Hotel Single Page</a>
                             </li>
                             <li><a href="404-style.html">404</a>
                             </li>
@@ -806,7 +801,7 @@ Author:
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
-                                    <h5><a href="hotel-single-page.html">SM 1 - Standard Room</a></h5>
+                                    <h5><a href="hotel-single-page.php">SM 1 - Standard Room</a></h5>
                                     <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
                                             USA</span></a>
@@ -830,7 +825,7 @@ Author:
                                         <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 83+
                                         Review</a>
                                 </span>
-                                <h5><a href="hotel-single-page.html">SM 2 - Superior Room</a></h5>
+                                <h5><a href="hotel-single-page.php">SM 2 - Superior Room</a></h5>
                                 <a href="javascript:;"><span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                         Republic of Cuba,
                                         USA</span></a>
@@ -853,7 +848,7 @@ Author:
                                         <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 68+
                                         Review</a>
                                 </span>
-                                <h5><a href="hotel-single-page.html">SM 3 -Junior Suite</a></h5>
+                                <h5><a href="hotel-single-page.php">SM 3 -Junior Suite</a></h5>
                                 <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                         Republic of Cuba,
                                         USA</span></a>
@@ -1052,7 +1047,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Hotel sayaji indore</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Hotel sayaji indore</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1082,7 +1077,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Montage Kapulua</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Montage Kapulua</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1112,7 +1107,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Lodge</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Lodge</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1142,7 +1137,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Peninsula</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Peninsula</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1172,7 +1167,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Mandarian Oriental</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Mandarian Oriental</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1202,7 +1197,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review
                                                         </a> </span>
-                                                    <h5><a href="hotel-single-page.html">The Greenwich</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Greenwich</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1232,7 +1227,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
                                                     <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                                         Republic of Cuba,
                                                         USA</span>
@@ -1261,7 +1256,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1303,7 +1298,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Montage Kapulua</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Montage Kapulua</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1333,7 +1328,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascrip:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1363,7 +1358,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1393,7 +1388,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1434,7 +1429,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1464,7 +1459,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1494,7 +1489,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"> <span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1524,7 +1519,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
+                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1565,7 +1560,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1594,7 +1589,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1665,7 +1660,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1694,7 +1689,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1723,7 +1718,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1752,7 +1747,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1781,7 +1776,7 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
+                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
