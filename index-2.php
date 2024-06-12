@@ -297,7 +297,7 @@ Author:
     }
     @media only screen and (min-width: 1024px) {
         .betmr {
-            margin: 0 -15px 0 0;
+            margin: -15px 0 0 0;
         }
     }
 

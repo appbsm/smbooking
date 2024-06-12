@@ -57,7 +57,7 @@
                                                     <!-- <a href="signup.html" class="btn btn-outline-dark btn-signin ">Sign In</a> -->
                                                     <button type="button" class="btn btn-outline-dark btn-signin" onclick="window.location.href='signup.html'">Sign In</button>
                                                 </li>
-                                                <li class="n-border">
+                                                <li class="n-border" style="padding: 0;">
                                                     <!-- <a href="signup.html" class="btn btn-secondary btn-regis">Register</a> -->
                                                     <button type="button" class="btn  btn-secondary btn-regis" onclick="window.location.href='signup.html'">Register</button>
                                                 </li>
