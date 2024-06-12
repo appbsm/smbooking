@@ -384,6 +384,16 @@ Author:
         .btn-outline-secondary:disabled {
             background-color: #e9ecef;
         }
+		
+		
+		.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+			width: 100%;
+			padding-right: var(--bs-gutter-x, .75rem);
+			padding-left: var(--bs-gutter-x, .75rem);
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 100% !important;
+		}
     </style>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <body>
