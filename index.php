@@ -74,18 +74,23 @@ Author:
     .main_menu_wrapper .main_menu_navbar ul li a {
         text-transform: capitalize;
         color: #000;
-        font-size: 16px;
+        font-size: 14px;
     }
     .main_menu_wrapper .btn-outline-dark {
         /* color: #fff; */
         color: #000;
         border-color: #000;
-        width: 100px;
-        height: 40px;
+        width: 90px;
+        height: 36px;
+		font-size: 14px;
     }
     .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items, {
         background-color: #f8f9fa;
     }
+	.main_wrapper .top-menu .sub-top-menu .u-list li a {
+        font-size: 14px;
+		}
+	}
     .main_menu_wrapper .main_menu_navbar {
         padding: 0px;
     }
@@ -220,6 +225,7 @@ Author:
         top: 49px;
         width: 100% !important;
     }
+	
 
     .services-wrapper .service-box.p-box-4 {
         min-height: 140px !important;
@@ -231,18 +237,22 @@ Author:
 
     .btn-regis {
         background-color: #61858e;
-        width: 100px !important;
-        height: 40px !important;
+        width: 90px !important;
+        height: 36px !important;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+		font-size: 14px;
     }
     .btn-signin {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+	.th-en {
+		font-size: 14px;
+	}
 	
 	.img-sec span, .gallery_section .img-sec span {
         position: absolute;
@@ -331,68 +341,68 @@ Author:
     }
     @media only screen and (min-width: 1024px) {
         .betmr {
-            margin: -15px 0 0 0;
+            margin: -10px 0 0 0;
         }
     }
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-			width: 100%;
-			padding-right: var(--bs-gutter-x, .75rem);
-			padding-left: var(--bs-gutter-x, .75rem);
-			margin-right: auto;
-			margin-left: auto;
-			max-width: 100% !important;
-		}
-.booking-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.dropdown-container {
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    z-index: 1;
-}
-.dropdown-container:hover .dropdown-content {
-    display: block;
-}
-.dropdown-container button {
-    background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
-    border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
-    color: #495057; /* สีข้อความ */
-}
- 
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
-}
+	.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+				width: 100%;
+				padding-right: var(--bs-gutter-x, .75rem);
+				padding-left: var(--bs-gutter-x, .75rem);
+				margin-right: auto;
+				margin-left: auto;
+				max-width: 100% !important;
+			}
+	.booking-form {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	.dropdown-container {
+		position: relative;
+		display: inline-block;
+	}
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: white;
+		box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+		padding: 15px;
+		z-index: 1;
+	}
+	.dropdown-container:hover .dropdown-content {
+		display: block;
+	}
+	.dropdown-container button {
+		background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
+		border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
+		color: #495057; /* สีข้อความ */
+	}
+	 
+	.counter {
+	  display: flex;
+	  align-items: center;
+	  gap: 5px;
+	  justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
+	}
 
-.counter button {
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
-  align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
-  justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
-}
+	.counter button {
+	  padding: 0;
+	  width: 20px;
+	  height: 20px;
+	  border-radius: 50%;
+	  display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
+	  align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
+	  justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
+	}
 
 
-.counter span {
-  width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-  height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-  border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-  text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
-  line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
-}
+	.counter span {
+	  width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
+	  height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
+	  border-radius: 50%; /* ทำให้มันเป็นวงกลม */
+	  text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
+	  line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
+	}
  
 </style>
 

@@ -5,6 +5,8 @@ include('includes/fx_project_facility_db.php');
 $project_list   = get_project($conn);
 $room_list      = get_room_type($conn);
 
+
+
 sqlsrv_close($conn);
 ?>
 
@@ -58,11 +60,16 @@ Author:
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+    <script>
+        $(document).ready(function(){
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy"
+            });
+        });
+    </script>
+
 
 </head>
 
@@ -74,14 +81,15 @@ Author:
     .main_menu_wrapper .main_menu_navbar ul li a {
         text-transform: capitalize;
         color: #000;
-        font-size: 16px;
+        font-size: 14px;
     }
     .main_menu_wrapper .btn-outline-dark {
         /* color: #fff; */
         color: #000;
         border-color: #000;
-        width: 100px;
+        width: 90px;
         height: 40px;
+		font-size: 14px;
     }
     .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items, {
         background-color: #f8f9fa;
@@ -107,15 +115,12 @@ Author:
     }
     .sb_banner_cont_iner_wrapper ul li span {
         color: #839287;
-        height: 20px;
     }
     .sb_banner_cont_iner_wrapper ul li input {
         border-bottom: 2px solid #839287;
-        height: 20px;
     }
     .sb_banner_cont_iner_wrapper ul li select {
         border-bottom: 2px solid #839287;
-        height: 20px;
     }
     .slider-wrapper {
         background-color: #f8f9fa;
@@ -236,12 +241,13 @@ Author:
 
     .btn-regis {
         background-color: #61858e;
-        width: 100px !important;
+        width: 90px !important;
         height: 40px !important;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+		font-size: 14px;
     }
     .btn-signin {
         display: flex;
@@ -336,66 +342,61 @@ Author:
     }
     @media only screen and (min-width: 1024px) {
         .betmr {
-            margin: -15px 0 0 0;
+            margin: -10px 0 0 0;
         }
     }
-</style>
 
-<style>
-.booking-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.dropdown-container {
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    z-index: 1;
-}
-.dropdown-container:hover .dropdown-content {
-    display: block;
-}
-.dropdown-container button {
-    background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
-    border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
-    color: #495057; /* สีข้อความ */
-}
- 
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
-}
-
-.counter button {
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
-  align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
-  justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
-}
-
-
-.counter span {
-  width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-  height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-  border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-  text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
-  line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
-}
- 
-</style>
-
+    
+        .occupancy-popup {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            width: 180px; /* เพิ่มขนาดความกว้าง */
+        }
+        .occupancy-display {
+            display: inline-block;
+            width: auto;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+            cursor: pointer; /* เปลี่ยนเป็น cursor pointer เพื่อแสดงให้เห็นว่าสามารถคลิกได้ */
+        }
+        .number-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            background-color: #f8f9fa;
+            font-size: 1.2em;
+        }
+        .btn-circle {
+            width: 1px; /* ลดขนาดความกว้างของปุ่ม */
+            height: 1px; /* ลดขนาดความสูงของปุ่ม */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em; /* ลดขนาดฟอนต์ของปุ่ม */
+        }
+        .btn-outline-secondary:disabled {
+            background-color: #e9ecef;
+        }
+		
+		
+		.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+			width: 100%;
+			padding-right: var(--bs-gutter-x, .75rem);
+			padding-left: var(--bs-gutter-x, .75rem);
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 100% !important;
+		}
+    </style>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <body>
 
     <!-- return-to-top start-->
@@ -413,8 +414,8 @@ Author:
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                                <!-- <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3> -->
+                                <h2>Book & Experience Amazing Places</h2>
+                                <h3>Compare 3000+ Hotels at once</h3>
                                 <ul>
                                    <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
@@ -423,7 +424,6 @@ Author:
 
                                     <li class="s-box">
                                         <span><i class="far fa-user"></i></span>
-
                                         <select>
                                             <!-- <option class="en" id="home_topbar" value="">select project</option> -->
                                             <!-- <option class="th" value="">เลือกโครงการ</option> -->
@@ -436,73 +436,69 @@ Author:
                                         </select>
                                     </li>
 
-                                    <!-- <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
                                     <li>
                                         <span><i class="far fa-calendar-alt"></i></span>
                                         <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li> -->
-
-                                    <!-- <li>
+                                    </li>
+                                    <li>
                                         <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" id="daterange" name="daterange" class="form-control " placeholder="Check-in - Check-out">
+                                        <input type="text" class="datepicker" placeholder="10-04-2022">
                                     </li>
- -->
-
-                                    <li>
-                                        <!-- <div class="row"> -->
-
-                                            <!-- <span><i class="far fa-calendar-alt"></i></span> -->
-                                            
-                                            <input type="text" id="daterange" name="daterange" class="form-control" placeholder="Check-in - Check-out">
-                                            
-                                        <!-- </div> -->
-
-                                    </li>
-
-                                    <li>
-                                        <input type="text" class="form-control" id="daterange" placeholder="Check-in - Check-out">
-                                    </li>
-    
 
                                     <!--  <li>
                                         <span><i class="far fa-calendar-alt"></i></span>
                                         <input type="text" class="datepicker" placeholder=" Adults 0, Children 0, Rooms 0">
                                     </li> -->
 
-                                   <!--  <li class="s-box">
+                                    <li class="s-box">
                                         <span><i class="far fa-user"></i></span>
                                         <input id="occupancyValue" type="text" value="Adults 0,Children 0,Rooms 0" readonly>
-                                    </li> -->
+                                       
+                                    </li>
+                                        <!-- <span><i class="far fa-user"></i></span>
+                                        <select>
+                                            <option value="">1 Adult - 0 Child</option>
+                                            <option value="">1 Adult - 1 Child</option>
+                                            <option value="">2 Adult - 0 Child</option>
+                                            <option value="">1 Adult - 0 Child</option>
+                                            <option value="">1 Adult - 0 Child</option>
+                                        </select> -->
 
-
-    <div class="dropdown-container">
-            <button type="button" class="btn btn-light">ผู้ใหญ่ 2 คน · 1 ห้อง</button>
-        <div class="dropdown-content">
-            <div class="counter">
-                <label>ห้อง</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
-                <span id="rooms">1</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
-            </div>
-
-            <div class="counter">
-                <label>ผู้ใหญ่</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
-                <span id="adults">2</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
-            </div>
-            
-            <div class="counter">
-                <label>เด็ก</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
-                <span id="children">0</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
+<!-- <div class="container"> --> 
+<div class="row">
+    <!-- <span id="occupancyValue" class="occupancy-display" ><div style="color: black;">Adults 0,Children 0,Rooms 0</div></span> -->
+    <!-- <input  id="occupancyValue" class="occupancy-display" type="text" placeholder="Adults 0, Children 0, Rooms 0"> -->
+<!-- </div> -->
+<div id="popup" class="occupancy-popup">
+        <div class="mb-3">
+            <label class="form-label">Adults</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseAdults">-</button>
+                <input  type="text" id="adultsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseAdults">+</button>
             </div>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Children</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseChildren">-</button>
+                <input type="text" id="childrenInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseChildren">+</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Rooms</label>
+            <div class="d-flex align-items-center">
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseRooms">-</button>
+                <input type="text" id="roomsInput" class="form-control mx-2 number-input" value="0" readonly>
+                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseRooms">+</button>
+            </div>
+        </div>
+       <!--  <div class="text-end">
+            <button class="btn btn-secondary" id="closePopup">Done</button>
+        </div> -->
     </div>
+</div>  
   
 
                                     
@@ -619,7 +615,6 @@ Author:
         </div>
     </div>
     <!-- sidebar end -->
-
 
     <!--HEADER END-->
     <!-- Side Panel -->
@@ -1974,6 +1969,7 @@ Author:
     <? include('includes/footer.php'); ?>
 
     <!-- custom js-->
+    <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
@@ -1981,42 +1977,101 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#daterange').daterangepicker({
-            opens: 'center',
-            minDate: moment(),
-            autoApply: true,
-            locale: {
-                format: 'DD/MM/YYYY',
-                separator: ' - ',
-                applyLabel: 'Apply',
-                cancelLabel: 'Cancel',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom',
-                weekLabel: 'W',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
+        const $popup = $('#popup');
+        const $roomsInput = $('#roomsInput');
+        const $adultsInput = $('#adultsInput');
+        const $childrenInput = $('#childrenInput');
+        const $occupancyValue = $('#occupancyValue');
+        const $closePopup = $('#closePopup');
+        const $increaseRooms = $('#increaseRooms');
+        const $decreaseRooms = $('#decreaseRooms');
+        const $increaseAdults = $('#increaseAdults');
+        const $decreaseAdults = $('#decreaseAdults');
+        const $increaseChildren = $('#increaseChildren');
+        const $decreaseChildren = $('#decreaseChildren');
+
+        function updateOccupancyValue() {
+            const rooms = $roomsInput.val();
+            const adults = $adultsInput.val();
+            const children = $childrenInput.val();
+            $occupancyValue.val(`Adults ${adults}, Children ${children} ,Rooms ${rooms}`);
+        }
+
+        $occupancyValue.on('click', function() {
+            const offset = $(this).offset();
+            $popup.css({
+                top: offset.top + $(this).outerHeight() + 10,
+                left: offset.left - $popup.outerWidth() / 2 + $(this).outerWidth() / 2
+            }).show();
+        });
+
+        $closePopup.on('click', function() {
+            $popup.hide();
+        });
+
+        $increaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            currentValue += 1;
+            $roomsInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseRooms.on('click', function() {
+            let currentValue = parseInt($roomsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $roomsInput.val(currentValue);
+                updateOccupancyValue();
             }
         });
 
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const location = document.getElementById('location').value;
-            const daterange = document.getElementById('daterange').value;
+        $increaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            currentValue += 1;
+            $adultsInput.val(currentValue);
+            updateOccupancyValue();
+        });
 
-            console.log(`Location: ${location}`);
-            console.log(`Date Range: ${daterange}`);
+        $decreaseAdults.on('click', function() {
+            let currentValue = parseInt($adultsInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $adultsInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $increaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            currentValue += 1;
+            $childrenInput.val(currentValue);
+            updateOccupancyValue();
+        });
+
+        $decreaseChildren.on('click', function() {
+            let currentValue = parseInt($childrenInput.val(), 10);
+            if (currentValue > 0) {
+                currentValue -= 1;
+                $childrenInput.val(currentValue);
+                updateOccupancyValue();
+            }
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#popup, #occupancyValue').length) {
+                $popup.hide();
+            }
         });
     });
 </script>
+    
+</body>
 
 </html>
 
