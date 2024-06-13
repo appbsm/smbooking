@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <!--Template style -->
     <!--Fav icon-->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/10.png">
     <!-- datepikar plugin -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <!--animate css-->
@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <!--favicon-->
+	
+	<link rel="stylesheet" type="text/css" href="css/style_index.css" />
 
 </head>
 
@@ -98,215 +100,13 @@
     <!-- HEADER START-->
 
 
-    <div class="main_wrapper sign-up-header">
-        <div class="top-menu ">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-7">
-                        <div class="sub-top-menu">
-                            <ul class="u-list">
-                                <li
-                                    class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block ">
-                                    <a href="javascript:;"><i class="fas fa-dollar-sign"></i> &nbsp;usd</a>
-                                    <ul class="top-dropdown">
-                                        <li><a href="">usd</a></li>
-                                        <li><a href="">uro</a></li>
-                                        <li><a href="">inr</a></li>
-                                    </ul>
-
-                                </li>
-                                <li
-                                    class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                    <a href="javascript:;"><i class="fas fa-globe"></i> &nbsp;eng</a>
-                                    <ul class="top-dropdown">
-                                        <li><a href="">Hindi</a></li>
-                                        <li><a href="">tamil</a></li>
-                                        <li><a href="">telgu</a></li>
-                                    </ul>
-                                </li>
-                                <li class="n-border">
-                                        <span>km</span>
-                                        <input type="checkbox" hidden="hidden" id="username">
-                                        <label class="switch" for="username"></label>
-                                        <span>mile</span>
-                                    
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-5">
-                        <div class="sub-top-menu s-menu">
-                            <ul class="u-list">
-                                <li>
-                                    <ul class="social-icon">
-                                        <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </li>
-                                <li class="n-disp"><a href="javascript:;"><i class="fas fa-phone-alt"></i> &nbsp;+1808
-                                        111 9999</a></li>
-                                <li class="n-border res-pd"><a href="signup.html">SING In</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main_menu_wrapper header-color">
+    <!--<div class="main_wrapper sign-up-header">
+        <div class="main_menu_wrapper header-color">-->
+	<div class="main_wrapper">
+		<div class="main_menu_wrapper">
             <!-- main_menu_navbar start -->
             <div class="main_menu_navbar ">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-4 col-lg-2 col-6">
-                            <!-- Brand/logo -->
-                            <a class="navbar-brand" href="index-01.html">
-                                <img src="images/f-logo-.png" alt="">
-                            </a>
-                        </div>
-                        <div class="col-xl-3 col-lg-2 col-6 d-block d-lg-none">
-                            <div class="navbar-toggler" data-toggle="collapse" role="term"
-                                data-target="#sidebar" aria-controls="sidebar" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <!--just add these span here-->
-                                <!-- <i class="fas fa-bars"></i> -->
-                                <ul class="toggle-main-wrapper ">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-10 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                            <nav class="navbar navbar-expand-sm  d-block">
-                                <ul class="navbar-nav ">
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            Home
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li><a href="index-01.html">Home 01</a></li>
-                                            <li><a href="index-02.html">Home 02</a></li>
-                                           
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            hotel
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li class="p-rel"><a href="javascript:;">Hotel Listing </a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="listing-grid-left.html">Hotel Left Grid View</a></li>
-                                                    <li><a href="listing-grid-right.html">Hotel Right Grid View</a></li>
-                                                    <li><a href="grid-map-view.html">Hotel Map View</a></li>
-
-                                                </ul>
-                                            </li>
-                                            <li><a href="hotel-single-page.html">Hotel Single Page</a></li>
-                                            <li><a href="404-style.html">404 Error</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            shortcode
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items mega-menu">
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="accordion.html">Accordion</a></li>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="client.html">Client</a></li>
-                                                    <li><a href="counter.html">Counter</a></li>
-                                                    <li><a href="element.html">Element</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="feature_with_icon.html">Feature with icon</a></li>
-                                                    <li><a href="feature_with_images.html">Feature with images</a></li>
-                                                    <li><a href="footer.html">Footer</a></li>
-                                                    <li><a href="form.html">Form</a></li>
-                                                    <li><a href="heading.html">Heading</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="image_box.html">Image Box</a></li>
-                                                    <li><a href="icon.html">Icon</a></li>
-                                                    <li><a href="page-header.html">Page Header</a></li>
-                                                    <li><a href="portfolio.html">Portfolio</a></li>
-                                                    <li><a href="pricing-table.html">Pricing Table</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="shortcode-menu">
-                                                <ul>
-                                                    <li><a href="progress-skills.html">Progress Skill</a></li>
-                                                    <li><a href="tab.html">Tab</a></li>
-                                                    <li><a href="team.html">Team</a></li>
-                                                    <li><a href="testimonials.html">testimonials</a></li>
-                                                   
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            blog
-                                            <i class="fas fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-items">
-                                            <li class="p-rel"><a href="javascript:;">Blog Single</a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="blog-left-singal.html">Single Left Sidebar</a></li>
-                                                    <li><a href="blog-right-single.html">Single Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="p-rel"><a href="javascript:;">Blog Categories </a>
-                                                <ul class="sub-dropdown dropdown-items">
-                                                    <li><a href="blog-left-singal.html">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-right-single.html">Blog Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                           
-
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item  wrap-nav-item">
-                                        <a href="contact-form.html" class="nav-link">
-                                            contact
-                                        </a>
-                                    </li>
-                                    <li class="nav-item p-rel wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            <i class="fas fa-search"></i>
-                                        </a>
-                                        <div class="search-box dropdown-items">
-                                            <input type="text" class="" placeholder="Search text">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                    </li>
-                                    <!-- <li class="nav-item wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
-                                            <i class="fas fa-shopping-bag"></i>
-                                        </a>
-                                    </li> -->
-
-                                    <li class="nav-item">
-                                        <a href="add-hotel.html" class="btn btn-primary">Add Hotel</a>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                        </div>
-                    </div>
-                </div>
+                <? include('includes/topbar.php'); ?>
             </div>
         </div>
 
@@ -314,102 +114,7 @@
 
     <!-- mobile_menu_main end -->
 
-    <!-- sidebar start -->
-    <div id="sidebar">
-        <div class="sidebar_logo">
-            <a href="index-01.html"><img src="images/logo.png" alt=""></a>
-        </div>
-        <div id='cssmenu'>
-            <div class="input-group ms-3">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="search here..." aria-label="Username"
-                    aria-describedby="basic-addon1">
-            </div>
-            <ul>
-                <li class='has-sub'><a href="index.html">Home</a>
-                    <ul>
-                        <li><a href="index-01.html">Home 01</a></li>
-                        <li><a href="index-02.html">Home 02</a></li>
-                      
-                    </ul>
-                </li>
-                <li class='has-sub'><a href="javascript:;">Hotel</a>
-                    <ul>
-                        <li class='has-sub'><a href="#" class="sub-icon">Hotel Listing</a>
-                            <ul class="m-sub-dropdown">
-                                <li><a href="listing-grid-left.html">Hotel Left Grid View </a>
-                                </li>
-                                <li><a href="listing-grid-right.html">Hotel right Grid View </a>
-                                </li>
-                                <li><a href="grid-map-view.html">Hotel Map View</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="hotel-single-page.html">Hotel Single Page</a>
-                        </li>
-                        <li><a href="404-style.html">404</a>
-                        </li>
     
-                    </ul>
-                </li>
-                <li class='has-sub'><a href="javascript:;">Shortcode</a>
-                    <ul>
-                        <li><a href="accordion.html">Accordion</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="client.html">Client</a></li>
-                        <li><a href="counter.html">Counter</a></li>
-                        <li><a href="element.html">Element</a></li>
-                        <li><a href="feature_with_icon.html">Feature with icon</a></li>
-                        <li><a href="feature_with_images.html">Feature with images</a></li>
-                        <li><a href="footer.html">Footer</a></li>
-                        <li><a href="form.html">Form</a></li>
-                        <li><a href="heading.html">Heading</a></li>
-                        <li><a href="image_box.html">Image Box</a></li>
-                        <li><a href="icon.html">Icon</a></li>
-                        <li><a href="page-header.html">Page Header</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="pricing-table.html">Pricing Table</a></li>
-                        <li><a href="progress-skills.html">Progress Bar</a></li>
-                        <li><a href="tab.html">Tab</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="testimonials.html">testimonials</a></li>
-                        
-
-                    </ul>
-                </li>
-                <li class='has-sub'><a href="javascript:;">Blog</a>
-                    <ul>
-                        <li class='has-sub'><a href="#" class="sub-icon">Blog Single</a>
-                            <ul class="m-sub-dropdown">
-                                <li><a href="blog-left-singal.html">Single Left Sidebar</a>
-                                </li>
-                                <li><a href="blog-right-single.html">Single Right Sidebar</a>
-                                </li>
-                              
-                            </ul>
-                        </li>
-                        <li class='has-sub'><a href="#" class="sub-icon">Blog Categories</a>
-                            <ul class="m-sub-dropdown">
-                                <li><a href="blog-categories-left.html">Blog Left Sidebar</a>
-                                </li>
-                                <li><a href="blog-categories-right.html">Blog Right Sidebar</a>
-                                </li>
-                              
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="contact-form.html">Contact</a></li>
-                <li class="m-social-icons">
-                    <span><i class="fab fa-facebook-f"></i></span>
-                    <span><i class="fab fa-twitter"></i></span>
-                    <span><i class="fab fa-linkedin-in"></i></span>
-                    <span><i class="fab fa-instagram"></i></span>
-                </li>
-            </ul>
-
-        </div>
-    </div>
 </div>
     <!-- sidebar end -->
 
