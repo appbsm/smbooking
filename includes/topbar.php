@@ -11,12 +11,14 @@
                                     </div>
                                     <div class="col-7" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
-                                            <ul class="u-list">
+                                            <ul class="u-list" style="font-size: 14px;">
                                                 <li
                                                     class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block ">
                                                     <a href="javascript:;"><i class="fas fa-dollar-sign"></i> &nbsp;usd</a>
                                                     <ul class="top-dropdown">
-                                                        <li><a href=""><i class="fa fa-bitcoin"></i>&nbsp;thb</a></li>
+                                                        <li style="border: none !important;">
+															<a href=""><i class="fa fa-bitcoin"></i>&nbsp;thb</a>
+														</li>
                                                     </ul>
 
                                                 </li>
