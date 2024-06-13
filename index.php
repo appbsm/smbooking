@@ -64,6 +64,7 @@ Author:
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
     <link rel="stylesheet" type="text/css" href="css/style_index.css" />
+
 </head>
 
 <body>
@@ -410,12 +411,13 @@ Author:
     </div>
     <!-- hotel service section start end-->
     <!-- popular hotel slider start -->
+
     <div class="slider-wrapper slider1-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4><a href="javascript:;">Most Popular Hotels</a></h4>
-                    <div class="owl-carousel owl-theme">
+                    <h4><a id="popular_hotels" href="javascript:;">Most Popular Hotels</a></h4>
+                    <div class="owl-carousel owl-carousel-auto owl-theme">
 
                     <?php foreach ($room_list as $value) {  ?>
                         <div class="item">
@@ -423,7 +425,6 @@ Author:
                                 <div class="img-sec p-rel">
                                     <div class="hover-img p-rel">
                                         <a href="javascript:;"> 
-                                            <!-- <img src="images/Type_A/Type_A_1.jpg" alt=""> -->
                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
@@ -431,12 +432,23 @@ Author:
                                 </div>
                                 <div class="slider-content">
                                     <span>
-                                        <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
+                                        <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
-                                    <h5><a href="hotel-single-page.php">SM 1 - Standard Room</a></h5>
+                                    <h5>
+                                        <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
+                                        <form action="hotel-single-page.php" method="post">
+                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_en']; ?>
+                                            </a>
+                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_th']; ?>
+                                            </a>
+                                        </form>
+                                    </h5>
                                     <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
                                             USA</span></a>
@@ -444,52 +456,6 @@ Author:
                             </div>
                         </div>
                     <? } ?>
-
-
-                        <!-- <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/Type_B/Type_B_2.jpg" alt=""></a>
-                                </div>
-                                <span>$50 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 83+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.php">SM 2 - Superior Room</a></h5>
-                                <a href="javascript:;"><span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-
-                                    <a href="javascript:;"> <img src="images/Type_C/Type_C_2.jpg" alt=""></a>
-
-                                </div>
-                                <span>$72 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 68+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.php">SM 3 -Junior Suite</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div> -->
-
                     </div>
                 </div>
             </div>
@@ -681,6 +647,7 @@ Author:
                                                     </div>
                                                     <span><?php echo trim($value['default_rate']); ?> / Night</span>
                                                 </div>
+
                                                 <div class="slider-content">
                                                     <span>
                                                         <a href="javascript:;"> <i class="fas fa-star"></i><i
@@ -800,6 +767,7 @@ Author:
                         <button type="button" class="btn btn-primary">Read more</button>
                     </div>
                 </div>
+
                 <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="sb-blog-wrapper">
                         <h4><a href="javascript:;">Top Reviews</a></h4>
@@ -968,11 +936,39 @@ Author:
     <script src="js/shortcode.js"></script>
     <script src="js/custom.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+
+    <script>
+    $(document).ready(function(){
+        $(".owl-carousel-auto").owlCarousel({
+            loop:true,
+            margin:10,
+            nav: false, // Hide navigation arrows
+            autoplay:true,
+            autoplayTimeout:3000, // 3 seconds autoplay interval
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
+            }
+        });
+    });
+    </script>
+
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
 <script>
     $(document).ready(function() {
@@ -998,52 +994,52 @@ Author:
     });
 
     $(document).ready(function() {
-            $("#daterange").datepicker({
-                dateFormat: 'dd/mm/yy',
-                numberOfMonths: 2,
-                minDate: 0,
-                onSelect: function(selectedDate) {
-                    var option = this.id == "start_date" ? "minDate" : "maxDate",
-                        instance = $(this).data("datepicker"),
-                        date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-                    $("#end_date").datepicker("option", option, date);
-                }
-            });
+        $("#daterange").datepicker({
+            dateFormat: 'dd/mm/yy',
+            numberOfMonths: 2,
+            minDate: 0,
+            onSelect: function(selectedDate) {
+                var option = this.id == "start_date" ? "minDate" : "maxDate",
+                    instance = $(this).data("datepicker"),
+                    date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                $("#end_date").datepicker("option", option, date);
+            }
         });
- 
-        function updateCount(type, change) {
-            const element = document.getElementById(type);
-            let value = parseInt(element.textContent);
-            value += change;
-            if (value < 0) value = 0;
-            element.textContent = value;
-            updateSummary();
-        }
- 
-        function updateSummary() {
-            const rooms = document.getElementById('rooms').textContent;
-            const adults = document.getElementById('adults').textContent;
-            const children = document.getElementById('children').textContent;
-            const button = document.querySelector('.dropdown-container button');
-            // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
-            button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
-        }
- 
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const location = document.getElementById('location').value;
-            const daterange = document.getElementById('daterange').value;
-            const rooms = document.getElementById('rooms').textContent;
-            const adults = document.getElementById('adults').textContent;
-            const children = document.getElementById('children').textContent;
- 
-            console.log(`Location: ${location}`);
-            console.log(`Date Range: ${daterange}`);
-            console.log(`Rooms: ${rooms}`);
-            console.log(`Adults: ${adults}`);
-            console.log(`Children: ${children}`);
-        });
+    });
 
+    function updateCount(type, change) {
+        const element = document.getElementById(type);
+        let value = parseInt(element.textContent);
+        value += change;
+        if (value < 0) value = 0;
+        element.textContent = value;
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const rooms = document.getElementById('rooms').textContent;
+        const adults = document.getElementById('adults').textContent;
+        const children = document.getElementById('children').textContent;
+        const button = document.querySelector('.dropdown-container button');
+        // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+        button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const location = document.getElementById('location').value;
+        const daterange = document.getElementById('daterange').value;
+        const rooms = document.getElementById('rooms').textContent;
+        const adults = document.getElementById('adults').textContent;
+        const children = document.getElementById('children').textContent;
+
+        console.log(`Location: ${location}`);
+        console.log(`Date Range: ${daterange}`);
+        console.log(`Rooms: ${rooms}`);
+        console.log(`Adults: ${adults}`);
+        console.log(`Children: ${children}`);
+    });
+        
 </script>
 </html>
 
