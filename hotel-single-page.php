@@ -33,11 +33,13 @@
 <style>
     .gallery-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ปรับ column ให้ responsive */
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 10px;
             padding: 20px;
-            max-width: 1000px;
+            /*max-width: 1000px;*/
             margin: auto;
+			margin: auto;
+			max-width: 100%;
         }
 
         .gallery-item {
