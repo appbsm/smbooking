@@ -1,3 +1,37 @@
+<?php 
+include('includes/connect_sql.php');
+include('includes/fx_room_detail_db.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
+    $room_list   = get_room($conn,$_POST['id_room']);
+}else{
+    $room_list   = get_room_top($conn);
+}
+
+// echo '<script>alert("id_room: '.$_POST['id_room'].'")</script>'; 
+
+$start_id = "true";
+foreach ($room_list as $value) {
+    if($start_id == "true"){
+        $id_project_info  = $value['id_project_info'];
+        $room_type_name_en  = $value['room_type_name_en'];
+        $room_type_name_th  = $value['room_type_name_th'];
+        $description_en     = $value['description_en'];  
+        $description_th     = $value['description_th'];
+        $short_description_en= $value['short_description_en'];
+        $short_description_th= $value['short_description_th'];
+        $default_rate       = $value['default_rate'];
+        $latitude           = $value['latitude'];
+        $longitude          = $value['longitude'];
+        $link_map           = $value['link_map'];
+        $start_id = "false";
+    }
+}
+$icon_room_list = get_icon_room($conn,$id_project_info);
+
+sqlsrv_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,51 +156,43 @@
 <body>
     <!-- return-to-top start-->
     <a href="javascript:" id="return-to-top"><i class="fas fa-sort-up"></i></a>
-    <!-- return-to-top-end -->
-    <!-- HEADER START-->
 
 
-    <!--<div class="main_wrapper sign-up-header">
-        <div class="main_menu_wrapper header-color">-->
 	<div class="main_wrapper">
 		<div class="main_menu_wrapper">
             <!-- main_menu_navbar start -->
             <div class="main_menu_navbar ">
                 <? include('includes/topbar.php'); ?>
+
             </div>
         </div>
 
-    <!-- mobile_menu_main start -->
-
-    <!-- mobile_menu_main end -->
-
-    
-</div>
     <!-- sidebar end -->
 
     <!--HEADER END-->
     <!-- sign up banner start-->
     <div class="gallery-container">
+
+
+<?php $count_image=0; foreach ($room_list as $value) {  ?>
+
+    <? if($count_image == 0){ ?>
         <div class="gallery-item large">
-            <img src="images/Home_1/Home_5.jpg" alt="Image 1">
-            <div class="gallery-item-title">Image 1</div>
+            <!-- <img src="images/Home_1/Home_5.jpg" alt="Image 1"> -->
+            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+            <!-- <div class="gallery-item-title">Image 1</div> -->
         </div>
+    <? } ?>
+
+    <? if($count_image < 5 && $count_image > 0){ ?>
         <div class="gallery-item">
-            <img src="images/Home_1/Home_6.jpg" alt="Image 2">
-            <div class="gallery-item-title">Image 2</div>
+            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+            <!-- <div class="gallery-item-title">Image 2</div> -->
         </div>
-        <div class="gallery-item">
-            <img src="images/Home_1/Home_7.jpg" alt="Image 3">
-            <div class="gallery-item-title">Image 3</div>
-        </div>
-        <div class="gallery-item">
-            <img src="images/Home_1/Home_9.jpg" alt="Image 4">
-            <div class="gallery-item-title">Image 4</div>
-        </div>
-        <div class="gallery-item">
-            <img src="images/Home_1/Home_10.jpg" alt="Image 5">
-            <div class="gallery-item-title">Image 5</div>
-        </div>
+    <? } ?>
+
+<? $count_image++; } ?>
+
     </div>
 
     <div class="hs-blog-wrapper">
@@ -174,7 +200,15 @@
             <div class="row">
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="hs-blog-content">
-                        <h3><a href="">Hotel Sayaji indore</a></h3>
+                        <h3 class="en">
+                            <!-- <a href=""> -->
+                            <? echo $room_type_name_en; ?>
+                            <!-- </a> -->
+                        </h3>
+                        <h3 class="th">
+                            <? echo $room_type_name_th; ?>
+                        </h3>  
+
                         <div class="pt-20">
                             <a href="" class="text-color"><span><i class="fas fa-map-marker-alt text-color"></i></span>
                                 50 Vijay Nagar, Indore, INDIA</a>
@@ -187,15 +221,12 @@
                             </span>
                         </div>
                         <div class="pt-20">
-                            Start From- <span class="text-design">$50 / Night</span>
+                            Start From- <span class="text-design"><? echo $default_rate; ?> ฿ / Night</span>
                         </div>
-                        <p class="pt-20">Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis
-                            bibendum auctor, nisi elit consequat as sum, nec sagittis sem nibh id elit. Duis sed odio
-                            sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsn sum velit. Nam nec tellus a
-                            odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor e in elit.
-                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                            Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. </p>
-                        <div id="hs-list-items">
+                        <p class="en" class="pt-20"><? echo $description_en; ?></p>
+                        <p class="th" class="pt-20"><? echo $description_th; ?></p>
+
+                        <!-- <div id="hs-list-items">
                             <ul>
                                 <li><a href="">-Hotel Timmings</a></li>
                                 <li><a href="">-Term & Condition</a></li>
@@ -208,15 +239,12 @@
                                 <li><a href="">-What kind of foowear is most suitable ? </a></li>
                                 <li><a href="">-Can i bring Alcohol top this trip?</a></li>
                             </ul>
-                        </div>
-                        <p class="pt-20">
+                        </div> -->
+                        <!-- <p class="pt-20">
                             This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
                             Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem
                             nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan
-                            ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat
-                            consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia
-                            nostra, per inceptos himenaeos. Mauris in erat justo.
-                        </p>
+                        </p> -->
                     </div>
                     <div class="bs-social-content mt-30">
                         <ul>
@@ -234,37 +262,38 @@
                             <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
+                    
                     <div class="hs-servicer-sec">
-                        <h4><a href="">The Best Service</a></h4>
-                        <ul>
+                        <h4 class="en">The Best Service</h4>
+                        <h4 class="th">บริการที่ดีที่สุด</h4>
+<ul>
+<div class="col-md-12 ">
+    <div class="row">
+        <?php foreach($icon_room_list as $value): ?>
+            <div class="col-sm-2 mb-5">
+                <li class="t-center text-color">
+                                <span>
+                                    <!-- <i class="fas fa-car"></i> -->
+                                    <img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" alt="">
+                                </span>
+                                <h5 class="en"><?php echo trim($value['desc_en']); ?></h5>
+                                <h5 class="th"><?php echo trim($value['desc_th']); ?></h5>
+                            </li>
+            </div>
+
+        <?php endforeach; ?>
+    </div>
+</div>
+</ul>
+<!-- <div class="w-100 mb-3"></div> -->
+                       <!--  <ul>
                             <li class="t-center text-color">
                                 <span><i class="fas fa-car"></i></span>
                                 <h5><a href="">Convenient<br>
                                         Transport</a></h5>
                             </li>
-                            <li class="t-center text-color">
-
-                                <span><i class="fas fa-utensils"></i></span>
-                                <h5><a href="">Best<br>
-                                        Gastronomy</a></h5>
-                            </li>
-                            <li class="t-center text-color">
-                                <span><i class="fas fa-camera"></i></span>
-                                <h5><a href="">Wildlife<br>
-                                        Viewing</a></h5>
-                            </li>
-                            <li class="t-center text-color">
-                                <span><i class="fas fa-coffee"></i></span>
-                                <h5><a href="">Good<br>
-                                        Drinks</a></h5>
-                            </li>
-                            <li class="t-center ">
-                                <span><i class="fas fa-star text-color"></i></span>
-                                <h5><a href="">Nice<br>
-                                        Interior</a></h5>
-                            </li>
-
-                        </ul>
+                        </ul> -->
+                        
                     </div>
                     <div class="hs-tour-sec">
                         <h4><a href="">Take a Tour</a></h4>
@@ -1093,14 +1122,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
     <div class="contact-main-wrapper">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0">
@@ -1125,6 +1146,7 @@
             </div>
         </div>
     </div>
+
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
         <div class="container">
@@ -1259,3 +1281,5 @@
 </body>
 
 </html>
+
+<? include('language/text_index.php'); ?>
