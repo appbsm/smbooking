@@ -31,6 +31,10 @@
 </head>
 
 <style>
+	h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
+    button {
+        font-family: 'Prompt', sans-serif;
+    }
     .gallery-container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -80,6 +84,22 @@
 
 	.gallery-item:hover .gallery-item-title {
 		opacity: 1;
+	}
+	
+	.hs-blog-wrapper {;
+		background-color: #f8f9fa;
+	}
+	.sb-grid-main-wrapper {
+		background-color: #f8f9fa;
+	}
+	.hs-slider .slider-wrapper {
+		background-color: #f8f9fa;
+	}
+	.fa-phone-alt:before {
+		color: #fff !important;
+	}
+	.hs-map-sec .hs-box {
+		background-color: #839287;
 	}
 
 	@media (max-width: 600px) {
@@ -146,40 +166,6 @@
         <div class="gallery-item">
             <img src="images/Home_1/Home_10.jpg" alt="Image 5">
             <div class="gallery-item-title">Image 5</div>
-        </div>
-    </div>
-    <div class="hs-banner-wrapper ">
-        <div class="owl-carousel owl-theme p-rel">
-            <div class="item">
-                <div>
-                    <img src="images/slider-1.jpg" alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div>
-                    <img src="images/slider-2.jpg" alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div>
-                    <img src="images/slider-3.jpg" alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div>
-                    <img src="images/slider-2.jpg" alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div>
-                    <img src="images/slider-3.jpg" alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div>
-                    <img src="images/slider-1.jpg" alt="">
-                </div>
-            </div>
         </div>
     </div>
 

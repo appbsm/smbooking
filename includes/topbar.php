@@ -11,12 +11,14 @@
                                     </div>
                                     <div class="col-7" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
-                                            <ul class="u-list">
+                                            <ul class="u-list" style="font-size: 14px;">
                                                 <li
                                                     class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block ">
                                                     <a href="javascript:;"><i class="fas fa-dollar-sign"></i> &nbsp;usd</a>
                                                     <ul class="top-dropdown">
-                                                        <li><a href=""><i class="fa fa-bitcoin"></i>&nbsp;thb</a></li>
+                                                        <li style="border: none !important;">
+															<a href=""><i class="fa fa-bitcoin"></i>&nbsp;thb</a>
+														</li>
                                                     </ul>
 
                                                 </li>
@@ -28,14 +30,14 @@
                                                     </ul>
                                                 </li> -->
                                                 <li class="n-disp">
-                                                        <i class="fas fa-tags"></i><a href="">&nbsp;Deals</a>
+                                                        <i class="fas fa-tags"></i><a href="">&nbsp;<a id="deals_topbar">Deals</a></a>
                                                 </li>
                                                 <li class="n-disp">
-                                                        <i class="fas fa-calendar-alt"></i><a href="">&nbsp;Bookings</a>
+                                                        <i class="fas fa-calendar-alt"></i><a href="">&nbsp;<a id="bookings_topbar">Bookings</a></a>
                                                 </li>
                                                 <li
                                                     class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                                    <a href="javascript:;"><i class="material-icons" style="font-size: medium;">perm_phone_msg</i>&nbsp;support</a>
+                                                    <a href="javascript:;"><i class="material-icons" style="font-size: medium;">perm_phone_msg</i>&nbsp;<a id="support_topbar" >support</a></a>
                                                     <ul class="top-dropdown">
                                                         <li><i class="fas fa-question-circle"></i><a href="">&nbsp;Help Center</a></li>
                                                         <li><i class="fas fa-address-book"></i><a href="">&nbsp;Contact Us</a></li>
@@ -55,11 +57,11 @@
                                             <ul class="u-list">
                                                 <li class="n-border">
                                                     <!-- <a href="signup.html" class="btn btn-outline-dark btn-signin ">Sign In</a> -->
-                                                    <button type="button" class="btn btn-outline-dark btn-signin" onclick="window.location.href='signup.html'">Sign In</button>
+                                                    <button id="sign_topbar" type="button" class="btn btn-outline-dark btn-signin" onclick="window.location.href='signup.html'">Sign In</button>
                                                 </li>
-                                                <li class="n-border" style="padding: 0;">
+                                                <li class="n-border">
                                                     <!-- <a href="signup.html" class="btn btn-secondary btn-regis">Register</a> -->
-                                                    <button type="button" class="btn  btn-secondary btn-regis" onclick="window.location.href='signup.html'">Register</button>
+                                                    <button id="register_topbar" type="button" class="btn  btn-secondary btn-regis" onclick="window.location.href='signup.html'">Register</button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -122,7 +124,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
+                                        <a id="shortcode_topbar" href="javascript:;" class="nav-link">
                                             shortcode
                                             <i class="fas fa-caret-down"></i>
                                         </a>
@@ -165,7 +167,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item p-rel  wrap-nav-item">
-                                        <a href="javascript:;" class="nav-link">
+                                        <a id="blog_topbar" href="javascript:;" class="nav-link">
                                             blog
                                             <i class="fas fa-caret-down"></i>
                                         </a>
