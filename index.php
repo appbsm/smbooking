@@ -82,6 +82,7 @@ Author:
             <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container">
                     <div class="row">
+
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
                                <!--  <h2>Book & Experience Amazing Places</h2>
@@ -110,54 +111,39 @@ Author:
                                     <li >
                                         <input type="text" style="min-width: 300px;" id="daterange" name="daterange" class="form-control" placeholder="Check-in - Check-out" >
                                     </li>
-    
-
-                                    <!--  <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder=" Adults 0, Children 0, Rooms 0">
-                                    </li> -->
-
-                                   <!--  <li class="s-box">
-                                        <span><i class="far fa-user"></i></span>
-                                        <input id="occupancyValue" type="text" value="Adults 0,Children 0,Rooms 0" readonly>
-                                    </li> -->
-
 
     <div class="dropdown-container">
+        <!-- <li > -->
         <button style="min-width: 300px;" type="button" class="btn btn-light">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</button>
+        <!-- </li> -->
         <div class="dropdown-content">
             <div class="counter">
-                <label>ห้อง</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
-                <span id="rooms">1</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
-            </div>
-
-            <div class="counter">
-                <label>ผู้ใหญ่</label>
+                <label><i class="fas fa-user"></i>ผู้ใหญ่</label>
                 <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
                 <span id="adults">2</span>
                 <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
             </div>
-            
             <div class="counter">
-                <label>เด็ก</label>
+                <label><i class="fas fa-child"></i>เด็ก</label>
                 <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
                 <span id="children">0</span>
                 <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
             </div>
+            <div class="counter">
+                <label><i class="fas fa-bed"></i>ห้อง</label>
+                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
+                <span id="rooms">1</span>
+                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
+            </div>
         </div>
     </div>
-  
-
-                                    
-
                                     <li>
                                         <button type="button" class="btn btn-primary">Search</button>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -1682,7 +1668,8 @@ Author:
             const adults = document.getElementById('adults').textContent;
             const children = document.getElementById('children').textContent;
             const button = document.querySelector('.dropdown-container button');
-            button.textContent = `ผู้ใหญ่ ${adults} คน , ${children} เด็ก , ${rooms} ห้อง `;
+            // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+            button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
         }
  
         document.getElementById('bookingForm').addEventListener('submit', function(event) {

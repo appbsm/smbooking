@@ -288,61 +288,87 @@
                 margin-right: auto;
                 margin-left: auto;
                 max-width: 100% !important;
-            }
-    .booking-form {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .dropdown-container {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        z-index: 1;
-    }
-    .dropdown-container:hover .dropdown-content {
-        display: block;
-    }
-    .dropdown-container button {
-        background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
-        border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
-        color: #495057; /* สีข้อความ */
-    }
-     
-    .counter {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
     }
 
-    .counter button {
-      padding: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
-      align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
-      justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
-    }
+/*------------------ ใส่จำนวนคน  ------------------*/
+.booking-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1;
+    width: 250px;
+}
+.dropdown-container:hover .dropdown-content {
+    display: block;
+}
+.dropdown-container button {
+    background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
+    border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
+    color: #495057; /* สีข้อความ */
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* จัดวางปุ่มและตัวเลขให้ห่างกัน */
+    margin: 10px 0;
+}
 
-    .counter span {
-      width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-      height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-      border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-      text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
-      line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
-    }
+.counter label {
+    flex-grow: 1; /* ให้ label ขยายเต็มที่ */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* เว้นระยะห่างระหว่างไอคอนและข้อความ */
+}
 
+.counter label i {
+    color: #6c757d; /* เปลี่ยนสีของไอคอนเป็นสีเทา */
+}
+
+.counter button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.counter button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.counter span {
+    width: 30px;
+    text-align: center;
+}
+/*------------------ END ใส่จำนวนคน  ------------------*/
+
+/*------------------ จัดปฏิทินให้อยู่หน้าสุด  ------------------*/
     .daterangepicker {
      z-index: 9999 !important;
-}
+    }
+    
  
 </style>
