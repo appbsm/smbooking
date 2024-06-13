@@ -60,7 +60,6 @@ Author:
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
@@ -644,14 +643,14 @@ Author:
 
                 <?php foreach ($project_list as $value) { ?>
                     <li class="en" class="nav-item"> 
-                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#<? echo $value['id_project_info']; ?>" class="nav-link active" data-bs-toggle="tab"
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#pane-<? echo $value['id_project_info']; ?>" class="nav-link" data-bs-toggle="tab"
                             role="tab"><? echo $value['project_name_en']; ?>
                         </a>
                     </li>
                 <? } ?>
                 <?php foreach ($project_list as $value) {?>
                     <li class="th" class="nav-item"> 
-                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#<? echo $value['id_project_info']; ?>" class="nav-link active" data-bs-toggle="tab"
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#pane-<? echo $value['id_project_info']; ?>" class="nav-link" data-bs-toggle="tab"
                             role="tab"><? echo $value['project_name_th']; ?>
                         </a>
                     </li>
@@ -663,7 +662,6 @@ Author:
             <div id="content" class="tab-content" role="tablist">
 
                 <div id="pane-A" class="card tab-pane fade show active" role="tabpanel">
-                    <!-- Note: New place of `data-parent` -->
                     <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
                             <div class="gallery_list">
@@ -693,12 +691,16 @@ Author:
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <a class="en" href="hotel-single-page.php?id_room=<? echo $value['id_room_type']; ?>">
-                                                        <? echo $value['room_type_name_en']; ?>
-                                                        </a>
-                                                        <a class="th" href="hotel-single-page.php?id_room=<? echo $value['id_room_type']; ?>">
-                                                        <? echo $value['room_type_name_th']; ?>
-                                                        </a>
+                                                        <form action="hotel-single-page.php" method="post">
+                                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                                <? echo $value['room_type_name_en']; ?>
+                                                            </a>
+                                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                                <? echo $value['room_type_name_th']; ?>
+                                                            </a>
+                                                        </form>
                                                     </h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
@@ -716,24 +718,30 @@ Author:
                     </div>
                 </div>
 
-            <?php foreach ($project_list as $value) { ?>
-                <div id="pane-B" class="card tab-pane fade" role="tabpanel">
+            <?php foreach ($project_list as $value) {  ?>
+                <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel">
 
                     <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
                             <div class="gallery_list">
                                 <div class="row">
+
+                                    <?php 
+                                        foreach ($room_list as $value_room) {   
+                                            if($value_room['id_project_info']==$value['id_project_info']){
+                                    ?>
                                     <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
                                                     <div class="hover-img p-rel">
 
-                                                        <a href="javascript:;"><img src="images/gallery-7.jpg"
-                                                                alt=""></a>
+                                                        <a href="javascript:;">
+                                                            <img src="includes/image.php?filename=<?php echo trim($value_room['room_photo_url']); ?>" />
+                                                        </a>
 
                                                     </div>
-                                                    <span>$50 / Night</span>
+                                                    <span><?php echo trim($value_room['default_rate']); ?> / Night</span>
                                                 </div>
                                                 <div class="slider-content">
                                                     <span>
@@ -744,16 +752,29 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.php">Montage Kapulua</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
+                                                    <h5>
+                                                        <form action="hotel-single-page.php" method="post">
+                                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
+                                                                <? echo $value_room['room_type_name_en']; ?>
+                                                            </a>
+                                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
+                                                                <? echo $value_room['room_type_name_th']; ?>
+                                                            </a>
+                                                        </form>
+                                                    </h5>
+                                                    <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
                                                 </div>
+                                                
                                             </div>
                                         </div>
+
                                     </div>
-                                    
+                                <? }} ?>
                                 </div>
                             </div>
                         </div>
