@@ -89,8 +89,13 @@ Author:
     }
 	.main_wrapper .top-menu .sub-top-menu .u-list li a {
         font-size: 14px;
-		}
+		margin-bottom: 0px;
 	}
+	.main_wrapper .top-menu .sub-top-menu .u-list {
+        margin-left: 0px;
+		margin-bottom: 0px;
+    }
+	
     .main_menu_wrapper .main_menu_navbar {
         padding: 0px;
     }
