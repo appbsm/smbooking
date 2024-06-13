@@ -55,15 +55,42 @@
         color: #839287 !important;
         border-color: #839287 !important;
     }
+	
+	.sb_banner_cont_iner_wrapper ul {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 16px;
+		background-color: #fff;
+		/* padding-left: 0px; */
+		border-radius: 10px;
+	}
     .sb_banner_cont_iner_wrapper ul li span {
         color: #839287;
     }
     .sb_banner_cont_iner_wrapper ul li input {
         border-bottom: 2px solid #839287;
+		font-weight: 400 !important;
+		padding: 0px 16px;
     }
     .sb_banner_cont_iner_wrapper ul li select {
         border-bottom: 2px solid #839287;
+		padding-bottom: 2px;
+		font-weight: 400 !important;
     }
+	
+	.input-with-icon {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+	.input-with-icon i {
+		position: absolute;
+		color: #495057; 
+		top: 6px;
+		left: 2px;
+	}
+
     .slider-wrapper {
         background-color: #f8f9fa;
     }
@@ -310,49 +337,29 @@
         position: relative;
         display: inline-block;
     }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        z-index: 1;
-    }
+    
     .dropdown-container:hover .dropdown-content {
         display: block;
-    }
-    .dropdown-container button {
-        background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
-        border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
-        color: #495057; /* สีข้อความ */
-    }
-     
-    .counter {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
-    }
-
-    .counter button {
-      padding: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
-      align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
-      justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
-    }
-
-
-    .counter span {
-      width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-      height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-      border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-      text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
-      line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
-    }
-
+    }   
+    
+	.form-control-calen {
+		display: block;
+		width: 100%;
+		padding: 6px 20px;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 2;
+		color: #212529;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: .25rem;
+		transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	}
+	
     .sb_banner_content_wrapper {
         background-image: url('https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg');
         background-size: cover;
@@ -384,7 +391,8 @@
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     padding: 15px;
     z-index: 1;
-    width: 250px;
+    /*width: 250px;*/
+	width: 100% !important;
 }
 .dropdown-container:hover .dropdown-content {
     display: block;
@@ -404,6 +412,7 @@
     align-items: center;
     justify-content: space-between; /* จัดวางปุ่มและตัวเลขให้ห่างกัน */
     margin: 10px 0;
+	gap: 5px;
 }
 
 .counter label {
@@ -439,6 +448,9 @@
 .counter span {
     width: 30px;
     text-align: center;
+	height: 8px !important; 
+    border-radius: 50%; 
+    line-height: 5px;
 }
 /*------------------ END ใส่จำนวนคน  ------------------*/
 

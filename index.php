@@ -93,12 +93,10 @@ Author:
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
 
-                                    <li class="s-box">
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 8px 0; border-radius: 5px;">
                                         <span><i class="far fa-user"></i></span>
 
-                                        <select style="min-width: 350px;">
-                                            <!-- <option class="en" id="home_topbar" value="">select project</option> -->
-                                            <!-- <option class="th" value="">เลือกโครงการ</option> -->
+                                        <select style="max-width: 100%;>
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -107,36 +105,46 @@ Author:
                                             <? } ?>
                                         </select>
                                     </li>
+									
+									
 
-                                    <li >
-                                        <input type="text" style="min-width: 300px;" id="daterange" name="daterange" class="form-control" placeholder="Check-in - Check-out" >
-                                    </li>
+                                    <li  style="border: 1px solid #ced4da; padding: 8px 0; border-radius: 5px;">
+										<div class="input-with-icon">
+											<i class="far fa-calendar"></i>
+											<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+										</div>
+									</li>
+									
+									<!--<div class="dropdown-container input-with-icon">
+										<i class="far fa-calendar"></i>
+										<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+									</div>-->
 
-    <div class="dropdown-container">
-        <!-- <li > -->
-        <button style="min-width: 300px;" type="button" class="btn btn-light">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</button>
-        <!-- </li> -->
-        <div class="dropdown-content">
-            <div class="counter">
-                <label><i class="fas fa-user"></i>ผู้ใหญ่</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
-                <span id="adults">2</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
-            </div>
-            <div class="counter">
-                <label><i class="fas fa-child"></i>เด็ก</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
-                <span id="children">0</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
-            </div>
-            <div class="counter">
-                <label><i class="fas fa-bed"></i>ห้อง</label>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
-                <span id="rooms">1</span>
-                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
-            </div>
-        </div>
-    </div>
+									<div class="dropdown-container">
+										<!-- <li > -->
+										<button style="max-width: 100%; width: 100%;" type="button" class="btn btn-light">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</button>
+										<!-- </li> -->
+										<div class="dropdown-content">
+											<div class="counter">
+												<label><i class="fas fa-user"></i>ผู้ใหญ่</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
+												<span id="adults">2</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
+											</div>
+											<div class="counter">
+												<label><i class="fas fa-child"></i>เด็ก</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
+												<span id="children">0</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
+											</div>
+											<div class="counter">
+												<label><i class="fas fa-bed"></i>ห้อง</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
+												<span id="rooms">1</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
+											</div>
+										</div>
+									</div>
                                     <li>
                                         <button type="button" class="btn btn-primary">Search</button>
                                     </li>
