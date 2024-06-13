@@ -635,44 +635,53 @@ Author:
                         ullamcorper libero Vestibulum imperdiet <br>nibh vel magna lacinia commodo ultricies,</p>
                 </div>
             </div>
+
             <div class="gallery_table">
                 <ul id="tabs" class="nav nav-tabs" role="tablist">
                     <li class="nav-item"> <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab"
                             role="tab">All</a>
                     </li>
-                    <li class="nav-item"> <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab"
-                            role="tab">India</a>
+
+                <?php foreach ($project_list as $value) { ?>
+                    <li class="en" class="nav-item"> 
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#<? echo $value['id_project_info']; ?>" class="nav-link active" data-bs-toggle="tab"
+                            role="tab"><? echo $value['project_name_en']; ?>
+                        </a>
                     </li>
-                    <li class="nav-item"> <a id="tab-C" href="#pane-C" class="nav-link" data-bs-toggle="tab"
-                            role="tab">Switzerland</a>
+                <? } ?>
+                <?php foreach ($project_list as $value) {?>
+                    <li class="th" class="nav-item"> 
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#<? echo $value['id_project_info']; ?>" class="nav-link active" data-bs-toggle="tab"
+                            role="tab"><? echo $value['project_name_th']; ?>
+                        </a>
                     </li>
-                    <li class="nav-item"> <a id="tab-D" href="#pane-D" class="nav-link" data-bs-toggle="tab"
-                            role="tab">USA</a>
-                    </li>
-                    <li class="nav-item"> <a id="tab-E" href="#pane-E" class="nav-link" data-bs-toggle="tab"
-                            role="tab">Dubai</a>
-                    </li>
+                <? } ?>  
+
                 </ul>
             </div>
-            <div id="content" class="tab-content" role="tablist">
-                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel">
 
+            <div id="content" class="tab-content" role="tablist">
+
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel">
                     <!-- Note: New place of `data-parent` -->
                     <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
                             <div class="gallery_list">
                                 <div class="row">
+
+                                <?php foreach ($room_list as $value) {  ?>
                                     <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
                                                     <div class="hover-img p-rel">
 
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_7.jpg"
-                                                                alt=""></a>
+                                                        <a href="javascript:;">
+                                                            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
+                                                        </a>
 
                                                     </div>
-                                                    <span>$50 / Night</span>
+                                                    <span><?php echo trim($value['default_rate']); ?> / Night</span>
                                                 </div>
                                                 <div class="slider-content">
                                                     <span>
@@ -683,7 +692,14 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.php">Hotel sayaji indore</a></h5>
+                                                    <h5>
+                                                        <a class="en" href="hotel-single-page.php?id_room=<? echo $value['id_room_type']; ?>">
+                                                        <? echo $value['room_type_name_en']; ?>
+                                                        </a>
+                                                        <a class="th" href="hotel-single-page.php?id_room=<? echo $value['id_room_type']; ?>">
+                                                        <? echo $value['room_type_name_th']; ?>
+                                                        </a>
+                                                    </h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -692,221 +708,15 @@ Author:
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_8.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$55 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Montage Kapulua</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_9.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$48 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Lodge</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_10.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$65 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Peninsula</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_11.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$57 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Mandarian Oriental</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_12.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$67 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span> <a href="javascript:;">
-                                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review
-                                                        </a> </span>
-                                                    <h5><a href="hotel-single-page.php">The Greenwich</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_13.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$46 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
-                                                    <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                                        Republic of Cuba,
-                                                        USA</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_14.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$78 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                 <? } ?>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            <?php foreach ($project_list as $value) { ?>
                 <div id="pane-B" class="card tab-pane fade" role="tabpanel">
 
                     <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel">
@@ -943,489 +753,14 @@ Author:
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascrip:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="pane-C" class="card tab-pane fade" role="tabpanel">
+            <? } ?>    
 
-                    <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-1.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-4.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-2.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">The Jefferson</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="pane-D" class="card tab-pane fade" role="tabpanel">
-
-                    <div id="collapse-D" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-8.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div id="pane-E" class="card tab-pane fade" role="tabpanel">
-
-                    <div id="collapse-E" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-8.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="javascript:;">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-4.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-3.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-3.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-2.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.php">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1617,6 +952,7 @@ Author:
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#daterange').daterangepicker({
