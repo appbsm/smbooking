@@ -64,352 +64,8 @@ Author:
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
+    <link rel="stylesheet" type="text/css" href="css/style_index.css" />
 </head>
-
-<style>
-    .top-menu {
-        background-color: unset !important;
-        padding: 8px 0;
-    }
-    .main_menu_wrapper .main_menu_navbar ul li a {
-        text-transform: capitalize;
-        color: #000;
-        font-size: 14px;
-    }
-    .main_menu_wrapper .btn-outline-dark {
-        /* color: #fff; */
-        color: #000;
-        border-color: #000;
-        width: 90px;
-        height: 36px;
-		font-size: 14px;
-    }
-    .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items, {
-        background-color: #f8f9fa;
-    }
-	.main_wrapper .top-menu .sub-top-menu .u-list li a {
-        font-size: 14px;
-		margin-bottom: 0px;
-	}
-	.main_wrapper .top-menu .sub-top-menu .u-list {
-        margin-left: 0px;
-		margin-bottom: 0px;
-    }
-	
-    .main_menu_wrapper .main_menu_navbar {
-        padding: 0px;
-    }
-    .menu-fixed {
-        background-color: #839287 !important;
-        /* background-color: #f8f9fa !important; */
-    }
-    #sidebar .sidebar_logo {
-        background: #839287;
-    }
-    .btn-primary {
-        color: #fff;
-        background-color: #839287;
-        border-color: #839287;
-    }
-    .btn-primary:hover {
-        color: #839287 !important;
-        border-color: #839287 !important;
-    }
-    .sb_banner_cont_iner_wrapper ul li span {
-        color: #839287;
-    }
-    .sb_banner_cont_iner_wrapper ul li input {
-        border-bottom: 2px solid #839287;
-    }
-    .sb_banner_cont_iner_wrapper ul li select {
-        border-bottom: 2px solid #839287;
-    }
-    .slider-wrapper {
-        background-color: #f8f9fa;
-    }
-    .gallery_section {
-        background-color: #f8f9fa;
-    }
-    .news-main-wrapper {
-        background-color: #f8f9fa;
-    }
-    .contact-main-wrapper {       
-        background-color: #839287;
-    }
-    .contact-main-wrapper .form {
-        background-color: #839287; 
-    }
-    #return-to-top {
-        background: #839287;
-    }
-    .fa-sort-up:before {
-        color: #000 !important;
-    }
-    .fa-phone-alt:before {
-        color: #839287 !important;
-    }
-    .fa-calendar:before {
-        color: #839287 !important;
-    }
-
-    a {
-        color: #000 !important;
-    }
-    a:hover {
-        color: ##231f20 !important;
-    }
-    .slider-wrapper .owl-theme .owl-nav [class*=owl-] {
-        color: #FFF !important;
-        background: #839287 !important;
-    }
-    .slider-wrapper .owl-theme .owl-nav [class*=owl-]:hover {
-        color: #839287 !important;
-        background: #FFF !important;
-        border-color: #839287 !important;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text h1, h2, h3, h4, h5, h6 {
-        color: #839287;
-        cursor: pointer;
-    }
-    .slider-content .clr-text:hover,
-    .gallery_section .slider-content .clr-text:hover {
-        color: #000 !important;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text {
-        color: #839287;
-        cursor: pointer;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text:hover {
-        color: #000 !important;
-    }
-    .blog-main-wrapper .sb-blog-wrapper .review-slider span {
-        color: #839287;
-    }
-    .blog-main-wrapper .sb-blog-wrapper .review-slider span:hover {
-        color: #000 !important;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        color: #839287 !important;
-    }
-    h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-        color: #000 !important;
-    }
-
-
-    .sb_banner_content_wrapper {
-        background-image: url('https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        /*max-width: 100%;
-        width: 100%;
-        height: 450px;*/
-    }
-    .sb_banner_content_wrapper h2,
-    .sb_banner_content_wrapper h3 {
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
-    }
-
-    h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
-    button {
-        font-family: 'Prompt', sans-serif;
-    }
-
-    .navbar-nav .nav-item {
-        padding: 8px 0px !important;
-        letter-spacing: 0.5px;
-    }
-    .sub-top-menu .u-list .top-dropdown {
-        position: absolute;
-        z-index: 999999;
-        opacity: 0;
-        visibility: hidden;
-        background-color: #f3f8ff;
-        transition: all 0.5s;
-        /* width: 88px; */
-        top: 49px;
-        width: 100% !important;
-    }
-	
-
-    .services-wrapper .service-box.p-box-4 {
-        min-height: 140px !important;
-    }
-    .services-wrapper .service-box {
-        height: 140px !important;
-        padding: 16px 0px !important;
-    }
-
-    .btn-regis {
-        background-color: #61858e;
-        width: 90px !important;
-        height: 36px !important;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-		font-size: 14px;
-    }
-    .btn-signin {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-	.th-en {
-		font-size: 14px;
-	}
-	
-	.img-sec span, .gallery_section .img-sec span {
-        position: absolute;
-        background: red;
-        color: #fff;
-        padding: 4px 20px;
-        right: 0;
-        bottom: 24px;
-    }
-    .img-sec span:before, .gallery_section .img-sec span:before {
-        content: "";
-        width: 21px;
-        height: 21px;
-        background: red;
-        position: absolute;
-        left: -10px;
-        top: 4px;
-        transform: rotate(45deg);
-    }
-    .img-sec span:after, .gallery_section .img-sec span:after {
-        content: "";
-        width: 8px;
-        height: 8px;
-        background: #fff;
-        position: absolute;
-        top: 10px;
-        border-radius: 50%;
-        left: 0;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .main_menu_wrapper .btn-outline-dark {
-            color: #000;
-            border-color: #000;
-            width: 68px;
-            height: 28px;
-            font-size: smaller;
-        }
-        .btn-regis {
-            background-color: #61858e;
-            width: 68px !important;
-            height: 28px !important;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .th-en {
-            font-size: smaller;
-        }
-        .btn-mobile {
-            margin: 16px 0 0 -48px;
-        }
-    }
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-        .main_menu_wrapper .btn-outline-dark {
-            color: #000;
-            border-color: #000;
-            width: 68px;
-            height: 28px;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .btn-regis {
-            background-color: #61858e;
-            width: 68px !important;
-            height: 28px !important;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .th-en {
-            font-size: smaller;
-        }
-        .btn-mobile {
-            margin: -18px 0 0 0;
-        }
-        .main_wrapper .top-menu .sub-top-menu .u-list li {
-            padding: 7px 7px !important;
-        }
-    }
-    @media only screen and (min-width: 1024px) {
-        .betmr {
-            margin: -10px 0 0 0;
-        }
-    }
-	.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-				width: 100%;
-				padding-right: var(--bs-gutter-x, .75rem);
-				padding-left: var(--bs-gutter-x, .75rem);
-				margin-right: auto;
-				margin-left: auto;
-				max-width: 100% !important;
-			}
-	.booking-form {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-	.dropdown-container {
-		position: relative;
-		display: inline-block;
-	}
-	.dropdown-content {
-		display: none;
-		position: absolute;
-		background-color: white;
-		box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-		padding: 15px;
-		z-index: 1;
-	}
-	.dropdown-container:hover .dropdown-content {
-		display: block;
-	}
-	.dropdown-container button {
-		background-color: #fff; /* กำหนดสีพื้นหลังเป็นสีขาว */
-		border: 1px solid #ced4da; /* เพิ่มเส้นขอบ */
-		color: #495057; /* สีข้อความ */
-	}
-	 
-	.counter {
-	  display: flex;
-	  align-items: center;
-	  gap: 5px;
-	  justify-content: center; /* จัดวางส่วนองค์ปุ่ม                    และตัวเลขให้อยู่กึ่งกลาง */
-	}
-
-	.counter button {
-	  padding: 0;
-	  width: 20px;
-	  height: 20px;
-	  border-radius: 50%;
-	  display: flex; /* เพิ่มเพื่อให้สามารถกำหนดแนวตั้งและนอนได้ */
-	  align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวตั้ง */
-	  justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวนอน */
-	}
-
-
-	.counter span {
-	  width: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-	  height: 20px; /* ปรับขนาดของตัวเลขให้กลม */
-	  border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-	  text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง              */
-	  line-height: 5px; /* จัดให้ข้อความอยู่กึ่งกลางตาม     แนวดิ่ง */
-	}
- 
-</style>
 
 <body>
 
@@ -439,7 +95,7 @@ Author:
                                     <li class="s-box">
                                         <span><i class="far fa-user"></i></span>
 
-                                        <select>
+                                        <select style="min-width: 350px;">
                                             <!-- <option class="en" id="home_topbar" value="">select project</option> -->
                                             <!-- <option class="th" value="">เลือกโครงการ</option> -->
                                             <?php foreach ($project_list as $value) { ?>
@@ -451,34 +107,8 @@ Author:
                                         </select>
                                     </li>
 
-                                    <!-- <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li> -->
-
-                                    <!-- <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" id="daterange" name="daterange" class="form-control " placeholder="Check-in - Check-out">
-                                    </li>
- -->
-
-                                    <li>
-                                        <!-- <div class="row"> -->
-
-                                            <!-- <span><i class="far fa-calendar-alt"></i></span> -->
-                                            
-                                            <input type="text" id="daterange" name="daterange" class="form-control" placeholder="Check-in - Check-out">
-                                            
-                                        <!-- </div> -->
-
-                                    </li>
-
-                                    <li>
-                                        <input type="text" class="form-control" id="daterange" placeholder="Check-in - Check-out">
+                                    <li >
+                                        <input type="text" style="min-width: 300px;" id="daterange" name="daterange" class="form-control" placeholder="Check-in - Check-out" >
                                     </li>
     
 
@@ -494,7 +124,7 @@ Author:
 
 
     <div class="dropdown-container">
-            <button type="button" class="btn btn-light">ผู้ใหญ่ 2 คน · 1 ห้อง</button>
+        <button style="min-width: 300px;" type="button" class="btn btn-light">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</button>
         <div class="dropdown-content">
             <div class="counter">
                 <label>ห้อง</label>
@@ -2022,17 +1652,55 @@ Author:
             }
         });
 
+    });
+
+    $(document).ready(function() {
+            $("#daterange").datepicker({
+                dateFormat: 'dd/mm/yy',
+                numberOfMonths: 2,
+                minDate: 0,
+                onSelect: function(selectedDate) {
+                    var option = this.id == "start_date" ? "minDate" : "maxDate",
+                        instance = $(this).data("datepicker"),
+                        date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                    $("#end_date").datepicker("option", option, date);
+                }
+            });
+        });
+ 
+        function updateCount(type, change) {
+            const element = document.getElementById(type);
+            let value = parseInt(element.textContent);
+            value += change;
+            if (value < 0) value = 0;
+            element.textContent = value;
+            updateSummary();
+        }
+ 
+        function updateSummary() {
+            const rooms = document.getElementById('rooms').textContent;
+            const adults = document.getElementById('adults').textContent;
+            const children = document.getElementById('children').textContent;
+            const button = document.querySelector('.dropdown-container button');
+            button.textContent = `ผู้ใหญ่ ${adults} คน , ${children} เด็ก , ${rooms} ห้อง `;
+        }
+ 
         document.getElementById('bookingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const location = document.getElementById('location').value;
             const daterange = document.getElementById('daterange').value;
-
+            const rooms = document.getElementById('rooms').textContent;
+            const adults = document.getElementById('adults').textContent;
+            const children = document.getElementById('children').textContent;
+ 
             console.log(`Location: ${location}`);
             console.log(`Date Range: ${daterange}`);
+            console.log(`Rooms: ${rooms}`);
+            console.log(`Adults: ${adults}`);
+            console.log(`Children: ${children}`);
         });
-    });
-</script>
 
+</script>
 </html>
 
 <? include('language/text_index.php'); ?>
