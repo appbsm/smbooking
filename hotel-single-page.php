@@ -32,67 +32,71 @@
 
 <style>
     .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 10px;
-            padding: 20px;
-            /*max-width: 1000px;*/
-            margin: auto;
-			margin: auto;
-			max-width: 100%;
-        }
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 10px;
+		padding: 20px;
+		/*max-width: 1000px;*/
+		margin: auto;
+		margin: auto;
+		max-width: 100%;
+	}
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+	.gallery-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 8px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	}
 
-        .gallery-item.large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
+	.gallery-item.large {
+		grid-column: span 2;
+		grid-row: span 2;
+	}
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+	.gallery-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
+	.gallery-item:hover img {
+		transform: scale(1.05);
+	}
 
-        .gallery-item-title {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+	.gallery-item-title {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		text-align: center;
+		padding: 10px;
+		box-sizing: border-box;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
 
-        .gallery-item:hover .gallery-item-title {
-            opacity: 1;
-        }
+	.gallery-item:hover .gallery-item-title {
+		opacity: 1;
+	}
 
-        /* เพิ่ม media query เพื่อปรับแสดงผลในโหมดมือถือ */
-        @media (max-width: 600px) {
-            .gallery-item.large {
-                grid-column: auto; /* คืนค่าเป็น auto สำหรับรูปขนาดใหญ่ */
-                grid-row: auto;
-            }
+	@media (max-width: 600px) {
+		.gallery-item.large {
+			grid-column: auto; 
+			grid-row: auto;
+		}
 
-            .gallery-container {
-                grid-template-columns: 1fr; /* แสดงรูปตามคอลัมน์เดียว */
-            }
-        }
+		.gallery-container {
+			grid-template-columns: 1fr; 
+		}
+	}
+	@media only screen and (min-width: 1400px) {
+		.gallery-container {
+			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		}
+	}
 </style>
 
 <body>
