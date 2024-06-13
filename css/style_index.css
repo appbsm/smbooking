@@ -1,4 +1,4 @@
-.top-menu {
+	.top-menu {
         background-color: unset !important;
         padding: 8px 0;
     }
@@ -26,7 +26,16 @@
         margin-left: 0px;
         margin-bottom: 0px;
     }
-    
+	
+	.main_menu_wrapper .main_menu_navbar ul li .dropdown-items .sub-dropdown li a {
+		font-size: 14px !important;
+		padding: 0 30px;
+	}
+    .main_menu_wrapper .main_menu_navbar ul li .dropdown-items li a, .dash-dropdown ul.dropdown-items li a {
+		font-size: 14px !important;
+		padding: 0 30px;
+	}
+	
     .main_menu_wrapper .main_menu_navbar {
         padding: 0px;
     }
