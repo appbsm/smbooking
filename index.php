@@ -66,7 +66,15 @@ Author:
     <link rel="stylesheet" type="text/css" href="css/style_index.css" />
 
 </head>
-
+<style>
+	.btn-search {
+		height: 46px !important;
+		width: 115px !important;
+		text-transform: uppercase !important;
+		border-radius: 5px !important;
+		margin-left: 0px !important;
+	}
+</style>
 <body>
 
     <!-- return-to-top start-->
@@ -80,23 +88,20 @@ Author:
             <? include('includes/topbar.php'); ?>
            
             <div class="sb_banner_content_wrapper animated-row float_left">
-                <div class="container">
+                <div class="container" style="width: 90%;">
                     <div class="row">
-
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
                                <!--  <h2>Book & Experience Amazing Places</h2>
                                 <h3>Compare 3000+ Hotels at once</h3> -->
-                                <ul>
+                                <ul class="sb-filter">
                                    <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
-
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 8px 0; border-radius: 5px;">
-                                        <span><i class="far fa-user"></i></span>
-
-                                        <select style="max-width: 100%;>
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <select style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -106,13 +111,17 @@ Author:
                                         </select>
                                     </li>
 									
-									
-
-                                    <li  style="border: 1px solid #ced4da; padding: 8px 0; border-radius: 5px;">
+									<!--
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
 										<div class="input-with-icon">
-											<i class="far fa-calendar"></i>
-											<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+											<span><i class="fas fa-calendar"></i></span>
+											<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
 										</div>
+									</li>
+									-->
+									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+										<i class="fas fa-calendar" style="position: absolute; left: 56px; top: 46%; transform: translateY(-50%); color: #ced4da;"></i>
+										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
 									</li>
 									
 									<!--<div class="dropdown-container input-with-icon">
@@ -120,10 +129,11 @@ Author:
 										<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
 									</div>-->
 
-									<div class="dropdown-container">
-										<!-- <li > -->
-										<button style="max-width: 100%; width: 100%;" type="button" class="btn btn-light">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</button>
-										<!-- </li> -->
+									<div class="dropdown-container" style="width: 100%;">
+										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
+											<span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
+											ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+										</button>
 										<div class="dropdown-content">
 											<div class="counter">
 												<label><i class="fas fa-user"></i>ผู้ใหญ่</label>
@@ -145,8 +155,8 @@ Author:
 											</div>
 										</div>
 									</div>
-                                    <li>
-                                        <button type="button" class="btn btn-primary">Search</button>
+                                    <li style="flex-grow: 1;">
+                                        <button type="button" class="btn btn-primary btn-search"><i class="fas fa-search"></i>&nbsp;Search</button>
                                     </li>
                                 </ul>
                             </div>

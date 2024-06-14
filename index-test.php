@@ -5,8 +5,6 @@ include('includes/fx_project_facility_db.php');
 $project_list   = get_project($conn);
 $room_list      = get_room_type($conn);
 
-
-
 sqlsrv_close($conn);
 ?>
 
@@ -60,343 +58,23 @@ Author:
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
-    <script>
-        $(document).ready(function(){
-            $(".datepicker").datepicker({
-                dateFormat: "dd-mm-yy"
-            });
-        });
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="css/style_index.css" />
 
 </head>
-
 <style>
-    .top-menu {
-        background-color: unset !important;
-        padding: 8px 0;
-    }
-    .main_menu_wrapper .main_menu_navbar ul li a {
-        text-transform: capitalize;
-        color: #000;
-        font-size: 14px;
-    }
-    .main_menu_wrapper .btn-outline-dark {
-        /* color: #fff; */
-        color: #000;
-        border-color: #000;
-        width: 90px;
-        height: 40px;
-		font-size: 14px;
-    }
-    .main_menu_wrapper .main_menu_navbar ul li .dropdown-items, .dash-dropdown ul.dropdown-items, {
-        background-color: #f8f9fa;
-    }
-    .main_menu_wrapper .main_menu_navbar {
-        padding: 0px;
-    }
-    .menu-fixed {
-        background-color: #839287 !important;
-        /* background-color: #f8f9fa !important; */
-    }
-    #sidebar .sidebar_logo {
-        background: #839287;
-    }
-    .btn-primary {
-        color: #fff;
-        background-color: #839287;
-        border-color: #839287;
-    }
-    .btn-primary:hover {
-        color: #839287 !important;
-        border-color: #839287 !important;
-    }
-    .sb_banner_cont_iner_wrapper ul li span {
-        color: #839287;
-    }
-    .sb_banner_cont_iner_wrapper ul li input {
-        border-bottom: 2px solid #839287;
-    }
-    .sb_banner_cont_iner_wrapper ul li select {
-        border-bottom: 2px solid #839287;
-    }
-    .slider-wrapper {
-        background-color: #f8f9fa;
-    }
-    .gallery_section {
-        background-color: #f8f9fa;
-    }
-    .news-main-wrapper {
-        background-color: #f8f9fa;
-    }
-    .contact-main-wrapper {       
-        background-color: #839287;
-    }
-    .contact-main-wrapper .form {
-        background-color: #839287; 
-    }
-    #return-to-top {
-        background: #839287;
-    }
-    .fa-sort-up:before {
-        color: #000 !important;
-    }
-    .fa-phone-alt:before {
-        color: #839287 !important;
-    }
-    .fa-calendar:before {
-        color: #839287 !important;
-    }
-
-    a {
-        color: #000 !important;
-    }
-    a:hover {
-        color: ##231f20 !important;
-    }
-    .slider-wrapper .owl-theme .owl-nav [class*=owl-] {
-        color: #FFF !important;
-        background: #839287 !important;
-    }
-    .slider-wrapper .owl-theme .owl-nav [class*=owl-]:hover {
-        color: #839287 !important;
-        background: #FFF !important;
-        border-color: #839287 !important;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text h1, h2, h3, h4, h5, h6 {
-        color: #839287;
-        cursor: pointer;
-    }
-    .slider-content .clr-text:hover,
-    .gallery_section .slider-content .clr-text:hover {
-        color: #000 !important;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text {
-        color: #839287;
-        cursor: pointer;
-    }
-    .slider-content .clr-text, .gallery_section .slider-content .clr-text:hover {
-        color: #000 !important;
-    }
-    .blog-main-wrapper .sb-blog-wrapper .review-slider span {
-        color: #839287;
-    }
-    .blog-main-wrapper .sb-blog-wrapper .review-slider span:hover {
-        color: #000 !important;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        color: #839287 !important;
-    }
-    h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-        color: #000 !important;
-    }
-
-
-    .sb_banner_content_wrapper {
-        background-image: url('https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        /* padding: 50px 0; 
-        color: white;  */
-        max-width: 100%;
-        width: 100%;
-        height: 450px;
-    }
-    .sb_banner_content_wrapper h2,
-    .sb_banner_content_wrapper h3 {
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
-    }
-
-    h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
-    button {
-        font-family: 'Prompt', sans-serif;
-    }
-
-    .navbar-nav .nav-item {
-        padding: 8px 0px !important;
-        letter-spacing: 0.5px;
-    }
-    .sub-top-menu .u-list .top-dropdown {
-        position: absolute;
-        z-index: 999999;
-        opacity: 0;
-        visibility: hidden;
-        background-color: #f3f8ff;
-        transition: all 0.5s;
-        /* width: 88px; */
-        top: 49px;
-        width: 100% !important;
-    }
-
-    .services-wrapper .service-box.p-box-4 {
-        min-height: 140px !important;
-    }
-    .services-wrapper .service-box {
-        height: 140px !important;
-        padding: 16px 0px !important;
-    }
-
-    .btn-regis {
-        background-color: #61858e;
-        width: 90px !important;
-        height: 40px !important;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-		font-size: 14px;
-    }
-    .btn-signin {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-	
-	.img-sec span, .gallery_section .img-sec span {
-        position: absolute;
-        background: red;
-        color: #fff;
-        padding: 4px 20px;
-        right: 0;
-        bottom: 24px;
-    }
-    .img-sec span:before, .gallery_section .img-sec span:before {
-        content: "";
-        width: 21px;
-        height: 21px;
-        background: red;
-        position: absolute;
-        left: -10px;
-        top: 4px;
-        transform: rotate(45deg);
-    }
-    .img-sec span:after, .gallery_section .img-sec span:after {
-        content: "";
-        width: 8px;
-        height: 8px;
-        background: #fff;
-        position: absolute;
-        top: 10px;
-        border-radius: 50%;
-        left: 0;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .main_menu_wrapper .btn-outline-dark {
-            color: #000;
-            border-color: #000;
-            width: 68px;
-            height: 28px;
-            font-size: smaller;
-        }
-        .btn-regis {
-            background-color: #61858e;
-            width: 68px !important;
-            height: 28px !important;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .th-en {
-            font-size: smaller;
-        }
-        .btn-mobile {
-            margin: 16px 0 0 -48px;
-        }
-    }
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-        .main_menu_wrapper .btn-outline-dark {
-            color: #000;
-            border-color: #000;
-            width: 68px;
-            height: 28px;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .btn-regis {
-            background-color: #61858e;
-            width: 68px !important;
-            height: 28px !important;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: smaller;
-            margin: 0 !important;
-        }
-        .th-en {
-            font-size: smaller;
-        }
-        .btn-mobile {
-            margin: -18px 0 0 0;
-        }
-        .main_wrapper .top-menu .sub-top-menu .u-list li {
-            padding: 7px 7px !important;
-        }
-    }
-    @media only screen and (min-width: 1024px) {
-        .betmr {
-            margin: -10px 0 0 0;
-        }
-    }
-
-    
-        .occupancy-popup {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            z-index: 1000;
-            width: 180px; /* เพิ่มขนาดความกว้าง */
-        }
-        .occupancy-display {
-            display: inline-block;
-            width: auto;
-            text-align: center;
-            margin-right: 10px;
-            font-weight: bold;
-            cursor: pointer; /* เปลี่ยนเป็น cursor pointer เพื่อแสดงให้เห็นว่าสามารถคลิกได้ */
-        }
-        .number-input {
-            width: 60px;
-            text-align: center;
-            border: none;
-            background-color: #f8f9fa;
-            font-size: 1.2em;
-        }
-        .btn-circle {
-            width: 1px; /* ลดขนาดความกว้างของปุ่ม */
-            height: 1px; /* ลดขนาดความสูงของปุ่ม */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em; /* ลดขนาดฟอนต์ของปุ่ม */
-        }
-        .btn-outline-secondary:disabled {
-            background-color: #e9ecef;
-        }
-		
-		
-		.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-			width: 100%;
-			padding-right: var(--bs-gutter-x, .75rem);
-			padding-left: var(--bs-gutter-x, .75rem);
-			margin-right: auto;
-			margin-left: auto;
-			max-width: 100% !important;
-		}
-    </style>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+	.btn-search {
+		height: 46px !important;
+		width: 115px !important;
+		text-transform: uppercase !important;
+		border-radius: 5px !important;
+		margin-left: 0px !important;
+	}
+</style>
 <body>
 
     <!-- return-to-top start-->
@@ -410,23 +88,20 @@ Author:
             <? include('includes/topbar.php'); ?>
            
             <div class="sb_banner_content_wrapper animated-row float_left">
-                <div class="container">
+                <div class="container" style="width: 90%;">
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                                <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3>
-                                <ul>
+                               <!--  <h2>Book & Experience Amazing Places</h2>
+                                <h3>Compare 3000+ Hotels at once</h3> -->
+                                <ul class="sb-filter">
                                    <!--  <li>
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
-
-                                    <li class="s-box">
-                                        <span><i class="far fa-user"></i></span>
-                                        <select>
-                                            <!-- <option class="en" id="home_topbar" value="">select project</option> -->
-                                            <!-- <option class="th" value="">เลือกโครงการ</option> -->
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <select style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -435,186 +110,67 @@ Author:
                                             <? } ?>
                                         </select>
                                     </li>
+									
+									<!--
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+										<div class="input-with-icon">
+											<span><i class="fas fa-calendar"></i></span>
+											<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+										</div>
+									</li>
+									-->
+									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+										<i class="fas fa-calendar" style="position: absolute; left: 56px; top: 46%; transform: translateY(-50%); color: #ced4da;"></i>
+										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+									</li>
+									
+									<!--<div class="dropdown-container input-with-icon">
+										<i class="far fa-calendar"></i>
+										<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+									</div>-->
 
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-
-                                    <!--  <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder=" Adults 0, Children 0, Rooms 0">
-                                    </li> -->
-
-                                    <li class="s-box">
-                                        <span><i class="far fa-user"></i></span>
-                                        <input id="occupancyValue" type="text" value="Adults 0,Children 0,Rooms 0" readonly>
-                                       
-                                    </li>
-                                        <!-- <span><i class="far fa-user"></i></span>
-                                        <select>
-                                            <option value="">1 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 1 Child</option>
-                                            <option value="">2 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 0 Child</option>
-                                        </select> -->
-
-<!-- <div class="container"> --> 
-<div class="row">
-    <!-- <span id="occupancyValue" class="occupancy-display" ><div style="color: black;">Adults 0,Children 0,Rooms 0</div></span> -->
-    <!-- <input  id="occupancyValue" class="occupancy-display" type="text" placeholder="Adults 0, Children 0, Rooms 0"> -->
-<!-- </div> -->
-<div id="popup" class="occupancy-popup">
-        <div class="mb-3">
-            <label class="form-label">Adults</label>
-            <div class="d-flex align-items-center">
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseAdults">-</button>
-                <input  type="text" id="adultsInput" class="form-control mx-2 number-input" value="0" readonly>
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseAdults">+</button>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Children</label>
-            <div class="d-flex align-items-center">
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseChildren">-</button>
-                <input type="text" id="childrenInput" class="form-control mx-2 number-input" value="0" readonly>
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseChildren">+</button>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Rooms</label>
-            <div class="d-flex align-items-center">
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="decreaseRooms">-</button>
-                <input type="text" id="roomsInput" class="form-control mx-2 number-input" value="0" readonly>
-                <button style="width: 35px;height: 35px;" class="btn btn-outline-secondary btn-circle" id="increaseRooms">+</button>
-            </div>
-        </div>
-       <!--  <div class="text-end">
-            <button class="btn btn-secondary" id="closePopup">Done</button>
-        </div> -->
-    </div>
-</div>  
-  
-
-                                    
-
-                                    <li>
-                                        <button type="button" class="btn btn-primary">Search</button>
+									<div class="dropdown-container" style="width: 100%;">
+										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
+											<span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
+											ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+										</button>
+										<div class="dropdown-content">
+											<div class="counter">
+												<label><i class="fas fa-user"></i>ผู้ใหญ่</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
+												<span id="adults">2</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
+											</div>
+											<div class="counter">
+												<label><i class="fas fa-child"></i>เด็ก</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
+												<span id="children">0</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
+											</div>
+											<div class="counter">
+												<label><i class="fas fa-bed"></i>ห้อง</label>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
+												<span id="rooms">1</span>
+												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
+											</div>
+										</div>
+									</div>
+                                    <li style="flex-grow: 1;">
+                                        <button type="button" class="btn btn-primary btn-search"><i class="fas fa-search"></i>&nbsp;Search</button>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- mobile_menu_main start -->
-
-
-        <!-- mobile_menu_main end -->
-
-        <!-- sidebar start -->
-        <div id="sidebar">
-            <div class="sidebar_logo">
-                <a href="index-01.html"><img src="images/logo.png" alt=""></a>
-            </div>
-            <div id='cssmenu'>
-                <div class="input-group ms-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="search here..." aria-label="Username"
-                        aria-describedby="basic-addon1">
-                </div>
-                <ul>
-                    <li class='has-sub'><a href="index.html">Home</a>
-                        <ul>
-                            <li><a href="index-01.html">Home 01</a></li>
-                            <li><a href="index-02.html">Home 02</a></li>
-
-
-                        </ul>
-                    </li>
-                    <li class='has-sub'><a href="javascript:;">Hotel</a>
-                        <ul>
-                            <li class='has-sub'><a href="javascript:;" class="sub-icon">Hotel Listing</a>
-                                <ul class="m-sub-dropdown">
-                                    <li><a href="listing-grid-left.html">Hotel Left Grid View </a>
-                                    </li>
-                                    <li><a href="listing-grid-right.html">Hotel right Grid View </a>
-                                    </li>
-                                    <li><a href="grid-map-view.html">Hotel Map View</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="hotel-single-page.html">Hotel Single Page</a>
-                            </li>
-                            <li><a href="404-style.html">404</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class='has-sub'><a href="javascript:;">Shortcode</a>
-                        <ul>
-                            <li><a href="accordion.html">Accordion</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="client.html">Client</a></li>
-                            <li><a href="counter.html">Counter</a></li>
-                            <li><a href="element.html">Element</a></li>
-                            <li><a href="feature_with_icon.html">Feature with icon</a></li>
-                            <li><a href="feature_with_images.html">Feature with images</a></li>
-                            <li><a href="footer.html">Footer</a></li>
-                            <li><a href="form.html">Form</a></li>
-                            <li><a href="heading.html">Heading</a></li>
-                            <li><a href="image_box.html">Image Box</a></li>
-                            <li><a href="icon.html">Icon</a></li>
-                            <li><a href="page-header.html">Page Header</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="pricing-table.html">Pricing Table</a></li>
-                            <li><a href="progress-skills.html">Progress Bar</a></li>
-                            <li><a href="tab.html">Tab</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="testimonials.html">testimonials</a></li>
-                        </ul>
-                    </li>
-                    <li class='has-sub'><a href="javascript:;">Blog</a>
-                        <ul>
-                            <li class='has-sub'><a href="#" class="sub-icon">Blog Single</a>
-                                <ul class="m-sub-dropdown">
-                                    <li><a href="blog-left-singal.html">Single Left Sidebar</a>
-                                    </li>
-                                    <li><a href="blog-right-single.html">Single Right Sidebar</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class='has-sub'><a href="#" class="sub-icon">Blog Categories</a>
-                                <ul class="m-sub-dropdown">
-                                    <li><a href="blog-categories-left.html">Blog Left Sidebar</a>
-                                    </li>
-                                    <li><a href="blog-categories-right.html">Blog Right Sidebar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="contact-form.html">Contact</a></li>
-                    <li class="m-social-icons">
-                        <span><i class="fab fa-facebook-f"></i></span>
-                        <span><i class="fab fa-twitter"></i></span>
-                        <span><i class="fab fa-linkedin-in"></i></span>
-                        <span><i class="fab fa-instagram"></i></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
     <!-- sidebar end -->
+
 
     <!--HEADER END-->
     <!-- Side Panel -->
@@ -775,12 +331,13 @@ Author:
     </div>
     <!-- hotel service section start end-->
     <!-- popular hotel slider start -->
+
     <div class="slider-wrapper slider1-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4><a href="javascript:;">Most Popular Hotels</a></h4>
-                    <div class="owl-carousel owl-theme">
+                    <h4><a id="popular_hotels" href="javascript:;">Most Popular Hotels</a></h4>
+                    <div class="owl-carousel owl-carousel-auto owl-theme">
 
                     <?php foreach ($room_list as $value) {  ?>
                         <div class="item">
@@ -788,7 +345,6 @@ Author:
                                 <div class="img-sec p-rel">
                                     <div class="hover-img p-rel">
                                         <a href="javascript:;"> 
-                                            <!-- <img src="images/Type_A/Type_A_1.jpg" alt=""> -->
                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
@@ -796,12 +352,23 @@ Author:
                                 </div>
                                 <div class="slider-content">
                                     <span>
-                                        <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
+                                        <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
-                                    <h5><a href="hotel-single-page.html">SM 1 - Standard Room</a></h5>
+                                    <h5>
+                                        <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
+                                        <form action="hotel-single-page.php" method="post">
+                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_en']; ?>
+                                            </a>
+                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_th']; ?>
+                                            </a>
+                                        </form>
+                                    </h5>
                                     <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
                                             USA</span></a>
@@ -809,52 +376,6 @@ Author:
                             </div>
                         </div>
                     <? } ?>
-
-
-                        <!-- <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                    <a href="javascript:;"> <img src="images/Type_B/Type_B_2.jpg" alt=""></a>
-                                </div>
-                                <span>$50 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 83+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">SM 2 - Superior Room</a></h5>
-                                <a href="javascript:;"><span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-
-                                    <a href="javascript:;"> <img src="images/Type_C/Type_C_2.jpg" alt=""></a>
-
-                                </div>
-                                <span>$72 / Night</span>
-                            </div>
-                            <div class="slider-content">
-                                <span>
-                                    <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 68+
-                                        Review</a>
-                                </span>
-                                <h5><a href="hotel-single-page.html">SM 3 -Junior Suite</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        Republic of Cuba,
-                                        USA</span></a>
-                            </div>
-                        </div> -->
-
                     </div>
                 </div>
             </div>
@@ -999,45 +520,54 @@ Author:
                         ullamcorper libero Vestibulum imperdiet <br>nibh vel magna lacinia commodo ultricies,</p>
                 </div>
             </div>
+
             <div class="gallery_table">
                 <ul id="tabs" class="nav nav-tabs" role="tablist">
                     <li class="nav-item"> <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab"
                             role="tab">All</a>
                     </li>
-                    <li class="nav-item"> <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab"
-                            role="tab">India</a>
+
+                <?php foreach ($project_list as $value) { ?>
+                    <li class="en" class="nav-item"> 
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#pane-<? echo $value['id_project_info']; ?>" class="nav-link" data-bs-toggle="tab"
+                            role="tab"><? echo $value['project_name_en']; ?>
+                        </a>
                     </li>
-                    <li class="nav-item"> <a id="tab-C" href="#pane-C" class="nav-link" data-bs-toggle="tab"
-                            role="tab">Switzerland</a>
+                <? } ?>
+                <?php foreach ($project_list as $value) {?>
+                    <li class="th" class="nav-item"> 
+                        <a id="tab-<? echo $value['id_project_info']; ?>" href="#pane-<? echo $value['id_project_info']; ?>" class="nav-link" data-bs-toggle="tab"
+                            role="tab"><? echo $value['project_name_th']; ?>
+                        </a>
                     </li>
-                    <li class="nav-item"> <a id="tab-D" href="#pane-D" class="nav-link" data-bs-toggle="tab"
-                            role="tab">USA</a>
-                    </li>
-                    <li class="nav-item"> <a id="tab-E" href="#pane-E" class="nav-link" data-bs-toggle="tab"
-                            role="tab">Dubai</a>
-                    </li>
+                <? } ?>  
+
                 </ul>
             </div>
-            <div id="content" class="tab-content" role="tablist">
-                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel">
 
-                    <!-- Note: New place of `data-parent` -->
+            <div id="content" class="tab-content" role="tablist">
+
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel">
                     <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
                             <div class="gallery_list">
                                 <div class="row">
+
+                                <?php foreach ($room_list as $value) {  ?>
                                     <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
                                                     <div class="hover-img p-rel">
 
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_7.jpg"
-                                                                alt=""></a>
+                                                        <a href="javascript:;">
+                                                            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
+                                                        </a>
 
                                                     </div>
-                                                    <span>$50 / Night</span>
+                                                    <span><?php echo trim($value['default_rate']); ?> / Night</span>
                                                 </div>
+
                                                 <div class="slider-content">
                                                     <span>
                                                         <a href="javascript:;"> <i class="fas fa-star"></i><i
@@ -1047,7 +577,18 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Hotel sayaji indore</a></h5>
+                                                    <h5>
+                                                        <form action="hotel-single-page.php" method="post">
+                                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                                <? echo $value['room_type_name_en']; ?>
+                                                            </a>
+                                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                                <? echo $value['room_type_name_th']; ?>
+                                                            </a>
+                                                        </form>
+                                                    </h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -1056,238 +597,38 @@ Author:
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_8.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$55 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Montage Kapulua</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_9.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$48 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Lodge</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_10.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$65 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Peninsula</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_11.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$57 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Mandarian Oriental</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_12.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$67 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span> <a href="javascript:;">
-                                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review
-                                                        </a> </span>
-                                                    <h5><a href="hotel-single-page.html">The Greenwich</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_13.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$46 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
-                                                    <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                                        Republic of Cuba,
-                                                        USA</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/Home_1/Home_14.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$78 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                 <? } ?>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="pane-B" class="card tab-pane fade" role="tabpanel">
+
+            <?php foreach ($project_list as $value) {  ?>
+                <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel">
 
                     <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
                             <div class="gallery_list">
                                 <div class="row">
+
+                                    <?php 
+                                        foreach ($room_list as $value_room) {   
+                                            if($value_room['id_project_info']==$value['id_project_info']){
+                                    ?>
                                     <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
                                                     <div class="hover-img p-rel">
 
-                                                        <a href="javascript:;"><img src="images/gallery-7.jpg"
-                                                                alt=""></a>
+                                                        <a href="javascript:;">
+                                                            <img src="includes/image.php?filename=<?php echo trim($value_room['room_photo_url']); ?>" />
+                                                        </a>
 
                                                     </div>
-                                                    <span>$50 / Night</span>
+                                                    <span><?php echo trim($value_room['default_rate']); ?> / Night</span>
                                                 </div>
                                                 <div class="slider-content">
                                                     <span>
@@ -1298,498 +639,36 @@ Author:
                                                             &nbsp; 88+
                                                             Review</a>
                                                     </span>
-                                                    <h5><a href="hotel-single-page.html">Montage Kapulua</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascrip:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
+                                                    <h5>
+                                                        <form action="hotel-single-page.php" method="post">
+                                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
+                                                                <? echo $value_room['room_type_name_en']; ?>
+                                                            </a>
+                                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                                <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
+                                                                <? echo $value_room['room_type_name_th']; ?>
+                                                            </a>
+                                                        </form>
+                                                    </h5>
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
                                                 </div>
+                                                
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
 
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
+                                <? }} ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="pane-C" class="card tab-pane fade" role="tabpanel">
+            <? } ?>    
 
-                    <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-1.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-4.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-2.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-5.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">The Jefferson</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="pane-D" class="card tab-pane fade" role="tabpanel">
-
-                    <div id="collapse-D" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-8.jpg"
-                                                                alt=""></a>
-
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div id="pane-E" class="card tab-pane fade" role="tabpanel">
-
-                    <div id="collapse-E" class="collapse" role="tabpanel" data-parent="#content">
-                        <div class="gallery-card-body">
-                            <div class="gallery_list">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-8.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="javascript:;">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-4.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-3.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-3.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-2.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="gallery_box">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"><img src="images/gallery-6.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <span>$50 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; |
-                                                            &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="hotel-single-page.html">Four Seasons</a></h5>
-                                                    <a href="javascript:;"><span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i>
-                                                            Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1808,6 +687,7 @@ Author:
                         <button type="button" class="btn btn-primary">Read more</button>
                     </div>
                 </div>
+
                 <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="sb-blog-wrapper">
                         <h4><a href="javascript:;">Top Reviews</a></h4>
@@ -1969,7 +849,6 @@ Author:
     <? include('includes/footer.php'); ?>
 
     <!-- custom js-->
-    <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
@@ -1978,101 +857,110 @@ Author:
     <script src="js/custom.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        const $popup = $('#popup');
-        const $roomsInput = $('#roomsInput');
-        const $adultsInput = $('#adultsInput');
-        const $childrenInput = $('#childrenInput');
-        const $occupancyValue = $('#occupancyValue');
-        const $closePopup = $('#closePopup');
-        const $increaseRooms = $('#increaseRooms');
-        const $decreaseRooms = $('#decreaseRooms');
-        const $increaseAdults = $('#increaseAdults');
-        const $decreaseAdults = $('#decreaseAdults');
-        const $increaseChildren = $('#increaseChildren');
-        const $decreaseChildren = $('#decreaseChildren');
-
-        function updateOccupancyValue() {
-            const rooms = $roomsInput.val();
-            const adults = $adultsInput.val();
-            const children = $childrenInput.val();
-            $occupancyValue.val(`Adults ${adults}, Children ${children} ,Rooms ${rooms}`);
-        }
-
-        $occupancyValue.on('click', function() {
-            const offset = $(this).offset();
-            $popup.css({
-                top: offset.top + $(this).outerHeight() + 10,
-                left: offset.left - $popup.outerWidth() / 2 + $(this).outerWidth() / 2
-            }).show();
-        });
-
-        $closePopup.on('click', function() {
-            $popup.hide();
-        });
-
-        $increaseRooms.on('click', function() {
-            let currentValue = parseInt($roomsInput.val(), 10);
-            currentValue += 1;
-            $roomsInput.val(currentValue);
-            updateOccupancyValue();
-        });
-
-        $decreaseRooms.on('click', function() {
-            let currentValue = parseInt($roomsInput.val(), 10);
-            if (currentValue > 0) {
-                currentValue -= 1;
-                $roomsInput.val(currentValue);
-                updateOccupancyValue();
-            }
-        });
-
-        $increaseAdults.on('click', function() {
-            let currentValue = parseInt($adultsInput.val(), 10);
-            currentValue += 1;
-            $adultsInput.val(currentValue);
-            updateOccupancyValue();
-        });
-
-        $decreaseAdults.on('click', function() {
-            let currentValue = parseInt($adultsInput.val(), 10);
-            if (currentValue > 0) {
-                currentValue -= 1;
-                $adultsInput.val(currentValue);
-                updateOccupancyValue();
-            }
-        });
-
-        $increaseChildren.on('click', function() {
-            let currentValue = parseInt($childrenInput.val(), 10);
-            currentValue += 1;
-            $childrenInput.val(currentValue);
-            updateOccupancyValue();
-        });
-
-        $decreaseChildren.on('click', function() {
-            let currentValue = parseInt($childrenInput.val(), 10);
-            if (currentValue > 0) {
-                currentValue -= 1;
-                $childrenInput.val(currentValue);
-                updateOccupancyValue();
-            }
-        });
-
-        $(document).on('click', function(event) {
-            if (!$(event.target).closest('#popup, #occupancyValue').length) {
-                $popup.hide();
+    <script>
+    $(document).ready(function(){
+        $(".owl-carousel-auto").owlCarousel({
+            loop:true,
+            margin:10,
+            nav: false, // Hide navigation arrows
+            autoplay:true,
+            autoplayTimeout:3000, // 3 seconds autoplay interval
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
             }
         });
     });
-</script>
-    
+    </script>
+
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
+
+<script>
+    $(document).ready(function() {
+        $('#daterange').daterangepicker({
+            opens: 'center',
+            minDate: moment(),
+            autoApply: true,
+            locale: {
+                format: 'DD/MM/YYYY',
+                separator: ' - ',
+                applyLabel: 'Apply',
+                cancelLabel: 'Cancel',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                weekLabel: 'W',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            }
+        });
+
+    });
+
+    $(document).ready(function() {
+        $("#daterange").datepicker({
+            dateFormat: 'dd/mm/yy',
+            numberOfMonths: 2,
+            minDate: 0,
+            onSelect: function(selectedDate) {
+                var option = this.id == "start_date" ? "minDate" : "maxDate",
+                    instance = $(this).data("datepicker"),
+                    date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                $("#end_date").datepicker("option", option, date);
+            }
+        });
+    });
+
+    function updateCount(type, change) {
+        const element = document.getElementById(type);
+        let value = parseInt(element.textContent);
+        value += change;
+        if (value < 0) value = 0;
+        element.textContent = value;
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const rooms = document.getElementById('rooms').textContent;
+        const adults = document.getElementById('adults').textContent;
+        const children = document.getElementById('children').textContent;
+        const button = document.querySelector('.dropdown-container button');
+        // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+        button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const location = document.getElementById('location').value;
+        const daterange = document.getElementById('daterange').value;
+        const rooms = document.getElementById('rooms').textContent;
+        const adults = document.getElementById('adults').textContent;
+        const children = document.getElementById('children').textContent;
+
+        console.log(`Location: ${location}`);
+        console.log(`Date Range: ${daterange}`);
+        console.log(`Rooms: ${rooms}`);
+        console.log(`Adults: ${adults}`);
+        console.log(`Children: ${children}`);
+    });
+        
+</script>
 </html>
 
 <? include('language/text_index.php'); ?>
