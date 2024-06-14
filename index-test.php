@@ -69,7 +69,7 @@ Author:
 <style>
 	.btn-search {
 		height: 46px !important;
-		width: 115px !important;
+		width: 100px !important;
 		text-transform: uppercase !important;
 		border-radius: 5px !important;
 		margin-left: 0px !important;
@@ -156,7 +156,7 @@ Author:
 										</div>
 									</div>
                                     <li style="flex-grow: 1;">
-                                        <button type="button" class="btn btn-primary btn-search"><i class="fas fa-search"></i>&nbsp;Search</button>
+                                        <button type="button" class="btn btn-primary btn-search">Search</button>
                                     </li>
                                 </ul>
                             </div>
