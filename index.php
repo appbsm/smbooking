@@ -156,7 +156,9 @@ Author:
 										</div>
 									</div>
                                     <li style="flex-grow: 1;">
-                                        <button type="button" class="btn btn-primary btn-search">Search</button>
+										<a href="https://smsmartbooking.buildersmart.com/home/search">
+											<button type="button" class="btn btn-primary btn-search">Search</button>
+										</a>
                                     </li>
                                 </ul>
                             </div>
@@ -175,6 +177,7 @@ Author:
     <!--HEADER END-->
     <!-- Side Panel -->
     <!-- hotel service section start -->
+	<!--
     <div class="services-wrapper">
         <div class="container-fluid p-0">
             <div class="row">
@@ -329,6 +332,7 @@ Author:
             </div>
         </div>
     </div>
+	-->
     <!-- hotel service section start end-->
     <!-- popular hotel slider start -->
 
