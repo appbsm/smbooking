@@ -1,7 +1,7 @@
-<div class="main_menu_navbar" style="background-color: #f8f9fa">
+<div class="main_menu_navbar" style="background-color: #f8f9fa !important;">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="top-menu" style="background-color: #f8f9fa">
+                        <div class="top-menu" style="background-color: #f8f9fa;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-1">
@@ -9,6 +9,28 @@
                                             <img src="images/10.png" alt="" alt="" style="width: 70px;">
                                         </a>
                                     </div>
+									<div class="col-8" style="display: flex; justify-content: flex-end;">
+                                        <div class="sub-top-menu">
+											<ul class="u-list" style="font-size: 14px;">
+                                                <li class="n-disp">
+                                                     <a href="">&nbsp;<a id="deals_topbar">Resort</a></a>
+                                                </li>
+                                                <li class="n-disp">
+                                                    <a href="">&nbsp;<a id="bookings_topbar">Hotel</a></a>
+                                                </li>
+                                                <li class="n-disp">
+                                                    <a href="">&nbsp;<a id="bookings_topbar">Condo & Apartment</a></a>
+                                                </li>
+												<li class="n-disp">
+                                                    <i class="fas fa-tags"></i><a href="">&nbsp;<a id="deals_topbar">Promotion & Package</a></a>
+                                                </li>
+                                                <li class="n-disp">
+                                                    <a href="">&nbsp;<a id="bookings_topbar">Contact us</a></a>
+                                                </li>
+											</ul>
+										</div>
+									</div>
+									<!--
                                     <div class="col-7" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
                                             <ul class="u-list" style="font-size: 14px;">
@@ -22,13 +44,6 @@
                                                     </ul>
 
                                                 </li>
-                                                <!-- <li
-                                                    class="dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                                    <a href="javascript:;"><img src="images/flag/united-kingdom.png" alt="Thai Flag" style="width:16px; height:auto;"> &nbsp;eng</a>
-                                                    <ul class="top-dropdown">
-                                                        <li><a href=""><img src="images/flag/thailand.png" alt="Thai Flag" style="width:16px; height:auto;">&nbsp;thai</a></li>
-                                                    </ul>
-                                                </li> -->
                                                 <li class="n-disp">
                                                         <i class="fas fa-tags"></i><a href="">&nbsp;<a id="deals_topbar">Deals</a></a>
                                                 </li>
@@ -43,30 +58,33 @@
                                                         <li><i class="fas fa-address-book"></i><a href="">&nbsp;Contact Us</a></li>
                                                     </ul>
                                                 </li>
-                                                <!-- <li class="n-border">
-                                                        <span>km</span>
-                                                        <input type="checkbox" hidden="hidden" id="username">
-                                                        <label class="switch" for="username"></label>
-                                                        <span>miles</span>
-                                                </li> -->
                                             </ul>
                                         </div>
                                     </div>
+									-->
+									<!--
                                     <div class="col-3 d-flex btn-mobile betmr">
                                         <div class="sub-top-menu s-menu">
                                             <ul class="u-list">
                                                 <li class="n-border">
-                                                    <!-- <a href="signup.html" class="btn btn-outline-dark btn-signin ">Sign In</a> -->
                                                     <button id="sign_topbar" type="button" class="btn btn-outline-dark btn-signin" onclick="window.location.href='signup.html'">Sign In</button>
                                                 </li>
                                                 <li class="n-border">
-                                                    <!-- <a href="signup.html" class="btn btn-secondary btn-regis">Register</a> -->
                                                     <button id="register_topbar" type="button" class="btn  btn-secondary btn-regis" onclick="window.location.href='signup.html'">Register</button>
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <div class="col-1 d-flex th-en">
+                                    </div>-->
+                                    <div class="col-3 d-flex th-en">
+										<div class="button mx-1">
+											<a class="btn btn-signin" href="https://smsmartbooking.buildersmart.com/login" height="20" style="font-size: 14px; background-color: #839287 !important; color: #FFF !important; border: #839287;" >Sign In</a>
+										</div>
+										<div class="button">
+											<a class="nav-link" href="https://smsmartbooking.buildersmart.com/cart">
+												<span class="button__badge"></span>
+												<object style="pointer-events: none;" data="https://sharefolder.buildersmart.com/sms_booking/images/icons/cart.svg" height="20"> </object>
+											</a>
+										</div>
                                         <div class="sub-top-menu s-menu" style="display: flex; justify-content: flex-end;">
                                             <a href="#" id="th-link" style="margin-right: 10px;">TH</a>
                                             <span>|</span>
@@ -77,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row align-items-center">
+                    <!--<div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2 col-6 d-block d-lg-none">
                             <div class="navbar-toggler" data-toggle="collapse" role="term"
                             data-target="#sidebar" aria-controls="sidebar" aria-expanded="false"
@@ -201,13 +219,12 @@
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <!-- <a href="add-hotel.html" class="btn btn-outline-dark">Add Hotel</a> -->
                                         <button type="button" class="btn btn-outline-dark" onclick="window.location.href='add-hotel.html'">Add Hotel</button>
                                     </li>
                                 </ul>
                             </nav>
 
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
