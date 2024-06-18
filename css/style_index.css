@@ -344,7 +344,7 @@
                 padding-left: var(--bs-gutter-x, .75rem);
                 margin-right: auto;
                 margin-left: auto;
-                max-width: 100% !important;
+                max-width: 98% !important;
             }
     .booking-form {
         display: flex;
