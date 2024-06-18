@@ -40,8 +40,8 @@
         padding: 0px;
     }
     .menu-fixed {
-        background-color: #839287 !important;
-        /* background-color: #f8f9fa !important; */
+       /* background-color: #839287 !important;*/
+         background-color: #f8f9fa !important; 
     }
     #sidebar .sidebar_logo {
         background: #839287;
@@ -56,6 +56,12 @@
         border-color: #839287 !important;
     }
 	
+	.sb_banner_cont_iner_wrapper {
+		float: left;
+		width: 100%;
+		padding: 30px 0px;
+		margin-top: 250px;
+	}
 	.sb_banner_cont_iner_wrapper ul {
 		display: flex;
 		justify-content: space-around;
