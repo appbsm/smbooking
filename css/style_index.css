@@ -240,7 +240,7 @@
         position: absolute;
         background: red;
         color: #fff;
-        padding: 4px 20px;
+        padding: 2px 20px;
         right: 0;
         bottom: 24px;
     }
@@ -476,3 +476,5 @@
     .daterangepicker {
      z-index: 9999 !important;
     }
+	
+	
