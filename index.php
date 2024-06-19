@@ -2,6 +2,9 @@
 include('includes/connect_sql.php');
 include('includes/fx_project_facility_db.php');
 
+// include('includes/m_package.php');
+// include('includes/m_project_info.php');
+
 $project_list   = get_project($conn);
 $room_list      = get_room_type($conn);
 
@@ -94,14 +97,13 @@ Author:
                             <div class="sb_banner_cont_iner_wrapper float_left">
                                <!--  <h2>Book & Experience Amazing Places</h2>
                                 <h3>Compare 3000+ Hotels at once</h3> -->
+                                <!-- <form method="post" enctype="multipart/form-data" onSubmit="return valid();"> -->
+                                <form method="post" action="cart.php"  >
                                 <ul class="sb-filter">
-                                   <!--  <li>
-                                        <span><i class="fas fa-street-view"></i></span>
-                                        <input type="text" placeholder="Your Destination?">
-                                    </li> -->
+
                                     <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <select style="max-width: 100%; border-bottom: none !important;">
+                                        <select name="project_id" id="project_id" style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -111,23 +113,10 @@ Author:
                                         </select>
                                     </li>
 									
-									<!--
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
-										<div class="input-with-icon">
-											<span><i class="fas fa-calendar"></i></span>
-											<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-										</div>
-									</li>
-									-->
 									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
 										<i class="fas fa-calendar" style="position: absolute; left: 56px; top: 46%; transform: translateY(-50%); color: #ced4da;"></i>
-										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+										<input id="daterange" name="check_in_date" type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" class="form-control-calen" placeholder="Check-in - Check-out">
 									</li>
-									
-									<!--<div class="dropdown-container input-with-icon">
-										<i class="far fa-calendar"></i>
-										<input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-									</div>-->
 
 									<div class="dropdown-container" style="width: 100%;">
 										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
@@ -154,13 +143,19 @@ Author:
 												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
 											</div>
 										</div>
+                                        <input type="hidden" name="adults" id="adultsInput" value="2">
+                                        <input type="hidden" name="children" id="childrenInput" value="0">
+                                        <input type="hidden" name="rooms" id="roomsInput" value="1">
 									</div>
                                     <li style="flex-grow: 1;">
-										<a href="https://smsmartbooking.buildersmart.com/home/search">
-											<button type="button" class="btn btn-primary btn-search">Search</button>
+										<a href="cart.php">
+                                            <!-- type="button" -->
+											<button type="submit" class="btn btn-primary btn-search">Search</button>
 										</a>
                                     </li>
                                 </ul>
+                                </form>
+
                             </div>
                         </div>
 
@@ -354,6 +349,7 @@ Author:
                                     </div>
                                     <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
                                 </div>
+
                                 <div class="slider-content">
                                     <span>
                                         <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -374,17 +370,61 @@ Author:
                                         </form>
                                     </h5>
                                     <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                            Republic of Cuba,
-                                            USA</span></a>
+                                        Republic of Cuba,
+                                        USA</span></a>
+
+                                        <!-- <div class="t-center"> -->
+                                    
+                                    <div class="footer">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary add_to_cart"
+                                        data-id="<?php echo $value['id_room_type']; ?>"
+                                        data-price="<?php echo $value['default_rate']; ?>"
+                                        >เก็บใส่ตะกร้า</button>
+                                        <!-- <a id="booking" class="btn btn-signin" href="https://smsmartbooking.buildersmart.com/login" height="20" style="font-size: 14px; background-color: #839287 !important; color: #FFF !important; border: #839287;" >จองตอนนี้</a> -->
+                                        <button type="button" class="btn btn-primary " style="background-color: #839287 !important; color: #FFF !important; border: #839287 !important;">
+                                            จองตอนนี้
+                                        </button>
+                                    </div>
+       
                                 </div>
+
                             </div>
                         </div>
+
                     <? } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+    var cart_count = $('.button__badge').text();
+    $('.add_to_cart').click(function() {
+        // alert('checked');
+        var id_room_type = $(this).attr('data-id');
+        var room_rate = $(this).attr('data-price');
+
+        //alert(id_room_type)
+        var _url = "<?php echo "add_to_cart.php"; ?>";
+
+        $.ajax({
+                method: "POST",
+                url: _url,
+                data: {
+                    'id_room_type': id_room_type,
+                    'room_rate': room_rate
+                }
+            })
+            .done(function(res) {
+                var obj = eval('(' + res + ')');
+                alert(obj.message);
+                $('.button__badge').text(obj.count);
+            });
+    });
+</script>
+
     <!-- destination section start-->
     <div class="t-dest-wrapper">
         <div class="container">
@@ -947,6 +987,10 @@ Author:
         const button = document.querySelector('.dropdown-container button');
         // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
         button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+
+        document.getElementById('adultsInput').value = adults;
+        document.getElementById('childrenInput').value = children;
+        document.getElementById('roomsInput').value = rooms;
     }
 
     document.getElementById('bookingForm').addEventListener('submit', function(event) {
@@ -957,11 +1001,11 @@ Author:
         const adults = document.getElementById('adults').textContent;
         const children = document.getElementById('children').textContent;
 
-        console.log(`Location: ${location}`);
-        console.log(`Date Range: ${daterange}`);
-        console.log(`Rooms: ${rooms}`);
-        console.log(`Adults: ${adults}`);
-        console.log(`Children: ${children}`);
+        // console.log(`Location: ${location}`);
+        // console.log(`Date Range: ${daterange}`);
+        // console.log(`Rooms: ${rooms}`);
+        // console.log(`Adults: ${adults}`);
+        // console.log(`Children: ${children}`);
     });
         
 </script>

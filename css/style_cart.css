@@ -1,0 +1,78 @@
+<style>
+	.nav-link.active {
+		background-color: #81BB4A !important;
+	}
+
+	.room_type_header {
+		font-size: 1.4em;
+		font-weight: bold;
+		color: #eee;
+	}
+
+	hr {
+		border: 0;
+		border-top: 1px solid #CCC;
+	}
+
+	.hr3 {
+		border: 0;
+		height: 2px;
+		background-image: linear-gradient(to right, transparent, #CCC, transparent);
+	}
+
+	.section_header {
+		font-weight: bold;
+		font-size: 1.1em;
+	}
+
+	.cross_out {
+		text-decoration: line-through;
+	}
+
+	.red_color {
+		color: red;
+	}
+
+	.table th,
+	.table td {
+		vertical-align: middle !important;
+	}
+	/* Styles for Mobile Phones */
+	@media (max-width: 480px) {
+		.mw-300{
+			max-width: 200px;
+		}
+	}
+
+	/* Styles for Portrait Tablets */
+	@media (min-width: 481px) and (max-width: 768px) {
+		.mw-300{
+			max-width: 300px;
+		}
+	}
+
+	/* Styles for Landscape Tablets and Small Desktops */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.mw-300{
+			max-width: 300px;
+		}
+	}
+
+	/* Styles for Large Desktops */
+	@media (min-width: 1201px) {
+		.mw-300{
+			max-width: 300px;
+		}
+	}
+
+	/* จัดขนาดรูป */
+	.img-fluid {
+	    max-width: 100%;
+	    height: auto;
+	}
+
+	.border-r-10 {
+	    border-radius: 10px;
+	    overflow: hidden;
+	}
+</style>
