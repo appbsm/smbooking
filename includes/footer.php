@@ -1,4 +1,5 @@
-    <footer class="footer-main-wrapper">
+    <!--
+	<footer class="footer-main-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -88,12 +89,13 @@
             </div>
         </div>
     </footer>
+	-->
 	<div id="footer_2_section">
         <!-- section-2 start-->
         <div class="section_2 f-section_2">
             <div class="container">
                 <div class="section2_wrapper">
-                    <div class="row">
+                    <div class="row" style="padding: 20px 0;">
                         <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6">
                             <div class="widget_5">
                                 <h4>Products</h4>
