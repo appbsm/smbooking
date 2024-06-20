@@ -96,7 +96,7 @@ Author:
 		border-radius: 0 !important;
 	}
 	.gallery_section {
-		padding: 100px 30px 0 16px !important;
+		padding: 0 30px 0 16px !important;
 	}
 	.slider-content, .gallery_section .slider-content {
 		border: none !important;
@@ -658,7 +658,7 @@ Author:
     <!-- tab section -->
 
     <!-- gallary section -->
-    <div class="gallery_section" style="padding-top: 0;">
+    <div class="gallery_section" style="padding-top: 0 !important;">
         <div class="container">
 			<!--
             <div class="col-12 col-md-12 col-sm-12 col-12">
