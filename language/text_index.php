@@ -1,51 +1,24 @@
 <script>
     var translations = {
         "en": {
-            "deals_topbar": "Deals",
-            "bookings_topbar": "Bookings",
-            "support_topbar": "Support",
-            "sign_topbar": "Sign In",
-            "register_topbar": "Register",
+            "resort_topbar": "Resort",
+            "hotel_topbar": "Hotel",
+            "condo_topbar": "Condo & Apartment",
+            "promotion_topbar": "Promotion & Package",
+            "contact_topbar": "Contact us",
 
-            "home_topbar": "Home<i class='fas fa-caret-down'></i>",
-            "hotel_topbar": "Hotel<i class='fas fa-caret-down'></i>",
-            "shortcode_topbar": "Shortcode<i class='fas fa-caret-down'></i>",
-            "blog_topbar": "Blog<i class='fas fa-caret-down'></i>",
-            "contact_topbar": "Contact",
-
-            "home_sidebar": "Home",
-            "hotel_sidebar": "Hotel",
-            "shortcode_sidebar": "Shortcode",
-            "blog_sidebar": "Blog",
-            "contact_sidebar": "Contact",
-
-            "popular_hotels": "Most Popular Hotels"
+            "sign_in": "Sign In",
         },
         "th": {
-            "test": "test",
-            "deals_topbar": "ข้อเสนอ",
-            "bookings_topbar": "การจอง",
-            "support_topbar": "สนับสนุน",
-            "sign_topbar": "เข้าสู่ระบบ",
-            "register_topbar": "ลงทะเบียน",
+            "resort_topbar": "รีสอร์ท",
+            "hotel_topbar": "โรงแรม",
+            "condo_topbar": "คอนโด & อพาร์ทเมนต์",
+            "promotion_topbar": "โปรโมชั่นและแพ็คเกจ",
+            "contact_topbar": "ติดต่อเรา",
 
-            "home_topbar": "หน้าหลัก<i class='fas fa-caret-down'></i>",
-            "hotel_topbar": "โรงแรม<i class='fas fa-caret-down'></i>",
-            "shortcode_topbar": "รหัสย่อ<i class='fas fa-caret-down'></i>",
-            "blog_topbar": "บล็อก<i class='fas fa-caret-down'></i>",
-            "contact_topbar": "ติดต่อ",
-
-            "home_sidebar": "หน้าหลัก",
-            "hotel_sidebar": "โรงแรม",
-            "shortcode_sidebar": "รหัสย่อ",
-            "blog_sidebar": "บล็อก",
-            "contact_sidebar": "ติดต่อ",
-
-
-            "popular_hotels": "ห้องพักยอดนิยม"
+            "sign_in": "เข้าสู่ระบบ",
         }
     };
-
     function switchLanguage(language) {
         var elements = Object.keys(translations[language]);
         elements.forEach(function(element) {

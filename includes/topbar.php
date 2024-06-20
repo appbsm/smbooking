@@ -73,23 +73,27 @@ if ($id_guest != '') {
                                         <div class="sub-top-menu">
 											<ul class="u-list" style="font-size: 14px;">
                                                 <li class="n-disp">
-                                                     <a href="">&nbsp;<a id="deals_topbar">Resort</a></a>
+                                                     <a href="">&nbsp;<a id="resort_topbar">Resort</a></a>
                                                 </li>
                                                 <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="bookings_topbar">Hotel</a></a>
+                                                    <a href="">&nbsp;<a id="hotel_topbar">Hotel</a></a>
                                                 </li>
                                                 <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="bookings_topbar">Condo & Apartment</a></a>
+                                                    <a href="">&nbsp;<a id="condo_topbar">Condo & Apartment</a></a>
                                                 </li>
 												<li class="n-disp">
-                                                    <i class="fas fa-tags"></i><a href="">&nbsp;<a id="deals_topbar">Promotion & Package</a></a>
+                                                    <i class="fas fa-tags"></i>
+                                                    <a href="">&nbsp;
+                                                        <a id="promotion_topbar">Promotion & Package</a>
+                                                    </a>
                                                 </li>
                                                 <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="bookings_topbar">Contact us</a></a>
+                                                    <a href="">&nbsp;<a id="contact_topbar">Contact us</a></a>
                                                 </li>
 											</ul>
 										</div>
 									</div>
+
 									<!--
                                     <div class="col-7" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
@@ -137,7 +141,7 @@ if ($id_guest != '') {
                                     </div>-->
                                     <div class="col-3 d-flex th-en" style="justify-content: flex-end;">
 										<div class="button mx-1">
-											<a class="btn btn-signin" href="login.php" height="20" style="font-size: 14px; background-color: #839287 !important; color: #FFF !important; border: #839287;" >Sign In</a>
+											<a  id="sign_in" class="btn btn-signin" href="login.php" height="20" style="font-size: 14px; background-color: #839287 !important; color: #FFF !important; border: #839287;" >Sign In</a>
 										</div>
 										<div class="button">
 											<a class="nav-link" href="cart.php">
@@ -289,3 +293,4 @@ if ($id_guest != '') {
                     </div>-->
                 </div>
             </div>
+            <? include('language/text_index.php'); ?>
