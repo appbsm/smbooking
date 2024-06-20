@@ -77,6 +77,40 @@ Author:
 		margin-left: 0px !important;
 	}
 	
+	
+	.slider1-wrapper .owl-theme .owl-nav {
+		margin-top: 10px;
+		position: absolute;
+		top: -65px !important;
+		right: 0;
+		margin-right: 12px;
+	}
+	.slider-wrapper .owl-theme .owl-nav button i {
+		padding: 0 12px !important;
+		font-size: 16px;
+	}
+	.slider-wrapper .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+		border: none !important;
+	}
+	.gallery_section .sub-main {
+		border-radius: 0 !important;
+	}
+	.gallery_section {
+		padding: 100px 30px 0 16px !important;
+	}
+	.slider-content, .gallery_section .slider-content {
+		border: none !important;
+	}
+	.gallery_box {
+	  border: none;
+	  border-radius: 0;
+	  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+	}
+	.owl-item {
+	  border: none;
+	  border-radius: 0;
+	  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+	}
 	.card {
 	  border: none;
 	  border-radius: 0;
@@ -139,6 +173,7 @@ Author:
 		color: #000 !important;
 		font-size: 14px ;
 		cursor: pointer;
+		font-weight: 600;
 	}
 	.package-tx {
 		-webkit-line-clamp: 2;
@@ -188,7 +223,7 @@ Author:
 		width: auto;
 		height: auto;
 		text-transform: uppercase;
-		line-height: 35px;
+		line-height: 30px;
 		color: #fff !important;
 		font-size: small;
 		background-color: #839287;
@@ -208,9 +243,9 @@ Author:
 		font-size: small !important;
 	}
 	span .fas.fa-star, .gallery_section span .fas.fa-star {
-    font-size: small;
-    color: #e0b319;
-}
+		font-size: small;
+		color: #e0b319;
+	}
 
 </style>
 <body>
@@ -318,7 +353,7 @@ Author:
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12"> 
-					<h4 style="text-align: center; padding-bottom: 30px;">
+					<h4 style="text-align: center; padding-bottom: 15px;">
 						<a id="package" href="javascript:;">PROMOTION & PACKAGE</a>
 					</h4>
 					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -444,15 +479,15 @@ Author:
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <h4 style="text-align: center; padding-bottom: 30px;">
-						<a id="popular_hotels" href="javascript:;">Most Popular Hotels</a>
+						<a id="popular_hotels" href="javascript:;">Room Types</a>
 					</h4>
-                    <div class="owl-carousel owl-carousel-auto owl-theme">
-
+                    <div class="owl-carousel owl-carousel-auto owl-theme" style="padding: 0 16px;">
+			
                     <?php foreach ($room_list as $value) {  ?>
-                        <div class="item">
+                        <div class="item" style="margin: 0 3px;">
                             <div class="sub-main">
                                 <div class="img-sec p-rel">
-                                    <div class="hover-img p-rel">
+                                    <div class="hover-img p-rel" style="width: 100%; height: 100%;">
                                         <a href="javascript:;"> 
                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
@@ -667,7 +702,7 @@ Author:
                                 <div class="row">
 
                                 <?php foreach ($room_list as $value) {  ?>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="padding: 0 6px;">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
@@ -719,7 +754,7 @@ Author:
                 </div>
 
             <?php foreach ($project_list as $value) {  ?>
-                <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel">
+                <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel" style="width: 100%;">
 
                     <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel">
                         <div class="gallery-card-body">
@@ -730,7 +765,7 @@ Author:
                                         foreach ($room_list as $value_room) {   
                                             if($value_room['id_project_info']==$value['id_project_info']){
                                     ?>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="padding: 0 6px;">
                                         <div class="gallery_box">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
