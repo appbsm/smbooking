@@ -334,29 +334,62 @@ sqlsrv_close($conn);
                         </ul>
                     </div>
                     
+					
+					<div class="hs-servicer-sec">
+						<ul>
+							<div class="col-md-12 ">
+								<h4 class="en" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">Nearby Locations</h4>
+								<h4 class="th" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">สถานที่ใกล้เคียง</h4>
+								<ul class="en" style="flex-direction: column; padding: 0 30px;">
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>ครัวอิ่มแปล้</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>The Pandora Camp Khaoyai</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Toscana Valley</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เขาใหญ่อาร์ตมิวเซียม</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>My Ozone Animal Club</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Scenical World</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Khao Yai National Park</li>
+								</ul>
+								<ul class="th" style="flex-direction: column; padding: 0 30px;">
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>ครัวอิ่มแปล้</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เดอะ แพนดอร่า แคมป์ เขาใหญ่</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>หอเอนปิซ่า เขาใหญ่</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เขาใหญ่อาร์ตมิวเซียม</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>My Ozone Animal Club</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Scenical World</li>
+									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>อุทยานแห่งชาติเขาใหญ่</li>
+								</ul>
+							</div>
+						</ul>
+					</div>
+					
                     <div class="hs-servicer-sec">
+						<!--
                         <h4 class="en">The Best Service</h4>
                         <h4 class="th">บริการที่ดีที่สุด</h4>
-<ul>
-<div class="col-md-12 ">
-    <div class="row">
-        <?php foreach($icon_room_list as $value): ?>
-            <div class="col-sm-2 mb-3">
-                <li class="t-center text-color">
-					<span>
-						<!-- <i class="fas fa-car"></i> -->
-						<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" alt="" class="icon-service">
-					</span>
-					<h6 class="en mt-1" style="font-size: small; line-height: 24px;"><?php echo trim($value['desc_en']); ?></h6>
-					<h6 class="th" style="font-size: small;"><?php echo trim($value['desc_th']); ?></h6>
-				</li>
-            </div>
+						-->
+						
+						<ul>
+							<div class="col-md-12 ">
+								<h4 class="en" style="color: #000 !important; padding-top: 0;">Facilities & Amenities</h4>
+								<h4 class="th" style="color: #000 !important; padding-top: 0;">สาธารณูปโภค & สิ่งอำนวยความสะดวก</h4>
+								<div class="row">
+									<?php foreach($icon_room_list as $value): ?>
+										<div class="col-sm-2 mb-3">
+											<li class="t-center text-color">
+												<span>
+													<!-- <i class="fas fa-car"></i> -->
+													<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" alt="" class="icon-service">
+												</span>
+												<h6 class="en mt-1" style="font-size: small; line-height: 24px;"><?php echo trim($value['desc_en']); ?></h6>
+												<h6 class="th" style="font-size: small;"><?php echo trim($value['desc_th']); ?></h6>
+											</li>
+										</div>
 
-        <?php endforeach; ?>
-    </div>
-</div>
-</ul>
-<!-- <div class="w-100 mb-3"></div> -->
+									<?php endforeach; ?>
+								</div>
+							</div>
+						</ul>
+						<!-- <div class="w-100 mb-3"></div> -->
                        <!--  <ul>
                             <li class="t-center text-color">
                                 <span><i class="fas fa-car"></i></span>
@@ -366,7 +399,7 @@ sqlsrv_close($conn);
                         </ul> -->
                         
                     </div>
-                    
+                    <!--
                     <div class="hs-pricing-table page-content p-30">
                         <h4><a href="">Pricing-plan</a></h4>
                         <div class="row">
@@ -420,6 +453,7 @@ sqlsrv_close($conn);
                             </div>
                         </div>
                     </div>
+					-->
                     <div class="hs-map-sec">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
