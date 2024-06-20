@@ -13,7 +13,7 @@
             "resort_topbar": "รีสอร์ท",
             "hotel_topbar": "โรงแรม",
             "condo_topbar": "คอนโด & อพาร์ทเมนต์",
-            "promotion_topbar": "โปรโมชั่นและแพ็คเกจ",
+            "promotion_topbar": "โปรโมชั่น & แพ็คเกจ",
             "contact_topbar": "ติดต่อเรา",
 
             "sign_in": "เข้าสู่ระบบ",
