@@ -67,12 +67,12 @@ sqlsrv_close($conn);
 <style>
 	h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
     button {
-        font-family: 'Prompt', sans-serif;
+        font-family: 'Prompt', sans-serif !important;
     }
     .gallery-container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 10px;
+		gap: 4px;
 		padding: 20px;
 		/*max-width: 1000px;*/
 		margin: auto;
@@ -83,13 +83,22 @@ sqlsrv_close($conn);
 	.gallery-item {
 		position: relative;
 		overflow: hidden;
-		border-radius: 8px;
+		/*border-radius: 8px;*/
 		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 	}
 
 	.gallery-item.large {
 		grid-column: span 2;
 		grid-row: span 2;
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+	}
+	.first-small {
+		border-top-right-radius: 8px;
+	}
+
+	.last-small {
+		border-bottom-right-radius: 8px;
 	}
 
 	.gallery-item img {
@@ -135,6 +144,45 @@ sqlsrv_close($conn);
 	.hs-map-sec .hs-box {
 		background-color: #839287;
 	}
+	
+	.slider1-wrapper .owl-theme .owl-nav {
+		margin-top: 10px;
+		position: absolute;
+		top: -65px !important;
+		right: 0;
+		margin-right: 12px;
+	}
+	.slider-wrapper .owl-theme .owl-nav button i {
+		padding: 0 12px !important;
+		font-size: 16px;
+	}
+	.slider-wrapper .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+		border: none !important;
+	}
+	.gallery_section .sub-main {
+		border-radius: 0 !important;
+	}
+	.gallery_section {
+		padding: 0 30px 0 16px !important;
+	}
+	.slider-content, .gallery_section .slider-content {
+		border: none !important;
+	}
+	.gallery_box {
+	  border: none;
+	  border-radius: 0;
+	  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+	}
+	.owl-item {
+	  border: none;
+	  border-radius: 0;
+	  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+	}
+	
+	.icon-service {
+		width: 30px;
+		height: 30px;
+	}
 
 	@media (max-width: 600px) {
 		.gallery-item.large {
@@ -151,6 +199,8 @@ sqlsrv_close($conn);
 			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 		}
 	}
+	
+	
 </style>
 
 <body>
@@ -171,31 +221,52 @@ sqlsrv_close($conn);
 
     <!--HEADER END-->
     <!-- sign up banner start-->
+	<!--
     <div class="gallery-container">
+		<?php $count_image=0; foreach ($room_list as $value) {  ?>
 
+			<? if($count_image == 0){ ?>
+				<div class="gallery-item large">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
 
-<?php $count_image=0; foreach ($room_list as $value) {  ?>
-
-    <? if($count_image == 0){ ?>
-        <div class="gallery-item large">
-            <!-- <img src="images/Home_1/Home_5.jpg" alt="Image 1"> -->
-            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
-            <!-- <div class="gallery-item-title">Image 1</div> -->
-        </div>
-    <? } ?>
-
-    <? if($count_image < 5 && $count_image > 0){ ?>
-        <div class="gallery-item">
-            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
-            <!-- <div class="gallery-item-title">Image 2</div> -->
-        </div>
-    <? } ?>
-
-<? $count_image++; } ?>
-
+			<? if($count_image < 5 && $count_image > 0){ ?>
+				<div class="gallery-item">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
+		<? $count_image++; } ?>
     </div>
+	-->
+	
+	<div class="gallery-container">
+		<?php $count_image=0; foreach ($room_list as $value) {  ?>
+			<? if($count_image == 0){ ?>
+				<div class="gallery-item large">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
+			<? if($count_image == 3){ ?>
+				<div class="gallery-item first-small">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
+			<? if($count_image == 4){ ?>
+				<div class="gallery-item last-small">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
+			<? if($count_image > 1 && $count_image < 4){ ?>
+				<div class="gallery-item">
+					<img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" alt="Image <? echo $value['id_room_type_photo']; ?>" />
+				</div>
+			<? } ?>
+		<? $count_image++; } ?>
+	</div>
 
-    <div class="hs-blog-wrapper">
+
+    <div class="hs-blog-wrapper" style="padding-top: 30px;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
@@ -270,15 +341,15 @@ sqlsrv_close($conn);
 <div class="col-md-12 ">
     <div class="row">
         <?php foreach($icon_room_list as $value): ?>
-            <div class="col-sm-2 mb-5">
+            <div class="col-sm-2 mb-3">
                 <li class="t-center text-color">
-                                <span>
-                                    <!-- <i class="fas fa-car"></i> -->
-                                    <img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" alt="">
-                                </span>
-                                <h5 class="en"><?php echo trim($value['desc_en']); ?></h5>
-                                <h5 class="th"><?php echo trim($value['desc_th']); ?></h5>
-                            </li>
+					<span>
+						<!-- <i class="fas fa-car"></i> -->
+						<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" alt="" class="icon-service">
+					</span>
+					<h6 class="en mt-1" style="font-size: small; line-height: 24px;"><?php echo trim($value['desc_en']); ?></h6>
+					<h6 class="th" style="font-size: small;"><?php echo trim($value['desc_th']); ?></h6>
+				</li>
             </div>
 
         <?php endforeach; ?>
@@ -295,34 +366,7 @@ sqlsrv_close($conn);
                         </ul> -->
                         
                     </div>
-                    <div class="hs-tour-sec">
-                        <h4><a href="">Take a Tour</a></h4>
-                        <!-- Button trigger modal -->
-                        <div id="video-popup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <a href="javascript:;"><img src="images/Play-Icon.png" alt=""></a>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" >
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <iframe src="https://www.youtube.com/embed/f0zlUPpuNNw"
-                                            title="YouTube video player" 
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="hs-pricing-table page-content p-30">
                         <h4><a href="">Pricing-plan</a></h4>
                         <div class="row">
@@ -796,479 +840,62 @@ sqlsrv_close($conn);
     </div>
 
     <!-- page slider -->
-    <div class="hs-slider">
-        <div class="slider-wrapper slider1-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4><a href="javascript:;">Most Popular Hotels</a></h4>
-                        <div class="owl-carousel owl-theme owl-loaded owl-drag">
-
-                            <div class="owl-stage-outer">
-                                <div class="owl-stage"
-                                    style="transform: translate3d(-2672px, 0px, 0px); transition: all 0.25s ease 0s; width: 5345px;">
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-1.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$65 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 48+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;"> Hotel New Sunder</a></h5>
-                                                <a href="javascript:;"><span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$52 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 58+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">hotel sayaji indore</a></h5>
-                                                <span class="clr-text"><i class="fas fa-map-marker-alt"></i> Republic of
-                                                    Cuba,
-                                                    USA</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-
-                                                </div>
-                                                <span>$55 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 88+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">Hotel New Sunder</a></h5>
-                                                <a href="javascript:;"> <span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"> <img src="images/blog-1.jpg" alt=""></a>
-
-                                                    </div>
-                                                    <span>$77 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; | &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="javascript:;">hotel sayaji indore</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$50 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 83+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">Guru kripa indore</a></h5>
-                                                <a href="javascript:;"><span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-
-                                                </div>
-                                                <span>$72 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 68+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;"> The Ashoka Hotel</a></h5>
-                                                <a href="javascript:;"> <span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item active" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-1.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$65 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 48+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;"> Hotel New Sunder</a></h5>
-                                                <a href="javascript:;"><span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item active" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$52 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 58+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">hotel sayaji indore</a></h5>
-                                                <span class="clr-text"><i class="fas fa-map-marker-alt"></i> Republic of
-                                                    Cuba,
-                                                    USA</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item active" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-
-                                                </div>
-                                                <span>$55 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 88+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">Hotel New Sunder</a></h5>
-                                                <a href="javascript:;"> <span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="sub-main">
-                                                <div class="img-sec p-rel">
-                                                    <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;"> <img src="images/blog-1.jpg" alt=""></a>
-
-                                                    </div>
-                                                    <span>$77 / Night</span>
-                                                </div>
-                                                <div class="slider-content">
-                                                    <span>
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                            <i class="far fa-star"></i><i class="far fa-star"></i>
-                                                            &nbsp; | &nbsp; 88+
-                                                            Review</a>
-                                                    </span>
-                                                    <h5><a href="javascript:;">hotel sayaji indore</a></h5>
-                                                    <a href="javascript:;"> <span class="clr-text"><i
-                                                                class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                            USA</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-2.jpg" alt=""></a>
-
-
-                                                </div>
-                                                <span>$50 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"><i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 83+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;">Guru kripa indore</a></h5>
-                                                <a href="javascript:;"><span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item cloned" style="width: 405.34px; margin-right: 40px;">
-                                        <div class="item">
-                                            <div class="img-sec p-rel">
-                                                <div class="hover-img p-rel">
-
-                                                    <a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a>
-
-                                                </div>
-                                                <span>$72 / Night</span>
-                                            </div>
-                                            <div class="slider-content">
-                                                <span>
-                                                    <a href="javascript:;"> <i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                                        <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; |
-                                                        &nbsp; 68+ Review</a>
-                                                </span>
-                                                <h5><a href="javascript:;"> The Ashoka Hotel</a></h5>
-                                                <a href="javascript:;"> <span class="clr-text"><i
-                                                            class="fas fa-map-marker-alt"></i> Republic of Cuba,
-                                                        USA</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-nav"><button  class="owl-prev"><i
-                                        class="fas fa-long-arrow-alt-left"></i></button><button type="button"
-                                    class="owl-next"><i
-                                        class="fas fa-long-arrow-alt-right"></i></button></div>
-                            <div class="owl-dots"><button role="button" class="owl-dot"><span></span></button><button
-                                    role="button" class="owl-dot active"><span></span></button></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="contact-main-wrapper">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0">
-                <div class="form">
-                    <h5><a href="javascript:;">sign up for newsletter</a></h5>
-                    <p>Sign up for our mailing list to get latest updates and offers</p>
-                    <form >
-                        <div class="input-box p-rel">
-                            <span><i class="far fa-envelope"></i></span>
-                            <input type="text" placeholder="type your email address">
-                            <button>subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0">
-                <div class="offer-tag">
-                    <h5><a href="javascript:;">Summer Holidays 20% OFF</a></h5>
-                    <p>Offer valid for stays now through December 2021</p>
-                    <button type="button" class="btn btn-light">Get code</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- footer section start -->
-    <footer class="footer-main-wrapper">
+	<div class="slider-wrapper slider1-wrapper" style="padding-top: 0px; padding-bottom: 30px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="sb-footer-logo">
-                        <a href="javascript:;" class="f-pd"><img src="images/f-logo-.png" alt=""></a>
-                        <p>Travelers are always discoverers,<br> esy those who travel by air. </p>
-                        <ul class="footer-social-icon">
-                            <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                        <p><a href="javascript:;"><span><i class="fas fa-phone-alt"></i></span> &nbsp; Toll free <br>
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;808 111 9999</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-menu">
-                        <h5><a href="javascript:;" class="f-pd">Our company</a></h5>
-                        <ul>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; About</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;"> &nbsp;Services</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; Terms</a></li>
-                            <li><i class="fas fa-caret-right"></i><a href="javascript:;">&nbsp; FAQ</a></li>
-
-                            <li><i class="fas fa-caret-right"></i><a href="contact-form.html">&nbsp; Contact us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-feed">
-                        <h5><a href="javascript:;" class="f-pd">Instagram feed</a></h5>
-                        <div class="row gutter">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-1.jpg" class="p-rel"
-                                        alt="">
-                                    <span><i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-2.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-3.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-4.jpg" class="p-rel"
-                                        alt="">
-                                    <span><i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-5.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 p-0">
-                                <a href="javascript:;" class="p-rel"><img src="images/f-image-6.jpg" class="p-rel"
-                                        alt="">
-                                    <span> <i class="fab fa-instagram"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-12 col-sm-12 col-12">
-                                <a href="javascript:;" class="more-feed">view all</a>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h4 style="text-align: center; padding-bottom: 30px;">
+						<a id="popular_hotels" href="javascript:;">Room Types</a>
+					</h4>
+                    <div class="owl-carousel owl-carousel-auto owl-theme" style="padding: 0 16px;">
+			
+                    <?php foreach ($room_list as $value) {  ?>
+                        <div class="item" style="margin: 0 3px;">
+                            <div class="sub-main">
+                                <div class="img-sec p-rel">
+                                    <div class="hover-img p-rel" style="width: 100%; height: 100%;">
+                                        <a href="javascript:;"> 
+                                            <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
+                                        </a>
+                                    </div>
+                                    <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
+                                </div>
+                                <div class="slider-content">
+                                    <span style="font-size: small !important;">
+                                        <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
+                                            Review</a>
+                                    </span>
+                                    <h5>
+                                        <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
+                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                            <a class="en" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_en']; ?>
+                                            </a>
+                                            <a class="th" onclick="this.closest('form').submit(); return false;" >
+                                                <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
+                                                <? echo $value['room_type_name_th']; ?>
+                                            </a>
+                                        </form>
+                                    </h5>
+                                    <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
+                                            Republic of Cuba,
+                                            USA</span></a>
+                                </div>
                             </div>
                         </div>
-
+                    <? } ?>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-menu">
-                        <h5><a href="javascript:;" class="f-pd">Download App</a></h5>
-                        <p>Free App Download for best<br>
-                            Tour Experience</p>
-                        <a href="javascript:;"><img src="images/play-store.jpg" alt=""></a>
-                        <a href="javascript:;"><img src="images/app-store-1.jpg" alt=""></a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- bottom footer -->
-    <div class="bottom-footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                    <p>© 2021-22 Webstrot | All Rights Reserved. Design by <a href="http://www.webstrot.com/">Webstrot</a></p>
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                    <ul>
-                        <li>
-                           <a href=""> <img src="images/icon-logo-1.jpg" alt=""></a>
-                        </li>
-                        <li>
-                            <a href=""><img src="images/icon-logo-2.jpg" alt=""></a>
-                        </li>
-                        <li>
-                            <a href=""><img src="images/icon-logo-3.jpg" alt=""></a>
-                        </li>
-                        <li>
-                            <a href=""><img src="images/icon-logo-4.jpg" alt=""></a>
-                        </li>
-                        <li>
-                          <a href="">  <img src="images/icon-logo-5.jpg" alt=""></a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
+	
+    <!-- footer section start -->
 
-
+	<? include('includes/footer.php'); ?>
+	
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
