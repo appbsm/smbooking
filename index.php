@@ -554,7 +554,7 @@ Author:
 						<a id="popular_hotels" href="javascript:;">Room Types</a>
 					</h4>
                     <div class="owl-carousel owl-carousel-auto owl-theme" style="padding: 0 16px;">
-			
+					
                     <?php foreach ($room_list as $value) {  ?>
                         <div class="item" style="margin: 0 3px;">
                             <div class="sub-main">
@@ -572,9 +572,10 @@ Author:
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
+                                    <form action="hotel-single-page.php" method="post" class="tx-title">
                                     <h5>
                                         <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
-                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                        
                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                 <? echo $value['room_type_name_en']; ?>
@@ -583,15 +584,29 @@ Author:
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                 <? echo $value['room_type_name_th']; ?>
                                             </a>
-                                        </form>
+
+                    <!-- <div class="footer"> -->
+						<!-- <div class="ml-2 text-right">
+							<button class="btn button-primary-w add_to_cart" 
+							data-id="<?php //echo $rt->id_room_type; ?>" 
+							data-price="<?php //echo $rt->default_rate; ?>" id="" style="margin-right: 5px;"><?php //echo $this->lang->line('add_to_cart'); ?></button>
+							<a href="javascript:;" data-roomtype="<?php //echo $rt->id_room_type; ?>" class="btn button-primary book_now" id="" style="margin-left: 5px;"><?php //echo $this->lang->line('book_now'); ?></a>
+						</div> -->
+					<!-- </div> -->
+
+                                       
                                     </h5>
+
                                     <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
                                             USA</span></a>
+                                	</form>
                                 </div>
+
                             </div>
                         </div>
                     <? } ?>
+
                     </div>
                 </div>
             </div>
@@ -813,6 +828,14 @@ Author:
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
+                                <div class="footer">
+                                	<br>
+                                	<button type="button" class="btn btn-primary add_to_cart"
+                                	data-id="<?php echo $value['id_room_type']; ?>" 
+                                	data-price="<?php echo $value['default_rate']; ?>"
+                                	>เก็บใส่ตะกร้า</button>
+                                	<button type="button" class="btn btn-primary">จองตอนนี้</button>
+                                </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -824,6 +847,30 @@ Author:
                         </div>
                     </div>
                 </div>
+
+<script type="text/javascript">
+	var cart_count = $('.button__badge').text();
+	$('.add_to_cart').click(function() {
+		var id_room_type = $(this).attr('data-id');
+		var room_rate = $(this).attr('data-price');
+
+		var _url = "<?php echo 'add_to_cart.php'; ?>";
+
+		$.ajax({
+				method: "POST",
+				url: _url,
+				data: {
+					'id_room_type': id_room_type,
+					'room_rate': room_rate
+				}
+			})
+			.done(function(res) {
+				var obj = eval('(' + res + ')');
+				alert(obj.message);
+				$('.button__badge').text(obj.count);
+			});
+	});
+</script>
 
             <?php foreach ($project_list as $value) {  ?>
                 <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel" style="width: 100%;">
@@ -874,7 +921,7 @@ Author:
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
-                                                            USA</span></a>
+                                                            USA ttttttt</span></a>
                                                 </div>
                                                 
                                             </div>
@@ -892,6 +939,7 @@ Author:
             </div>
         </div>
     </div>
+
     <!-- blog-section-->
 	<!--
     <div class="blog-main-wrapper">
