@@ -2,8 +2,6 @@
 include('includes/connect_sql.php');
 include('includes/fx_room_detail_db.php');
 
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
 	$_SESSION['id_room'] = $_POST['id_room'];
     $room_list   = get_room($conn,$_POST['id_room']);
@@ -22,6 +20,7 @@ $start_id = "true";
 foreach ($room_list as $value) {
     if($start_id == "true"){
         $id_project_info  = $value['id_project_info'];
+        $id_room_type		= $value['id_room_type'];
         $room_type_name_en  = $value['room_type_name_en'];
         $room_type_name_th  = $value['room_type_name_th'];
         $description_en     = $value['description_en'];  
@@ -35,8 +34,12 @@ foreach ($room_list as $value) {
         $start_id = "false";
     }
 }
+
+// $seasonal_list  = get_seasonal_price($conn,$id_room_type);
 $icon_room_list = get_icon_room($conn,$id_project_info);
 
+$project_highlights_list  = get_project_highlights($conn,$id_project_info);
+$point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
 // echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
 sqlsrv_close($conn);
@@ -193,6 +196,95 @@ sqlsrv_close($conn);
 		width: 30px;
 		height: 30px;
 	}
+	
+	.hotel-highlight {
+		display: flex;
+		background-color: #fff;
+		box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		margin: 20px auto;
+		max-width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.hotel-image img {
+		width: 100%;
+		height: auto;
+	}
+
+	.hotel-details {
+		padding: 20px;
+		flex: 1;
+	}
+
+	.hotel-details h1 {
+		font-size: 24px;
+		margin: 0 0 10px;
+	}
+
+	.ratings {
+		display: flex;
+		align-items: center;
+		margin: 10px 0;
+	}
+
+	.rating-value {
+		font-size: 20px;
+		color: #ff6f61;
+		font-weight: bold;
+	}
+
+	.rating-count {
+		margin-left: 10px;
+		color: #777;
+	}
+
+	.location {
+		font-size: small !important;
+		color: #839287 !important;
+		margin: 10px 0;
+		line-height: 24px;
+	}
+
+	.highlight {
+		background-color: #eaf4ff;
+		border-left: 4px solid #1e90ff;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+	}
+
+	.highlight-item {
+		margin: 5px 0;
+		font-size: 14px;
+	}
+
+	.price {
+		font-size: 20px;
+		color: #333;
+		font-weight: bold;
+		margin: 10px 0;
+	}
+
+	.price-info {
+		font-size: 14px;
+		color: #777;
+	}
+
+	.book-now {
+		background-color: #ff6f61;
+		color: #fff;
+		border: none;
+		padding: 10px 20px;
+		font-size: 16px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	.book-now:hover {
+		background-color: #e65a50;
+	}
+	
 
 	@media (max-width: 600px) {
 		.gallery-item.large {
@@ -344,29 +436,49 @@ sqlsrv_close($conn);
                         </ul>
                     </div>
                     
+					<div class="hotel-highlight">
+						<div class="hotel-details">
+							<h4 class="en" style="color: #000 !important; padding-top: 0; padding-bottom: 15px;">Highlights</h4>
+							<h4 class="th" style="color: #000 !important; padding-top: 0; padding-bottom: 15px;">ไฮไลท์</h4>
+							<ul style="display: flex; justify-content: space-around; align-items: center;">
+								<div class="col-md-12 ">
+									<div class="row">
+										<? foreach($project_highlights_list as $value){ ?>
+										<div class="col-sm-3 mb-4">
+											<li>
+												<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" >
+												<span class="location en"><? echo $value['description_en']; ?></span>
+												<span class="location th"><? echo $value['description_th']; ?></span>
+											</li>
+										</div>
+										<? } ?>
+									</div>
+								</div>
+							</ul>
+
+						</div>
+					</div>
 					
 					<div class="hs-servicer-sec">
 						<ul>
 							<div class="col-md-12 ">
 								<h4 class="en" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">Nearby Locations</h4>
 								<h4 class="th" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">สถานที่ใกล้เคียง</h4>
-								<ul class="en" style="flex-direction: column; padding: 0 30px;">
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>ครัวอิ่มแปล้</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>The Pandora Camp Khaoyai</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Toscana Valley</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เขาใหญ่อาร์ตมิวเซียม</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>My Ozone Animal Club</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Scenical World</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Khao Yai National Park</li>
-								</ul>
-								<ul class="th" style="flex-direction: column; padding: 0 30px;">
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>ครัวอิ่มแปล้</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เดอะ แพนดอร่า แคมป์ เขาใหญ่</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>หอเอนปิซ่า เขาใหญ่</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>เขาใหญ่อาร์ตมิวเซียม</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>My Ozone Animal Club</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>Scenical World</li>
-									<li><i class="fas fa-map-marker-alt" style="font-size: 15px; padding: 5px;"></i>อุทยานแห่งชาติเขาใหญ่</li>
+								<ul style="flex-direction: column; padding: 0 15px;">
+
+									<? foreach($point_of_interest_list as $value){ ?>
+									<li class="en">
+										<i class="fas fa-map-marker-alt" style="font-size: small; padding: 5px;"></i>
+										<span class="location"><? echo $value['location_name_en']; ?></span>
+										<span class="location" style="float: right;"><? echo $value['distance_km']; ?>&nbsp;ม.</span>
+									</li>
+									<li class="th">
+										<i class="fas fa-map-marker-alt" style="font-size: small; padding: 5px;"></i>
+										<span class="location"><? echo $value['location_name_th']; ?></span>
+										<span class="location" style="float: right;"><? echo $value['distance_km']; ?>&nbsp;ม.</span>
+									</li>
+									<? } ?>
+
 								</ul>
 							</div>
 						</ul>
