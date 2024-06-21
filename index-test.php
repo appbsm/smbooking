@@ -257,7 +257,14 @@ Author:
 		.icon-ckinout {
 			left: 26px;;
 		}
+		.gallery_section {
+			padding: 0 20px 0 20px !important;
+		}
+		.slider-wrapper .owl-theme .owl-nav [class*=owl-] {
+			margin-top: 25px;
+		}
 	}
+	
 </style>
 <body>
 
