@@ -246,7 +246,18 @@ Author:
 		font-size: small;
 		color: #e0b319;
 	}
-
+	.icon-ckinout {
+		position: absolute; 
+		left: 56px; 
+		top: 46%; 
+		transform: translateY(-50%); 
+		color: #ced4da;
+	}
+	@media (max-width: 767px) {
+		.icon-ckinout {
+			left: 26px;;
+		}
+	}
 </style>
 <body>
 
@@ -293,7 +304,7 @@ Author:
 									</li>
 									-->
 									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
-										<i class="fas fa-calendar" style="position: absolute; left: 56px; top: 46%; transform: translateY(-50%); color: #ced4da;"></i>
+										<i class="fas fa-calendar icon-ckinout"></i>
 										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
 									</li>
 									

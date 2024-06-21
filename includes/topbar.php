@@ -56,13 +56,25 @@ if ($id_guest != '') {
       font-size: 1em !important;
       /* font-family: arial; */
     }
+	
+	@media (max-width: 767px) {
+    .sub-top-menu {
+        display: none;
+    }
+	.btn-signin {
+		width: 85px;
+		height: auto;
+		max-width: 100%;
+	}
+}
+
   </style>
 
 			<div class="main_menu_navbar" style="background-color: #f8f9fa !important;">
                 <div class="container" style="padding: 0;">
                     <div class="row align-items-center">
                         <div class="top-menu" style="background-color: #f8f9fa;">
-                            <div class="container">
+                            <div class="container" style="padding: 0 15px;">
                                 <div class="row">
                                     <div class="col-1">
                                         <a class="navbar-brand" href="index.php">
