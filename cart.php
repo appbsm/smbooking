@@ -110,6 +110,18 @@ sqlsrv_close($conn);
 		border-radius: 5px !important;
 		margin-left: 0px !important;
 	}
+	 h1, h2, h3, h4, h5, h6, b, span, p, table, a, div, label, ul, li, div,
+    button {
+        font-family: 'Prompt', sans-serif;
+    }
+
+	.data-input-style {
+		padding: 20px 0; 
+		display: flex; 
+		align-items: center; 
+		justify-content: space-evenly;
+		text-align: center;
+	}
 </style>
 
 <body>
@@ -141,23 +153,31 @@ sqlsrv_close($conn);
             </div>
 
         </div>
-        <div class="row" style=" padding: 20px;">
+        <div class="row" style=" padding: 20px 8px;">
             <div class="col-md-4">
                 <!-- <div class="group"> -->
-                <label for="name">test</label>
-                <input type='text' class="form-control datepicker search_input" name="check_in_date" id="check_in_date" value="" />
+                <label class="en" for="name">Check-in Date</label>
+				<label class="th" for="name">วันที่เข้าพัก</label>
+                <input type='text' class="form-control datepicker search_input data-input-style " name="check_in_date" id="check_in_date" value=""  />
                 <!-- </div> -->
             </div>
             <div class="col-md-4">
-                <label for="name">test2</label>
-                <input type='text' class="form-control datepicker search_input" name="check_out_date" id="check_out_date" value="" />
+                <label class="en" for="name">Checkout Date</label>
+				<label class="th" for="name">วันที่ออก</label>
+                <input type='text' class="form-control datepicker search_input data-input-style" name="check_out_date" id="check_out_date" value="" />
             </div>
 
             <div class="col-md-4">
-                <label class="ml-1" for="name">ผู้เข้าพัก</label>
+                <label class="en" class="ml-1" for="name">Adults</label>
+				<label class="th" class="ml-1" for="name">ผู้เข้าพัก</label>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle w-100 search_input" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span id="div_adult">2 ผู้ใหญ่, </span>1 เด็ก, <span id="div_children">0 ห้อง</span>
+                    <button class="btn dropdown-toggle w-100 search_input data-input-style" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="en" id="div_adult">2 Adults, </span> 
+						<span class="en" id="div_children">1 Children, </span>
+						<span class="en" id="div_children">0 Room </span>
+						<span class="th" id="div_adult">2 ผู้ใหญ่, </span> 
+						<span class="th" id="div_children">1 เด็ก, </span>
+						<span class="th" id="div_children">0 ห้อง</span>
                     </button>
 
                 </div>
@@ -168,8 +188,10 @@ sqlsrv_close($conn);
 
         <?php if(count($room_list)!=0){ ?>
             <div class="col-md-12 ">
-                <input type="checkbox" style="height:15px;width:15px;" class="select_all cb" onClick="toggle(this); updateTotal();">
-                <p class="ml-2 mt-0">เลือกทั้งหมด</p>
+                <p class="ml-2 mr-2 mt-0" style="display: flex; align-items: center;">
+					<input type="checkbox" style="height:15px;width:15px;" class="select_all cb" onClick="toggle(this); updateTotal();">
+					&nbsp;เลือกทั้งหมด
+				</p>
             </div>
         <?php } ?>
 
