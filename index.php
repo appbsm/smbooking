@@ -277,7 +277,8 @@ Author:
             <!-- main_menu_navbar start -->
             
             <? include('includes/topbar.php'); ?>
-           
+
+          <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html">
             <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container" style="width: 90%;">
                     <div class="row">
@@ -292,7 +293,9 @@ Author:
                                     </li> -->
                                     <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <select style="max-width: 100%; border-bottom: none !important;">
+
+                                        <select name="project_id" id="project_id" style="max-width: 100%; border-bottom: none !important;">
+
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -310,6 +313,7 @@ Author:
 										</div>
 									</li>
 									-->
+
 									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
 										<i class="fas fa-calendar icon-ckinout"></i>
 										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
@@ -321,10 +325,12 @@ Author:
 									</div>-->
 
 									<div class="dropdown-container" style="width: 100%;">
+
 										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
 											<span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
 											ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
 										</button>
+
 										<div class="dropdown-content">
 											<div class="counter">
 												<label><i class="fas fa-user"></i>ผู้ใหญ่</label>
@@ -344,13 +350,16 @@ Author:
 												<span id="rooms">1</span>
 												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
 											</div>
+											<input type="hidden" name="adults" id="adults_input" value="2">
+										    <input type="hidden" name="children" id="children_input" value="0">
+										    <input type="hidden" name="rooms" id="rooms_input" value="1">
 										</div>
 									</div>
 
                                     <li style="flex-grow: 1;">
-										<a href="https://smsmartbooking.buildersmart.com/home/search">
-											<button type="button" class="btn btn-primary btn-search">Search</button>
-										</a>
+										<!-- <a href="https://smsmartbooking.buildersmart.com/home/search"> -->
+											<button type="submin" class="btn btn-primary btn-search">Search</button>
+										<!-- </a> -->
                                     </li>
 
                                 </ul>
@@ -360,6 +369,7 @@ Author:
                     </div>
                 </div>
             </div>
+          </form> 
 
         </div>
 
@@ -604,9 +614,14 @@ Author:
                                             </a>
                                         </form>
                                     </h5>
-                                    <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
-                                            Republic of Cuba,
-                                            USA</span></a>
+                                    <h5 class="en" style="color: #737373 !important;font-size: small !important;">
+                                    	<? echo $value['short_description_en']; ?>
+                                    </h5>
+                                    <h5 class="th" style="color: #737373 !important;font-size: small !important;">
+                                    	<? echo $value['short_description_th']; ?>
+                                    </h5>
+                                    
+                                    <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>Republic of Cuba, USA</span></a>
                                 </div>
 
 
@@ -830,6 +845,14 @@ Author:
                                                             </a>
                                                         </form>
                                                     </h5>
+
+                                                    <h5 class="en" style="color: #737373 !important;font-size: small !important;">
+				                                    	<? echo $value['short_description_en']; ?>
+				                                    </h5>
+				                                    <h5 class="th" style="color: #737373 !important;font-size: small !important;">
+				                                    	<? echo $value['short_description_th']; ?>
+				                                    </h5>
+
                                                     <a href="javascript:;"><span class="clr-text tx-map"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
@@ -973,12 +996,43 @@ $('.book_now').click(function() {
                                                             </a>
                                                         </form>
                                                     </h5>
+
+                                                    <h5 class="en" style="color: #737373 !important;font-size: small !important;">
+				                                    	<? echo $value_room['short_description_en']; ?>
+				                                    </h5>
+				                                    <h5 class="th" style="color: #737373 !important;font-size: small !important;">
+				                                    	<? echo $value_room['short_description_th']; ?>
+				                                    </h5>
+
                                                     <a href="javascript:;"><span class="clr-text"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
+
+                                                    <div class="footer">
+														<div class="d-flex justify-content-end mr-2">
+															<button type="button" class="btn btn-primary add_to_cart en"
+															data-id="<?php echo $value_room['id_room_type']; ?>" 
+															data-price="<?php echo $value_room['default_rate']; ?>"
+															>Add To Cart</button>
+															<button type="button" class="btn btn-primary add_to_cart th"
+															data-id="<?php echo $value_room['id_room_type']; ?>" 
+															data-price="<?php echo $value_room['default_rate']; ?>"
+															>เก็บใส่ตะกร้า</button>
+
+															<div style="margin-left: 10px;"></div>
+
+															<button type="button" class="btn btn-primary book_now en"
+															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															>Book Now</button>
+															<button type="button" class="btn btn-primary book_now th"
+															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															>จองตอนนี้</button>
+
+														</div>
+													</div>
+													        
                                                 </div>
-                                                
                                             </div>
                                         </div>
 
@@ -1268,6 +1322,11 @@ $('.book_now').click(function() {
         const rooms = document.getElementById('rooms').textContent;
         const adults = document.getElementById('adults').textContent;
         const children = document.getElementById('children').textContent;
+
+        document.getElementById('adults_input').value 	= adults;
+        document.getElementById('children_input').value = children;
+        document.getElementById('rooms_input').value 	= rooms;
+
         const button = document.querySelector('.dropdown-container button');
         // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
         button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
