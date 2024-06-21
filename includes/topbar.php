@@ -58,8 +58,8 @@ if ($id_guest != '') {
     }
   </style>
 
-<div class="main_menu_navbar" style="background-color: #f8f9fa !important;">
-                <div class="container">
+			<div class="main_menu_navbar" style="background-color: #f8f9fa !important;">
+                <div class="container" style="padding: 0;">
                     <div class="row align-items-center">
                         <div class="top-menu" style="background-color: #f8f9fa;">
                             <div class="container">
@@ -72,23 +72,23 @@ if ($id_guest != '') {
 									<div class="col-8" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
 											<ul class="u-list" style="font-size: 14px;">
-                                                <li class="n-disp">
-                                                     <a href="">&nbsp;<a id="resort_topbar">Resort</a></a>
+                                                <li class="n-border">
+                                                    <img src="images/resort_11834928.png" style="width: 17.5px;"><a href="">&nbsp;<a id="resort_topbar">Resort</a></a>
                                                 </li>
-                                                <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="hotel_topbar">Hotel</a></a>
+                                                <li class="n-border">
+                                                    <img src="images/hotel_8434855.png" style="width: 17.5px;"><a href="">&nbsp;<a id="hotel_topbar">Hotel</a></a>
                                                 </li>
-                                                <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="condo_topbar">Condo & Apartment</a></a>
+                                                <li class="n-border">
+                                                    <img src="images/building_11822374.png" style="width: 17.5px;"><a href="">&nbsp;<a id="condo_topbar">Condo & Apartment</a></a>
                                                 </li>
-												<li class="n-disp">
+												<li class="n-border">
                                                     <i class="fas fa-tags"></i>
                                                     <a href="">&nbsp;
                                                         <a id="promotion_topbar">Promotion & Package</a>
                                                     </a>
                                                 </li>
-                                                <li class="n-disp">
-                                                    <a href="">&nbsp;<a id="contact_topbar">Contact us</a></a>
+                                                <li class="n-border">
+                                                    <img src="images/support.png" style="width: 17.5px;"><a href="">&nbsp;<a id="contact_topbar">Contact us</a></a>
                                                 </li>
 											</ul>
 										</div>
