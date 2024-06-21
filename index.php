@@ -612,150 +612,10 @@ Author:
             </div>
         </div>
     </div>
-    <!-- destination section start-->
-	<!--
-    <div class="t-dest-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h3> <a href="">Top Destinations Hotels</a>
-                    </h3>
-                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id
-                        ullamcorper libero Vestibulum <br> imperdiet nibh vel magna lacinia commodo ultricies,</p>
-                </div>
-                <div class="col-lg6 col-md-6 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"><img src="images/Home_1/Home_1.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> India <br><span>580+ Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"><img src="images/Home_1/Home_2.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> United Kingdom <br><span>1104+
-                                        Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"> <img src="images/Home_1/Home_3.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> France <br><span>4500+ Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"> <img src="images/Home_1/Home_4.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> Dubai <br><span>1400+ Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"><img src="images/Home_1/Home_5.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> Thailand <br><span>4510+ Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div class="t-place p-rel">
-                        <a href="javascript:;"> <img src="images/Home_1/Home_6.jpg" alt=""></a>
-                        <div class="t-cont">
-                            <a href="javascript:;">
-                                <p><span><i class="fas fa-thumbtack"></i></span> Japan <br><span>1240+ Hotels</span>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="t-center">
-                        <button type="button" class="btn btn-primary">view all</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-	-->
-	
-    <!-- video section start -->
-    <!--<div class="video-main-wrapper"  style="background-image: url(images/Home_1/Home_6.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                
-                    <div class="video-icon" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
-                        <a href="javascript:;"> <img src="images/Play-Icon.png" alt=""></a>
-                    </div>
-
-
-                    <div class="modal fade" id="exampleModal-1" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <iframe  src="https://www.youtube.com/embed/wFQ9VQ5jyw8"
-                                        title="YouTube video player"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-                    <div class="video-sec">
-                        <h4>
-                            Get the Best Deals for you in<br>
-                            Summer Holidays 20% OFF
-                        </h4>
-                        <button type="button" class="btn btn-primary">get code</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <!-- tab section -->
 
     <!-- gallary section -->
     <div class="gallery_section" style="padding-top: 0 !important;">
         <div class="container">
-			<!--
-            <div class="col-12 col-md-12 col-sm-12 col-12">
-                <div class="gallery-heading">
-                    <h3><a href="javascript:;">Trending Destinations Hotels</a></h3>
-                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id
-                        ullamcorper libero Vestibulum imperdiet <br>nibh vel magna lacinia commodo ultricies,</p>
-                </div>
-            </div>
-			-->
             <div class="gallery_table">
                 <ul id="tabs" class="nav nav-tabs" role="tablist">
                     <li class="nav-item"> <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab"
@@ -791,21 +651,20 @@ Author:
                                 <?php foreach ($room_list as $value) {  ?>
                                     <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="padding: 0 6px;">
                                         <div class="gallery_box">
+
+                                        	<form action="hotel-single-page.php" method="post" class="tx-title">
                                             <div class="sub-main">
                                                 <div class="img-sec p-rel">
                                                     <div class="hover-img p-rel">
-
-                                                        <a href="javascript:;">
+                                                        <a href="javascript:;" onclick="this.closest('form').submit(); return false;">
                                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                                         </a>
-
                                                     </div>
                                                     <span><?php echo trim($value['default_rate']); ?> / Night</span>
                                                 </div>
-
                                                 <div class="slider-content" style="padding: 20px 15px !important;">
                                                     <span style="font-size: small !important;">
-                                                        <a href="javascript:;"> <i class="fas fa-star"></i><i
+                                                        <a href="javascript:;" onclick="this.closest('form').submit(); return false;" > <i class="fas fa-star"></i><i
                                                                 class="fas fa-star"></i><i class="fas fa-star"></i>
                                                             <i class="far fa-star"></i><i class="far fa-star"></i>
                                                             &nbsp; |
@@ -813,7 +672,7 @@ Author:
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                                        <!-- <form action="hotel-single-page.php" method="post" class="tx-title"> -->
                                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                                 <? echo $value['room_type_name_en']; ?>
@@ -822,22 +681,24 @@ Author:
                                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                                 <? echo $value['room_type_name_th']; ?>
                                                             </a>
-                                                        </form>
+                                                        <!-- </form> -->
                                                     </h5>
-                                                    <a href="javascript:;"><span class="clr-text tx-map"><i
+                                                    <a href="javascript:;" onclick="this.closest('form').submit(); return false;"><span class="clr-text tx-map"><i
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
-                                <div class="footer">
-                                	<br>
-                                	<button type="button" class="btn btn-primary add_to_cart"
-                                	data-id="<?php echo $value['id_room_type']; ?>" 
-                                	data-price="<?php echo $value['default_rate']; ?>"
-                                	>เก็บใส่ตะกร้า</button>
-                                	<button type="button" class="btn btn-primary">จองตอนนี้</button>
-                                </div>
+					                                <div class="footer">
+					                                	<br>
+					                                	<button type="button" class="btn btn-primary add_to_cart"
+					                                	data-id="<?php echo $value['id_room_type']; ?>" 
+					                                	data-price="<?php echo $value['default_rate']; ?>"
+					                                	>เก็บใส่ตะกร้า</button>
+					                                	<button type="button" class="btn btn-primary">จองตอนนี้</button>
+					                                </div>
                                                 </div>
                                             </div>
+                                            </form>
+
                                         </div>
                                     </div>
                                  <? } ?>
@@ -912,6 +773,7 @@ Author:
                                                                 <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
                                                                 <? echo $value_room['room_type_name_en']; ?>
                                                             </a>
+
                                                             <a class="th" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
                                                                 <? echo $value_room['room_type_name_th']; ?>

@@ -2,13 +2,21 @@
 include('includes/connect_sql.php');
 include('includes/fx_room_detail_db.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
-    $room_list   = get_room($conn,$_POST['id_room']);
-}else{
-    $room_list   = get_room_top($conn);
-}
 
-// echo '<script>alert("id_room: '.$_POST['id_room'].'")</script>'; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
+	$_SESSION['id_room'] = $_POST['id_room'];
+    $room_list   = get_room($conn,$_POST['id_room']);
+}else if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['id_room'])) {
+	$_SESSION['id_room'] = $_GET['id_room'];
+	$room_list   = get_room($conn,$_GET['id_room']);
+}else{
+	if (isset($_SESSION['id_room']) && !empty($_SESSION['id_room'])) {
+		$room_list   = get_room($conn,$_SESSION['id_room']);
+	}else{
+		$room_list   = get_room_top($conn);
+	}
+}
 
 $start_id = "true";
 foreach ($room_list as $value) {
@@ -28,6 +36,8 @@ foreach ($room_list as $value) {
     }
 }
 $icon_room_list = get_icon_room($conn,$id_project_info);
+
+// echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
 sqlsrv_close($conn);
 ?>

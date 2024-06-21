@@ -6,6 +6,7 @@ function get_room($conn,$id) {
  	LEFT JOIN project_info pj ON pj.id_project_info = rt.id_project_info 
  	LEFT JOIN room_type_photo rp ON rp.id_room_type = rt.id_room_type
  	WHERE rt.id_room_type = '".$id."' ";
+ 	// echo '<script>alert("get_room: '.$sql.'")</script>'; 
 	$stmt = sqlsrv_query($conn,$sql);
 	if( $stmt === false) {
 		die( print_r( sqlsrv_errors(), true) );
