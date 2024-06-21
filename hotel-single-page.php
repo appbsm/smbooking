@@ -75,6 +75,8 @@ sqlsrv_close($conn);
 	
 	<link rel="stylesheet" type="text/css" href="css/style_index.css" />
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
 </head>
 
 <style>
@@ -420,40 +422,35 @@ sqlsrv_close($conn);
                         </p> -->
                     </div>
                     <div class="bs-social-content mt-30">
-                        <ul>
+                       <!--  <ul>
                             <li><a href="javascript:;"><i class="fas fa-tags"></i></a></li>
                             <li><a href="javascript:;">family</a></li>
                             <li><a href="javascript:;">fun</a></li>
                             <li><a href="javascript:;">holiday</a></li>
                             <li><a href="javascript:;">island</a></li>
                             <li><a href="javascript:;">package</a></li>
-                        </ul>
-                        <ul class="social-icon ">
+                        </ul> -->
+                       <!--  <ul class="social-icon ">
                             <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
                             <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
                             <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                     
 					<div class="hotel-highlight">
 						<div class="hotel-details">
 							<h4 class="en" style="color: #000 !important; padding-top: 0; padding-bottom: 15px;">Highlights</h4>
 							<h4 class="th" style="color: #000 !important; padding-top: 0; padding-bottom: 15px;">ไฮไลท์</h4>
+
 							<ul style="display: flex; justify-content: space-around; align-items: center;">
-								<div class="col-md-12 ">
-									<div class="row">
-										<? foreach($project_highlights_list as $value){ ?>
-										<div class="col-sm-3 mb-4">
-											<li>
-												<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" >
-												<span class="location en"><? echo $value['description_en']; ?></span>
-												<span class="location th"><? echo $value['description_th']; ?></span>
-											</li>
-										</div>
-										<? } ?>
-									</div>
-								</div>
+								<? foreach($project_highlights_list as $value){ ?>
+									<li>
+										<img src="includes/image.php?filename=<?php echo trim($value['icon']); ?>" >
+										<span class="location en"><? echo $value['description_en']; ?></span>
+										<span class="location th"><? echo $value['description_th']; ?></span>
+									</li>
+								<? } ?>
 							</ul>
 
 						</div>
@@ -576,6 +573,7 @@ sqlsrv_close($conn);
                         </div>
                     </div>
 					-->
+
                     <div class="hs-map-sec">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -592,7 +590,6 @@ sqlsrv_close($conn);
 
                                         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
 
-
                                             <span><i class="fas fa-phone-alt"></i></span>
                                             <div class="f-right">
                                                 <a href="">Toll free</a>
@@ -604,7 +601,6 @@ sqlsrv_close($conn);
                                         </div>
 
                                         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-
 
                                             <span><i class="far fa-envelope"></i></span>
                                             <div class="f-right n-border">
@@ -621,7 +617,8 @@ sqlsrv_close($conn);
                             </div>
                         </div>
                     </div>
-                    <div class="hs-rating-section">
+
+                    <!-- <div class="hs-rating-section">
                         <div class="row">
                             <div class="col-lg-6">
                                 <h4><a href="">Rating</a></h4>
@@ -723,8 +720,8 @@ sqlsrv_close($conn);
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="bs-comment-text p-30 mt-30">
+                    </div> -->
+                    <!-- <div class="bs-comment-text p-30 mt-30">
 
                         <div class="bs-cont-wrapper p-30">
                             <div class="row">
@@ -834,27 +831,43 @@ sqlsrv_close($conn);
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
+
+
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+
+    <style>
+        .form-inline .form-group {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline .form-group label {
+            margin-right: 10px; /* ระยะห่างระหว่าง label กับ input */
+        }
+    </style>
                 <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
                     <div class="hs-slidebar sb-grid-main-wrapper p-0">
                         <div class="find-us-wrapper pb-0">
                             <h4 class="pb-20"><a href="javascript:;">Check Availability</a></h4>
                             <ul>
-                                <li>
-                                    <input type="text" placeholder="Name">
-                               
-                                </li>
-                                <li>
-                                    <input type="text" placeholder="Email">
-                                   
-                                </li>
-                                <li>
-                                    <input type="text" placeholder="Number">
-                                 
-                                </li>
-                                <li>
-                                    <input type="text" name="picker" class="datepicker" placeholder="09-04-2020">
+
+                            	<p style="margin-bottom: 5px;color: black;" >
+									<span class="en" >Check-in Date</span>
+									<span class="th" >วันที่เข้าพัก</span>
+								</p>
+	                            <li>
+                                    <input type="text" name="picker" class="datepicker" >
                                     <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 19 20" width="19" height="20">
                                         <title>Icon </title>
@@ -862,7 +875,6 @@ sqlsrv_close($conn);
                                             tspan {
                                                 white-space: pre
                                             }
-
                                             .shp0 {
                                                 fill: #1b72ea
                                             }
@@ -872,8 +884,13 @@ sqlsrv_close($conn);
                                         </path>
                                     </svg>
                                 </li>
+
+                                <p style="margin-bottom: 5px;color: black;" >
+									<span class="en" >Checkout Date</span>
+									<span class="th" >วันที่ออก</span>
+								</p>
                                 <li>
-                                    <input type="text" name="picker" class="datepicker" placeholder="09-04-2020">
+                                    <input type="text" name="picker" class="datepicker" >
                                     <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 19 20" width="19" height="20">
                                         <title>Icon </title>
@@ -891,15 +908,36 @@ sqlsrv_close($conn);
                                         </path>
                                     </svg>
                                 </li>
+
+                                <p style="margin-bottom: 5px;color: black;" >
+									<span class="en" >Adult</span>
+									<span class="th" >ผู้ใหญ่</span>
+								</p>
                                 <li>
-                                    <select name="SelectChild" id="SelectChild">
-                                        <option value="">1 Adult</option>
-                                        <option value="">1 Adult</option>
-                                        <option value="">2 Adult</option>
-                                        <option value="">1 Adult</option>
-                                        <option value="">1 Adult</option>
-                                    </select>
+                                	<input type="text" name="adult" >
+                                    <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 19 20" width="19" height="20">
+                                        <title>Icon </title>
+                                        <style>
+                                            tspan {
+                                                white-space: pre
+                                            }
+
+                                            .shp0 {
+                                                fill: #1b72ea
+                                            }
+                                        </style>
+                                        <i id="Icon1" class="fas fa-user"></i>
+                                       <!--  <path id="Icon1" class="shp0"
+                                            d="M17.94 5.32C17.83 4.78 17.57 4.3 17.2 3.93C17.08 3.82 16.95 3.7 16.8 3.61L16.78 3.59C16.77 3.57 16.75 3.57 16.73 3.56C16.67 3.52 16.62 3.48 16.56 3.46L16.54 3.46C16.15 3.26 15.72 3.15 15.23 3.15L14.07 3.15L14.07 2.35C14.07 2.17 13.93 2 13.72 2C13.53 2 13.36 2.15 13.36 2.35L13.36 3.11L6.65 3.11L6.65 2.35C6.65 2.17 6.49 2 6.3 2C6.11 2 5.94 2.15 5.94 2.35L5.94 3.11L4.78 3.11C4.43 3.11 4.07 3.18 3.76 3.31C3.4 3.46 3.08 3.67 2.82 3.93C2.67 4.08 2.54 4.24 2.43 4.41C2.32 4.59 2.22 4.78 2.15 4.98C2.11 5.09 2.07 5.21 2.06 5.32C2.02 5.5 2 5.69 2 5.87L2 7.73L2 16.27C2 17.03 2.32 17.72 2.8 18.2C3.31 18.7 4 19 4.75 19L15.25 19C16.02 19 16.71 18.68 17.2 18.2C17.7 17.7 18 17.01 18 16.27L18 7.73L18 5.87C18 5.69 17.98 5.5 17.94 5.32ZM2.73 5.85C2.73 5.71 2.75 5.58 2.77 5.45C2.78 5.32 2.84 5.19 2.88 5.06C2.95 4.89 3.05 4.74 3.14 4.61C3.2 4.54 3.25 4.48 3.31 4.41C3.42 4.3 3.55 4.2 3.68 4.11C4 3.93 4.35 3.82 4.75 3.82L5.91 3.82L5.91 4.57C5.91 4.76 6.06 4.93 6.26 4.93C6.45 4.93 6.62 4.78 6.62 4.57L6.62 3.82L13.42 3.82L13.42 4.57C13.42 4.76 13.57 4.93 13.78 4.93C13.96 4.93 14.13 4.78 14.13 4.57L14.13 3.82L15.29 3.82C15.68 3.82 16.06 3.93 16.36 4.11C16.49 4.2 16.62 4.3 16.73 4.41C17.01 4.69 17.21 5.04 17.29 5.45C17.31 5.58 17.33 5.72 17.33 5.85L17.33 7.37L2.73 7.37L2.73 5.85ZM17.35 16.25C17.35 16.83 17.12 17.35 16.75 17.72C16.37 18.09 15.85 18.31 15.29 18.31L4.78 18.31C4.22 18.31 3.7 18.09 3.33 17.72C2.95 17.35 2.73 16.83 2.73 16.27L2.73 8.06L17.35 8.06L17.35 16.25L17.35 16.25Z">
+                                        </path> -->
+                                    </svg>
                                 </li>
+
+                                <p style="margin-bottom: 5px;color: black;" >
+									<span class="en" >Child</span>
+									<span class="th" >เด็ก</span>
+								</p>
                                 <li>
                                     <select name="SelectChild1" id="SelectChild1">
                                         <option value=""> 0 Child</option>
@@ -909,6 +947,11 @@ sqlsrv_close($conn);
                                         <option value=""> 0 Child</option>
                                     </select>
                                 </li>
+
+                                <p style="margin-bottom: 5px;color: black;" >
+									<span class="en" >Room</span>
+									<span class="th" >ห้อง</span>
+								</p>
                                 <li>
                                     <select name="SelectChild2" id="SelectChild2">
                                         <option value="" disabled selected>Room Type</option>
@@ -919,16 +962,18 @@ sqlsrv_close($conn);
                                     </select>
                                 </li>
 
+
                                 <li class="rating-wrapper p-30">
                                     <ul>
                                         <li class="p-rel">
-
                                             <label >Amount</label>
+                                            
                                             <span>$350</span>
                                         </li>
                                         <li class="p-rel">
 
                                             <label >service charges</label>
+
                                             <span >$15</span>
                                         </li>
                                         <li class="p-rel">
@@ -940,17 +985,24 @@ sqlsrv_close($conn);
                                         <li class="p-rel">
 
                                             <label >Total Amount</label>
+
                                             <span  class="color">$368</span>
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a class="btn btn-primary w-100">Book Now</a>
+
+                                <li class="d-flex justify-content-center gap-3" >
+                                	<a class="btn btn-primary w-45 mx-2 en" >Add To Cart</a>
+                                	<a class="btn btn-primary w-45 mx-2 th" >เก็บใส่ตะกร้า</a>
+
+                                    <a class="btn btn-primary w-45 mx-2 en">Book Now</a>
+                                    <a class="btn btn-primary w-45 mx-2 th">จองตอนนี้</a>
                                 </li>
                             </ul>
 
                         </div>
-                        <div class="feed-wrapper">
+
+                        <!-- <div class="feed-wrapper">
                             <h4><a href="javascript:;">Instagram</a></h4>
                             <ul class="footer-feed">
                                 <li>
@@ -987,7 +1039,7 @@ sqlsrv_close($conn);
                                 <h3><a href="javascript:;">Summar<br>Holiday<br>20% OFF</a></h3>
                                 <button type="button" class="btn btn-light">get code</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -996,7 +1048,7 @@ sqlsrv_close($conn);
     </div>
 
     <!-- page slider -->
-	<div class="slider-wrapper slider1-wrapper" style="padding-top: 0px; padding-bottom: 30px;">
+	<!-- <div class="slider-wrapper slider1-wrapper" style="padding-top: 0px; padding-bottom: 30px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -1023,7 +1075,6 @@ sqlsrv_close($conn);
                                             Review</a>
                                     </span>
                                     <h5>
-                                        <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
                                         <form action="hotel-single-page.php" method="post" class="tx-title">
                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
@@ -1046,7 +1097,7 @@ sqlsrv_close($conn);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 	
     <!-- footer section start -->
 
@@ -1058,11 +1109,208 @@ sqlsrv_close($conn);
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/shortcode.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBctr8WYTfFDi_oGbPEolSDzn4VZaAKVK0&amp;callback=googleMap"></script>
+    <!-- <script src="js/custom.js"></script> -->
+    <!-- <script src="js/functions.js"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBctr8WYTfFDi_oGbPEolSDzn4VZaAKVK0&amp;callback=googleMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdcxrCA3fydYz4cKu-Gpqm0MSe6S9voMw&libraries=places"></script>
+     
 </body>
 
 </html>
 
+<script>
+		const link = '<? echo $link_map; ?>';
+        const latitude = '<? echo $latitude; ?>';
+        const longitude = '<? echo $longitude; ?>';
+
+        let coordinates = null;
+        
+        if (link) {
+            coordinates = extractCoordinates(link);
+        } else if (latitude && longitude) {
+            coordinates = {
+                lat: parseFloat(latitude),
+                lng: parseFloat(longitude)
+            };
+        }
+        
+        if (coordinates) {
+            initMap(coordinates.lat, coordinates.lng);
+        }
+
+
+    function extractCoordinates(link) {
+        const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+        const match = link.match(regex);
+        if (match) {
+            return {
+                lat: parseFloat(match[1]),
+                lng: parseFloat(match[2])
+            };
+        } else {
+            return null;
+        }
+    }
+
+    function initMap(lat, lng) {
+        //document.getElementById('map').style.display = 'block'; // แสดงแผนที่เมื่อมีข้อมูล
+        const location = {lat: lat, lng: lng};
+        map = new google.maps.Map(document.getElementById('google_map'), {
+            zoom: 15,
+            center: location
+        });
+
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        const request = {
+            location: location,
+            radius: '500',
+            type: ['tourist_attraction']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+    }
+
+// function googleMap() {
+//     let pt_center = new google.maps.LatLng(-33.9198, 151.2504);
+//     let mapCanvas = document.getElementById('google_map');
+//     let styles = [{
+//         stylers: [{
+//             saturation: -100
+//         }]
+//     }];
+//     let mapOptions = {
+//         center: pt_center,
+//         zoom: 18,
+//         styles: styles
+//     };
+//     let map = new google.maps.Map(mapCanvas, mapOptions);
+//     let locations = [
+//         [ pt_center.lat(), pt_center.lng() ],
+//         [ pt_center.lat() + 0.00066, pt_center.lng() - 0.0006 ],
+//         [ pt_center.lat() - 0.00055, pt_center.lng() - 0.0014 ],
+//         [ pt_center.lat() - 0.0007, pt_center.lng() + 0.001 ],
+//         [ pt_center.lat() + 0.005, pt_center.lng() ],
+//         [ pt_center.lat() + 0.0055, pt_center.lng() - 0.0007 ],
+//         [ pt_center.lat() + 0.0055, pt_center.lng() + 0.0007 ]
+//     ];
+//     let hotel_package = '<div class="card card-hotel-package">' +
+//                         '<div class="card-image">' + 
+//                             '<img src="img/hotel-tour/10.png" alt="">' +
+//                             '<div class="price"><span>$50 / Night</span></div>' +
+//                         '</div>' +
+//                         '<div class="card-body">' +
+//                             '<a href="" class="card-title">Name Of Hotel</a>' +
+//                             '<div class="rating-review">' +
+//                                 '<i class="fa fa-star"></i>' +
+//                                 '<i class="fa fa-star"></i>' +
+//                                 '<i class="fa fa-star"></i>' +
+//                                 '<i class="fa fa-star-o"></i>' +
+//                                 '<i class="fa fa-star-o"></i>' +
+//                             '</div>' +
+//                             '<div class="review">1+ Review</div>' + 
+//                         '</div>' +
+//                     '</div>';
+
+//     let infowindow = new google.maps.InfoWindow({
+//         content: hotel_package,
+//         maxWidth: 250
+//     });
+
+//     let markers = [];
+
+//     for (var i = 0; i < locations.length; i++) {
+
+//         let marker = new google.maps.Marker({
+//             position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+//             icon: 'img/icons/map-pin.png',
+//             map: map
+//         });
+
+//         marker.addListener('click', function() {
+//             for (var j = 0; j < markers.length; j++) {
+//                markers[j].setIcon('img/icons/map-pin.png');
+//             }
+
+//             marker.setIcon('img/icons/map-pin1.png');
+//             infowindow.open(map, marker);
+//         });
+
+//         google.maps.event.addListener(infowindow, 'domready', function() {
+            
+//             var iwOuter = jQuery('.gm-style-iw');
+
+//             var iwBackground = iwOuter.prev();
+
+//             iwOuter.addClass('map-unnecessary-el');
+
+//             var btnClose = iwOuter.next();
+
+//             setTimeout(function() {
+//                 iwOuter.parent().css({
+//                     'height': '0'
+//                 });
+//             }, 300);
+
+//             iwOuter.css({
+//                 'top': '249px',
+//                 'left': '100px'
+//             });
+//             iwOuter.children(':nth-child(1)').css({
+//                 'overflow': 'unset'
+//             });
+//             iwOuter.children(':nth-child(1)').children(':nth-child(1)').css({
+//                 'overflow': 'unset',
+//                 'padding': '5px'
+//             });
+
+//             btnClose.children(':nth-child(1)').hide();
+//             btnClose.addClass('fa fa-close btn btn-red btn-close');
+//             btnClose.css({
+//                 'width': '38px',
+//                 'height': '33px',
+//                 'top': '-3px',
+//                 'right': '-42px',
+//                 'background': 'rgba(0,0,0,0.45)'
+//             });
+
+//             // Removes background shadow DIV
+//             iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+//             iwBackground.children(':nth-child(3)').children(':nth-child(1)').css({'top': '5px'});
+//             iwBackground.children(':nth-child(3)').children(':nth-child(1)').children().css({'transform': 'skewX(32.6deg)', 'width': '10px', 'height': '15px'});
+
+//             iwBackground.children(':nth-child(3)').children(':nth-child(2)').css({'top': '5px'});
+//             iwBackground.children(':nth-child(3)').children(':nth-child(2)').children().css({'transform': 'skewX(-32.6deg)', 'width': '10px', 'height': '15px'});
+
+//             iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+//         });
+//         markers.push(marker);
+//     }
+
+//     map.addListener('click', function() {
+//         infowindow.close();
+//     });
+// }
+</script>
+
 <? include('language/text_index.php'); ?>
+
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>

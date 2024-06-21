@@ -346,11 +346,13 @@ Author:
 											</div>
 										</div>
 									</div>
+
                                     <li style="flex-grow: 1;">
 										<a href="https://smsmartbooking.buildersmart.com/home/search">
 											<button type="button" class="btn btn-primary btn-search">Search</button>
 										</a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -591,7 +593,6 @@ Author:
                                             Review</a>
                                     </span>
                                     <h5>
-                                        <!-- <a href="hotel-single-page.php">SM 1 - Standard Room</a> -->
                                         <form action="hotel-single-page.php" method="post" class="tx-title">
                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
@@ -607,6 +608,8 @@ Author:
                                             Republic of Cuba,
                                             USA</span></a>
                                 </div>
+
+
                             </div>
                         </div>
                     <? } ?>
@@ -831,10 +834,37 @@ Author:
                                                                 class="fas fa-map-marker-alt"></i>
                                                             Republic of Cuba,
                                                             USA</span></a>
+
+                                                    <div class="footer">
+														<div class="d-flex justify-content-end mr-2">
+															<button type="button" class="btn btn-primary add_to_cart en"
+															data-id="<?php echo $value['id_room_type']; ?>" 
+															data-price="<?php echo $value['default_rate']; ?>"
+															>Add To Cart</button>
+															<button type="button" class="btn btn-primary add_to_cart th"
+															data-id="<?php echo $value['id_room_type']; ?>" 
+															data-price="<?php echo $value['default_rate']; ?>"
+															>เก็บใส่ตะกร้า</button>
+
+															<div style="margin-left: 10px;"></div>
+
+															<button type="button" class="btn btn-primary book_now en"
+															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															>Book Now</button>
+															<button type="button" class="btn btn-primary book_now th"
+															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															>จองตอนนี้</button>
+
+														</div>
+													</div>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
+                                    
+
                                  <? } ?>
 
                                 </div>
@@ -842,6 +872,60 @@ Author:
                         </div>
                     </div>
                 </div>
+
+<form name="frm_room" id="frm_room" method="post" action="hotel-single-page.php">
+	<input type="hidden" name="project_id" id="project_id" value="">
+	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
+	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
+	<input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
+	<input type="hidden" name="h_num_of_children" id="h_num_of_children" value="">
+	<input type="hidden" name="h_children_ages" id="h_children_ages" value="">
+	<input type="hidden" name="h_check_in_date" id="h_check_in_date" value="">
+	<input type="hidden" name="h_check_out_date" id="h_check_out_date" value="">
+</form>
+
+<script type="text/javascript">
+var cart_count = $('.button__badge').text();
+$('.add_to_cart').click(function() {
+	var id_room_type = $(this).attr('data-id');
+	var room_rate = $(this).attr('data-price');
+
+	//alert(id_room_type)
+	var _url = "add_to_cart.php";
+
+	$.ajax({
+			method: "POST",
+			url: _url,
+			data: {
+				'id_room_type': id_room_type,
+				'room_rate': room_rate
+			}
+		})
+		.done(function(res) {
+			var obj = eval('(' + res + ')');
+			alert(obj.message);
+			$('.button__badge').text(obj.count);
+		});
+});
+
+$('.book_now').click(function() {
+	$('#h_id_room_type').val($(this).attr('data-roomtype'));
+	$('#h_check_in_date').val($('#check_in_date').val());
+	$('#h_check_out_date').val($('#check_out_date').val());
+	$('#h_num_of_adult').val($('#div_adult').text());
+	$('#h_num_of_room').val($('#div_room').text());
+	$('#h_num_of_children').val($('#div_children').text());
+	// var children_ages = [];
+	// var ages = document.getElementsByClassName("select_age");
+	// for (var i = 0; i < ages.length; i++) {
+	// 	//console.log(ages[i].value);
+	// 	children_ages.push(ages[i].value);
+	// }
+	// $('#h_children_ages').val(children_ages.toString());
+	$('#frm_room').submit();
+});
+</script>
+
 
             <?php foreach ($project_list as $value) {  ?>
                 <div id="pane-<? echo $value['id_project_info']; ?>" class="card tab-pane fade" role="tabpanel" style="width: 100%;">
