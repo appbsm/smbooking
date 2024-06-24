@@ -650,9 +650,9 @@ $project_id = $project_list[0]['id_project_info'];
             </div>
         </div>
 
-
+        <br>
         <div>
-            <hr>
+            
         </div>
 
 
