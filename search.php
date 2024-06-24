@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 $project_id = $project_list[0]['id_project_info'];
 
-// echo '<script>alert("start_date: '.$start_date.'")</script>'; 
+echo '<script>alert("start_date: '.$start_date.'")</script>'; 
 
 // $_POST['daterange'];
 // echo '<script>alert("daterange: '.$_POST['daterange'].'")</script>'; 
@@ -703,65 +703,51 @@ $project_id = $project_list[0]['id_project_info'];
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
-<script > alert('startDate');     </script>
 <script>
-
     $(document).ready(function() {
-        // $('#daterange').daterangepicker({
-        //     opens: 'center',
-        //     minDate: moment(),
-        //     autoApply: true,
-        //     locale: {
-        //         format: 'DD/MM/YYYY',
-        //         separator: ' - ',
-        //         applyLabel: 'Apply',
-        //         cancelLabel: 'Cancel',
-        //         fromLabel: 'From',
-        //         toLabel: 'To',
-        //         customRangeLabel: 'Custom',
-        //         weekLabel: 'W',
-        //         daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        //         firstDay: 1
-        //     },
-        //     autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
-        // }, function(start, end, label) {
-            
-        //     $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-        // });
-
         $('#daterange').daterangepicker({
-        opens: 'center',
-        minDate: moment(),
-        autoApply: true,
-        locale: {
-            format: 'DD/MM/YYYY',
-            separator: ' - ',
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            weekLabel: 'W',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-        },
+            opens: 'center',
+            minDate: moment(),
+            autoApply: true,
+            locale: {
+                format: 'DD/MM/YYYY',
+                separator: ' - ',
+                applyLabel: 'Apply',
+                cancelLabel: 'Cancel',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                weekLabel: 'W',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            },
             autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
-        // startDate: moment('<?php echo $start_date; ?>', 'YYYY-MM-DD'),
-        // endDate: moment('<?php echo $end_date; ?>', 'YYYY-MM-DD')
         }, function(start, end, label) {
+            // var startDate = '<?php echo $start_date; ?>';
+            // var endDate = '<?php echo $end_date; ?>';
+            // var startDate = '2024-06-26'; // ตัวอย่างว่าง startDate ที่ได้จาก PHP
+            // var endDate = '2024-06-30'; // ตัวอย่างว่าง endDate ที่ได้จาก PHP
+            // var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
+            // var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
+            
+            // // กำหนดค่าให้กับ input
+            // $('#daterange').val(''+formattedStartDate + ' - ' + formattedEndDate);
             // $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
-        // Set initial value for the input field
-        // $('#daterange').val('<?php echo DateTime::createFromFormat("Y-m-d", $start_date)->format("d/m/Y"); ?> - <?php echo DateTime::createFromFormat("Y-m-d", $end_date)->format("d/m/Y"); ?>');
+        var startDate = '<?php echo $start_date; ?>';
+        var endDate = '<?php echo $end_date; ?>';
+        var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
+        var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
+
+        $('#daterange').val('test:'+startDate + ' - ' + formattedEndDate);
     });
 
-    alert('startDate');
-    alert('ss1:');
+    // alert('startDate');
+    
     $(document).ready(function() {
-        alert('ss1:');
+        // alert('ss2:');
         // $("#daterange").datepicker({
         //     dateFormat: 'dd/mm/yy',
         //     numberOfMonths: 2,
@@ -774,18 +760,6 @@ $project_id = $project_list[0]['id_project_info'];
         //     }
         // });
 
-        // Set initial dates
-        var startDate = '<?php echo $start_date; ?>';
-        var endDate = '<?php echo $end_date; ?>';
-
-        alert('ssss:'+startDate);
-
-        $("#start_date").datepicker("setDate", startDate);
-        $("#end_date").datepicker("setDate", endDate);
-
-        // Update minDate and maxDate based on initial values
-        $("#end_date").datepicker("option", "minDate", $("#start_date").datepicker("getDate"));
-        $("#start_date").datepicker("option", "maxDate", $("#end_date").datepicker("getDate"));
     });
 
     function updateCount(type, change) {

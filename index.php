@@ -615,6 +615,28 @@ Author:
                                             USA</span></a>
                                 </div>
 
+                                <div class="footer">
+									<div class="d-flex justify-content-end mr-2">
+										<button type="button" class="btn btn-primary add_to_cart en"
+										data-id="<?php echo $value['id_room_type']; ?>" 
+										data-price="<?php echo $value['default_rate']; ?>"
+										>Add To Cart</button>
+										<button type="button" class="btn btn-primary add_to_cart th"
+										data-id="<?php echo $value['id_room_type']; ?>" 
+										data-price="<?php echo $value['default_rate']; ?>"
+										>เก็บใส่ตะกร้า</button>
+
+										<div style="margin-left: 10px;"></div>
+
+										<button type="button" class="btn btn-primary book_now en"
+										data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+										>Book Now</button>
+										<button type="button" class="btn btn-primary book_now th"
+										data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+										>จองตอนนี้</button>
+
+									</div>
+								</div>
 
                             </div>
                         </div>
@@ -624,6 +646,7 @@ Author:
             </div>
         </div>
     </div>
+
     <!-- destination section start-->
 	<!--
     <div class="t-dest-wrapper">
