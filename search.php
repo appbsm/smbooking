@@ -48,8 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
         $project_list  = get_project_id($conn,$_SESSION['project_id']);
         $room_list     = get_room_for_project($conn,$_SESSION['project_id']);
 
-        // $start_date = DateTime::createFromFormat('d/m/Y', trim($start_date))->format('Y-m-d');
-        // $end_date = DateTime::createFromFormat('d/m/Y', trim($end_date))->format('Y-m-d');
     }else{
         $project_list  = get_project_top($conn);
         $room_list     = get_room_for_project_top($conn,$_SESSION['project_id']);
@@ -709,40 +707,69 @@ $project_id = $project_list[0]['id_project_info'];
 
 <script>
     $(document).ready(function() {
-        $('#daterange').daterangepicker({
-            opens: 'center',
-            minDate: moment(),
-            autoApply: true,
-            locale: {
-                format: 'DD/MM/YYYY',
-                separator: ' - ',
-                applyLabel: 'Apply',
-                cancelLabel: 'Cancel',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom',
-                weekLabel: 'W',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            }
+        // $('#daterange').daterangepicker({
+        //     opens: 'center',
+        //     minDate: moment(),
+        //     autoApply: true,
+        //     locale: {
+        //         format: 'DD/MM/YYYY',
+        //         separator: ' - ',
+        //         applyLabel: 'Apply',
+        //         cancelLabel: 'Cancel',
+        //         fromLabel: 'From',
+        //         toLabel: 'To',
+        //         customRangeLabel: 'Custom',
+        //         weekLabel: 'W',
+        //         daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        //         firstDay: 1
+        //     },
+        //     autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
+        // }, function(start, end, label) {
+            
+        //     $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        // });
+
+         $('#daterange').daterangepicker({
+        opens: 'center',
+        minDate: moment(),
+        autoApply: true,
+        locale: {
+            format: 'DD/MM/YYYY',
+            separator: ' - ',
+            applyLabel: 'Apply',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            weekLabel: 'W',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+        },
+        startDate: moment('<?php echo $start_date; ?>', 'YYYY-MM-DD'),
+        endDate: moment('<?php echo $end_date; ?>', 'YYYY-MM-DD')
+        }, function(start, end, label) {
+            $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
+        // Set initial value for the input field
+        $('#daterange').val('<?php echo DateTime::createFromFormat("Y-m-d", $start_date)->format("d/m/Y"); ?> - <?php echo DateTime::createFromFormat("Y-m-d", $end_date)->format("d/m/Y"); ?>');
     });
 
-    $(document).ready(function() {
-        $("#daterange").datepicker({
-            dateFormat: 'dd/mm/yy',
-            numberOfMonths: 2,
-            minDate: 0,
-            onSelect: function(selectedDate) {
-                var option = this.id == "start_date" ? "minDate" : "maxDate",
-                    instance = $(this).data("datepicker"),
-                    date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-                $("#end_date").datepicker("option", option, date);
-            }
-        });
-    });
+    // $(document).ready(function() {
+    //     $("#daterange").datepicker({
+    //         dateFormat: 'dd/mm/yy',
+    //         numberOfMonths: 2,
+    //         minDate: 0,
+    //         onSelect: function(selectedDate) {
+    //             var option = this.id == "start_date" ? "minDate" : "maxDate",
+    //                 instance = $(this).data("datepicker"),
+    //                 date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+    //             $("#end_date").datepicker("option", option, date);
+    //         }
+    //     });
+    // });
 
     function updateCount(type, change) {
         const element = document.getElementById(type);
