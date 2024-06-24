@@ -2,23 +2,27 @@
 include('includes/connect_sql.php');
 include('includes/fx_project_facility_db.php');
 include('includes/fx_room_detail_db.php');
+include('includes/config_path.php');
 
 // include('includes/fx_cart_db.php');
 // include('includes/m_package.php');
 
 // echo '<script>alert("lastInsertId: '.$_POST['check_in_date'].'")</script>'; 
-
 // echo '<script>alert("project_id: '.$_SESSION['project_id'].'")</script>';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['project_id'] !='') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
     if (!empty($_POST)) {
+        $currentDate = new DateTime();
+
         $_SESSION['project_id'] = $_POST['project_id'];
         $_SESSION['daterange'] = $_POST['daterange'];
+
         $project_list  = get_project_id($conn,$_POST['project_id']);
         $room_list     = get_room_for_project($conn,$_POST['project_id']);
-
         $daterange = $_POST['daterange'];
         list($start_date, $end_date) = explode(" - ", $daterange);
+        
+
         if (count($dates) == 2) {
             $start_date = DateTime::createFromFormat('d/m/Y', trim($start_date))->format('Y-m-d');
             $end_date = DateTime::createFromFormat('d/m/Y', trim($end_date))->format('Y-m-d');
@@ -26,29 +30,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['project_id'] !='') {
             if ($start_date && $start_date->format('d/m/Y') === trim($dates[0]) && $end_date && $end_date->format('d/m/Y') === trim($dates[1])) {
                 $start_date = $start_date->format('Y-m-d');
                 $end_date = $end_date->format('Y-m-d');
-
             }else {
                 // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+                $start_date = $currentDate->format('Y-m-d');
+                $end_date = $currentDate->format('Y-m-d');
             }
         }else {
             // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+            $start_date = $currentDate->format('Y-m-d');
+            $end_date = $currentDate->format('Y-m-d');
         }
+        // echo '<script>alert("end: '.$daterange.'")</script>'; 
     }
 }else{
     if (isset($_SESSION['project_id']) && !empty($_SESSION['project_id']) && $_SESSION['project_id'] !='') {
+
         $project_list  = get_project_id($conn,$_SESSION['project_id']);
         $room_list     = get_room_for_project($conn,$_SESSION['project_id']);
+
+        // $start_date = DateTime::createFromFormat('d/m/Y', trim($start_date))->format('Y-m-d');
+        // $end_date = DateTime::createFromFormat('d/m/Y', trim($end_date))->format('Y-m-d');
     }else{
         $project_list  = get_project_top($conn);
         $room_list     = get_room_for_project_top($conn,$_SESSION['project_id']);
+
+        $currentDate = new DateTime();
+        $start_date = $currentDate->format('Y-m-d');
+        $end_date = $currentDate->format('Y-m-d');
     }
 }
+
+$project_id = $project_list[0]['id_project_info'];
+
+// echo '<script>alert("start_date: '.$start_date.'")</script>'; 
 
 // $_POST['daterange'];
 // echo '<script>alert("daterange: '.$_POST['daterange'].'")</script>'; 
 
 
-sqlsrv_close($conn);
+
 
 ?>
 
@@ -99,6 +119,7 @@ sqlsrv_close($conn);
 
     <link rel="stylesheet" type="text/css" href="css/style_index.css" />
     <link rel="stylesheet" type="text/css" href="css/style_cart.css" />
+
 
 <!-- ////////////////////////////// -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -244,22 +265,110 @@ sqlsrv_close($conn);
 
 <body>
 
+<!-- sidebar start -->
     <!-- return-to-top start-->
     <a href="javascript:" id="return-to-top"><i class="fas fa-sort-up"></i></a>
     <!-- return-to-top-end -->
-    <!-- HEADER START-->
 
     <div class="main_wrapper">
         <div class="main_menu_wrapper">
-            <!-- main_menu_navbar start -->
-            
-            <? include('includes/topbar.php'); ?>
+
+        <? include('includes/topbar.php'); ?>
            
+        <!-- project_info.php -->
+        <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
+        <form name="frm_search" id="frm_search" method="post" action="search.php">
+
+            <div class="sb_banner_content_wrapper animated-row float_left">
+                <div class="container" style="width: 90%;">
+                    <div class="row">
+                        <div class="col-lg-12 align-self-center">
+                            <div class="sb_banner_cont_iner_wrapper float_left">
+                               <!--  <h2>Book & Experience Amazing Places</h2>
+                                <h3>Compare 3000+ Hotels at once</h3> -->
+                                <ul class="sb-filter">
+                                   <!--  <li>
+                                        <span><i class="fas fa-street-view"></i></span>
+                                        <input type="text" placeholder="Your Destination?">
+                                    </li> -->
+
+                                    <li class="s-box" id="project-list" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">
+                                            <?php //foreach ($project_list as $value) { ?>
+                                                <option class="en" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_en']; ?></option>
+                                            <? //} ?>
+                                            <?php //foreach ($project_list as $value) {?>
+                                                <option class="th" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_th']; ?></option>
+                                            <? //} ?>
+                                        </select>
+                                    </li>
+                                    
+                                    <!--
+                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+                                        <div class="input-with-icon">
+                                            <span><i class="fas fa-calendar"></i></span>
+                                            <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+                                        </div>
+                                    </li>
+                                    -->
+
+                                    <li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+                                        <i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
+                                        <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
+                                    </li>
+                                    
+                                    <!--<div class="dropdown-container input-with-icon">
+                                        <i class="far fa-calendar"></i>
+                                        <input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
+                                    </div>-->
+
+                                    <div class="dropdown-container" style="width: 100%;">
+                                        <button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
+                                            <span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
+                                            ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <div class="counter">
+                                                <label><i class="fas fa-user"></i>ผู้ใหญ่</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
+                                                <span id="adults">2</span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
+                                            </div>
+                                            <div class="counter">
+                                                <label><i class="fas fa-child"></i>เด็ก</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
+                                                <span id="children">0</span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
+                                            </div>
+                                            <div class="counter">
+                                                <label><i class="fas fa-bed"></i>ห้อง</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
+                                                <span id="rooms">1</span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <li style="flex-grow: 1;">
+                                        <!-- <a href="search.php"> -->
+                                            <button type="submit" class="btn btn-primary btn-search">Search</button>
+                                        <!-- </a> -->
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
 
         </div>
-
     </div>
-    <!-- sidebar end -->
+
+<!-- sidebar end -->
 
 <!-- ////////////////////////////////////////////////////////////////// -->
 
@@ -276,7 +385,7 @@ sqlsrv_close($conn);
             <input type="hidden" name="search_type" id="search_type" value="">
             <input type="hidden" name="project_id" id="project_id" value="">
 
-            <div class="row search_room_header">
+            <!-- <div class="row search_room_header">
                 <div class="col-lg-3 col-sm-12">
                     <div class="col-md-12 col-sm-12 text-left">
                         <label class="ml-1 en" for="name">Location</label>
@@ -308,7 +417,8 @@ sqlsrv_close($conn);
                     </div>
                 </div>
 
-            </div>
+            </div> -->
+
         </form>
     </div>
 
@@ -337,7 +447,6 @@ sqlsrv_close($conn);
                 ?>
             </div>
 
-
             <div class="col-md-12 mt-1 mb-3">
                 <div class="row">
                     <div class="col-md-6 text-left">
@@ -360,7 +469,6 @@ sqlsrv_close($conn);
 
         <!-- Room Types -->
 
-
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 ml-2 text-left">
@@ -373,11 +481,13 @@ sqlsrv_close($conn);
                 $date = date('Y-m-d');
 
                 foreach ($room_list as $key => $rt) {
-                    // $rate = $CI->m_room_type->get_day_rate($rt->id_room_type, date('Y-m-d', strtotime($check_in_date)));
+                    $rate = get_day_rate($conn,$rt['id_room_type'], date('Y-m-d', strtotime($start_date)),$project_id);
                     // if ($rate == '') {
-                    //     $rate = $rt->default_rate;
+                    //     $rate = $rt$rt['default_rate'];
                     // }
-                    // $photos = $CI->m_room_type->get_room_type_photos($rt->id_room_type);
+                    // echo '<script>alert("$rate: '.$rate.'")</script>'; 
+                    $photos = get_room_type_photos($conn,$rt['id_room_type']);
+                    // echo '<script>alert("$rate: '.count($photos).'")</script>'; 
                 ?>
 
                     <div class="col-md-6 mt-3">
@@ -385,7 +495,7 @@ sqlsrv_close($conn);
                             <div class="header">
                                 <div class="col-md-12 pl-4 text-left">
                                     <h6>
-                                        <div class="room-type-name"><?php echo ($lang == 'english') ? $rt->room_type_name_en : $rt->room_type_name_th; ?></div>
+                                        <div class="room-type-name"><?php echo $rt['room_type_name_th']; ?></div>
                                     </h6>
                                 </div>
                             </div>
@@ -393,65 +503,72 @@ sqlsrv_close($conn);
                                 <div class="col-md-12">
                                     <div class="content-image">
                                         <div class="slideshow m-0 p-0" id="slideshow-<?php echo $key; ?>">
-                                            <?php
-                                            foreach ($photos as $ctr1 => $photo) {
+                                            <?php  
+                                                //foreach ($photos as $photo) {
                                             ?>
                                                 <div>
-                                                    <!-- <img class="room_img" data-type="<?php echo $room_ctr; ?>" data-ctr="<?php echo $ctr1; ?>" src="<?php echo share_folder_path() . $photo->room_photo_url; ?>" width="100%"> -->
-                                                    <img class="room_img img-thumbnail" data-type="<?php echo $room_ctr; ?> data-ctr=" <?php echo $ctr1; ?>" src="<?php echo share_folder_path() . $photo->room_photo_url; ?>" width="100%">
+
+                                                    <img class="room_img img-thumbnail" data-type="<?php echo $room_ctr; ?>" data-ctr="<?php echo $photos[0]['id_room_type_photo']; ?>" src="includes/image.php?filename=<?php echo $photos[0]['room_photo_url']; ?>" width="100%">
                                                 </div>
-                                            <?php } ?>
+                                            <?php //} ?>
 
                                         </div>
                                     </div>
                                     <div class="content-detail">
                                         <div class="row mb-3 mt-4 price">
-                                            <div class="col-md-12 mx-0 text-center">
-                                                <?php
-                                                $price = ($lang == 'english') ? number_format($rate, 0) . '/Night' : 'ราคา ' . number_format($rate, 0) . '/คืน';
-                                                ?>
+                                            
+                                            <div class="col-md-12 mx-0 text-center en">
+                                                Price <? echo number_format($rate, 0); ?> /Night
                                                 <div class="price"><b><?php echo $price; ?></b></div>
                                             </div>
+                                            <div class="col-md-12 mx-0 text-center th">
+                                                ราคา <? echo number_format($rate, 0); ?> /คืน
+                                                <div class="price"><b><?php echo $price; ?></b></div>
+                                            </div>
+
                                         </div>
 
                                         <div class="row mx-auto mt-2">
                                             <div class="col-3 text-left icon_container">
-                                                <span class="icon-content"><object data="<?php echo site_url(); ?>images/icons/house.svg" height="20"></object></span>
+                                                <span class="icon-content"><object data="<? echo $sourceFilePath_icon; ?>/images/icons/house.svg" height="20"></object></span>
                                             </div>
                                             <div class="col-9 text-left icon_container">
-                                                <span class="icon-content"><?php echo $lang == 'english' ? $rt->area_en : $rt->area_th; ?></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mx-auto mt-2">
-                                            <div class="col-3 text-left icon_container">
-                                                <!-- <span class="icon-content"><img class="icon" src="<?php echo share_folder_path(); ?>images/icons/icons8-bedroom-50.png" height="18"></span> -->
-                                                <span class="icon-content"><object data="<?php echo share_folder_path(); ?>images/icons/icons8-bedroom-50.png" height="18"></object></span>
-                                            </div>
-                                            <div class="col-9 text-left icon_container">
-                                                <span class="icon-content"><?php echo $lang == 'english' ? $rt->room_details_en : $rt->room_details_th; ?></span>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto mt-2">
-                                            <div class="col-3 text-left icon_container">
-                                                <span class="icon-content  ml-1"><object data="<?php echo share_folder_path(); ?>images/icons/bathroom.png" height="18"></object></span>
-                                            </div>
-                                            <div class="col-9 text-left icon_container">
-                                                <span class="icon-content"><?php echo $lang == 'english' ? $rt->bathroom_en : $rt->bathroom_th; ?></span>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto mt-2">
-                                            <div class="col-3 text-left icon_container">
-                                                <span class="icon-content" style="margin-left:1px;"><object data="<?php echo share_folder_path(); ?>images/icons/person-fill.svg" height="18"></object></span>
-                                            </div>
-                                            <div class="col-9 text-left icon_container">
-                                                <span class="icon-content"><?php echo $lang == 'english' ? $rt->number_of_adults . ' Adults' : 'จำนวนผู้เข้าพัก: ' . $rt->number_of_adults; ?></span>
+                                                <span class="icon-content en"><?php echo $rt['area_en']; ?></span>
+                                                <span class="icon-content th"><?php echo $rt['area_th']; ?></span>
                                             </div>
                                         </div>
 
                                         <div class="row mx-auto mt-2">
                                             <div class="col-3 text-left icon_container">
-                                                <object data="<?php echo share_folder_path(); ?>images/icons/tv.svg" height="20"> </object>
+                                                <span class="icon-content"><object data="<? echo $sourceFilePath_icon; ?>images/icons/icons8-bedroom-50.png" height="18"></object></span>
+                                            </div>
+                                            <div class="col-9 text-left icon_container">
+                                                <span class="icon-content en"><?php echo $rt['room_details_en']; ?></span>
+                                                <span class="icon-content th"><?php echo $rt['room_details_th']; ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-auto mt-2">
+                                            <div class="col-3 text-left icon_container">
+                                                <span class="icon-content  ml-1"><object data="<?php echo $sourceFilePath_icon; ?>images/icons/bathroom.png" height="18"></object></span>
+                                            </div>
+                                            <div class="col-9 text-left icon_container">
+                                                <span class="icon-content en"><?php echo $rt['bathroom_en']; ?></span>
+                                                <span class="icon-content th"><?php echo $rt['bathroom_th']; ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-auto mt-2">
+                                            <div class="col-3 text-left icon_container">
+                                                <span class="icon-content" style="margin-left:1px;"><object data="<?php echo $sourceFilePath_icon; ?>images/icons/person-fill.svg" height="18"></object></span>
+                                            </div>
+                                            <div class="col-9 text-left icon_container">
+                                                <span class="icon-content en"><?php echo $rt['number_of_adults'].' Adults'; ?></span>
+                                                <span class="icon-content th"><?php echo $rt['number_of_adults'].' จำนวนผู้เข้าพัก'; ?></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mx-auto mt-2">
+                                            <div class="col-3 text-left icon_container">
+                                                <object data="<?php echo $sourceFilePath_icon; ?>images/icons/tv.svg" height="20"> </object>
                                             </div>
                                             <div class="col-9 text-left icon_container">
                                                 <span class="icon-content">TV (Internet)</span>
@@ -460,30 +577,32 @@ sqlsrv_close($conn);
 
                                         <div class="row mx-auto mt-2">
                                             <div class="col-3 text-left icon_container">
-                                                <span class="icon-content"><object data="<?php echo share_folder_path(); ?>images/icons/snow.svg" height="20"> </object></span>
+                                                <span class="icon-content"><object data="<?php echo $sourceFilePath_icon; ?>images/icons/snow.svg" height="20"> </object></span>
                                             </div>
                                             <div class="col-9 text-left icon_container">
-                                                <span class="icon-content"><?php echo $lang == 'english' ? 'Air Conditioning' : 'เครื่องปรับอากาศ'; ?></span>
+                                                <span class="icon-content en">Air Conditioning</span>
+                                                <span class="icon-content th">เครื่องปรับอากาศ</span>
                                             </div>
                                         </div>
 
                                         <div class="row mx-auto mt-2">
                                             <div class="col-3 text-left icon_container">
-                                                <span class="icon-content"><object data="<?php echo share_folder_path(); ?>images/icons/wifi.svg" height="20"> </object></span>
+                                                <span class="icon-content"><object data="<?php echo $sourceFilePath_icon; ?>images/icons/wifi.svg" height="20"> </object></span>
                                             </div>
                                             <div class="col-9 text-left icon_container">
                                                 <span class="icon-content">Free WIFI</span>
                                             </div>
                                         </div>
-                                        <?php if ($rt->sofa_en != '') { ?>
+                                        <?php if ($rt['sofa_en'] != '') { ?>
                                             <div class="row mx-auto mt-2">
                                                 <div class="col-3 text-left icon_container">
                                                     <span class="icon-content" style="font-size:16px; margin-top:-2px;">
-                                                        <object data="<?php echo share_folder_path(); ?>images/icons/sofa.png" height="14"></object>
+                                                        <object data="<?php echo $sourceFilePath_icon; ?>images/icons/sofa.png" height="14"></object>
                                                     </span>
                                                 </div>
                                                 <div class="col-9 text-left icon_container">
-                                                    <span class="icon-content"><?php echo $lang == 'english' ? $rt->sofa_en : $rt->sofa_th; ?></span>
+                                                    <span class="icon-content"><?php echo $rt['sofa_en']; ?></span>
+                                                    <span class="icon-content"><?php echo $rt['sofa_th']; ?></span>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -493,18 +612,42 @@ sqlsrv_close($conn);
 
                                 </div>
                             </div>
+
                             <div class="footer">
-                                <div class=" ml-2 text-right">
-                                    <button class="btn button-primary-w add_to_cart" data-id="<?php echo $rt->id_room_type; ?>" data-price="<?php echo $rt->default_rate; ?>" id="" style="margin-right: 5px;"><?php echo $this->lang->line('add_to_cart'); ?></button>
-                                    <a href="javascript:;" data-roomtype="<?php echo $rt->id_room_type; ?>" class="btn button-primary book_now" id="" style="margin-left: 5px;"><?php echo $this->lang->line('book_now'); ?></a>
+                                <div class="d-flex justify-content-end mr-2">
+                                    <button type="button" class="btn btn-primary add_to_cart en"
+                                    data-id="<?php //echo $rt['id_room_type']; ?>" 
+                                    data-price="<?php echo $rt['default_rate']; ?>"
+                                    >Add To Cart</button>
+                                    <button type="button" class="btn btn-primary add_to_cart th"
+                                    data-id="<?php //echo $rt['id_room_type']; ?>" 
+                                    data-price="<?php //echo $rt['default_rate']; ?>"
+                                    >เก็บใส่ตะกร้า</button>
+
+                                    <div style="margin-left: 10px;"></div>
+
+                                    <button type="button" class="btn btn-primary book_now en"
+                                    data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+                                    >Book Now</button>
+                                    <button type="button" class="btn btn-primary book_now th"
+                                    data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+                                    >จองตอนนี้</button>
+
                                 </div>
                             </div>
+                           <!--  <div class="footer">
+                                <div class=" ml-2 text-right">
+                                    <button class="btn button-primary-w add_to_cart" data-id="<?php //echo $rt['id_room_type']; ?>" data-price="<?php //echo $rt['default_rate']; ?>" id="" style="margin-right: 5px;"><?php //echo $this->lang->line('add_to_cart'); ?></button>
+
+                                    <a href="javascript:;" data-roomtype="<?php //echo $rt->id_room_type; ?>" class="btn button-primary book_now" id="" style="margin-left: 5px;"><?php //echo $this->lang->line('book_now'); ?></a>
+                                </div>
+                            </div> -->
 
                         </div>
                     </div>
                 <?php
                     $room_ctr++;
-                    } 
+                    }
                 ?>
             </div>
         </div>
@@ -637,6 +780,7 @@ sqlsrv_close($conn);
 </script>
 </html>
 
+<? sqlsrv_close($conn); ?>
 <? include('language/text_index.php'); ?>
 
 

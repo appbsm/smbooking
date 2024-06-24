@@ -36,11 +36,8 @@ function get_room_top($conn) {
 
 function get_room_for_project($conn,$id) {
 	$result = array();
- 	$sql ="SELECT * FROM room_type rt
- 	LEFT JOIN project_info pj ON pj.id_project_info = rt.id_project_info 
- 	LEFT JOIN room_type_photo rp ON rp.id_room_type = rt.id_room_type
- 	WHERE pj.id_project_info = '".$id."' and active = '1' ";
- 	// echo '<script>alert("get_room: '.$sql.'")</script>'; 
+ 	$sql ="SELECT * FROM room_type rt WHERE id_project_info = '".$id."' and active = '1' ";
+ 	// echo '<script>alert("get_room_for_project:'.$sql.'")</script>'; 
 	$stmt = sqlsrv_query($conn,$sql);
 	if( $stmt === false) {
 		die( print_r( sqlsrv_errors(), true) );
@@ -53,10 +50,7 @@ function get_room_for_project($conn,$id) {
 
 function get_room_for_project_top($conn) {
 	$result = array();
- 	$sql ="SELECT * FROM room_type rt
- 	LEFT JOIN project_info pj ON pj.id_project_info = rt.id_project_info 
- 	LEFT JOIN room_type_photo rp ON rp.id_room_type = rt.id_room_type
- 	WHERE pj.id_project_info = (
+ 	$sql ="SELECT * FROM room_type rt WHERE id_project_info = (
     SELECT TOP 1 id_project_info 
     FROM project_info 
     ORDER BY id_project_info) and rt.active = '1' ";
@@ -144,40 +138,69 @@ function get_seasonal_price($conn,$id) {
 	} 
 	return $result;
 }
-function get_day_rate ($id_room_type, $current_date) {			
-		$rate = 0;		
-		$seasonal_price = $this->get_seasonal_price_by_room_date ($id_room_type, $current_date); 
-		if (isset($seasonal_price->rate)) {
-			$day_of_date = strtolower(date('D', strtotime($current_date)));
-			$str_rate = $day_of_date.'_rate';
-			$rate = $seasonal_price->$str_rate;
-		}		
-		else  {
-			$room_type = $this->get_room_type_by_ID (1, $id_room_type);
-			if (isset($room_type->default_rate)) {
-				$rate = $room_type->default_rate;
-			} 
-		}
-		return $rate;
-	}
 
-function get_seasonal_price_by_room_date($id_room_type, $current_date) {
-		//
-		$result = new stdClass();
-		$select = "select TOP 1 * "
-				. "from seasonal_price "
-				. "WHERE id_room_type = '".$id_room_type."' "
-				. "AND start_date <= '".$current_date."' "
-				. "AND end_date >= '".$current_date."' "
-				. "order by is_priority DESC";
-		$query = $this->db->query($select);
-		//echo $this->db->last_query();
-		if ($query->num_rows() > 0) {
-			$r = $query->result();
-			$result = $r[0];
+function get_day_rate($conn,$id_room_type, $current_date,$project_id) {
+	$rate = 0;		
+	$seasonal_price = get_seasonal_price_by_room_date($conn,$id_room_type, $current_date);
+
+	if (count($seasonal_price) > 0) {
+		$rate = $seasonal_price[0]['rate'];
+	}else  {
+		$room_type = get_room_type_by_ID ($conn,$project_id, $id_room_type);
+		if (isset($room_type[0]['default_rate'])) {
+			$rate = $room_type[0]['default_rate'];
+		} 
+	}
+	// echo '<script>alert("$rate: '.$rate.'")</script>'; 
+	return $rate;
+}
+
+function get_room_type_by_ID($conn,$id_project_info, $id_room_type) {
+		$result = array();
+		$sql = "select * from room_type where id_project_info = '".$id_project_info."' and id_room_type = '".$id_room_type."'";
+		// echo '<script>alert("get_room_type_by_ID: '.$sql.'")</script>'; 
+		$stmt = sqlsrv_query($conn,$sql);
+		if( $stmt === false) {
+			die(print_r( sqlsrv_errors(), true) );
 		}
+		while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+			$result[] = $row;
+		} 
 		return $result;
 	}
+
+function get_seasonal_price_by_room_date($conn,$id_room_type, $current_date) {
+	$result = array();
+	$sql = "select TOP 1 * "
+			. "from seasonal_price "
+			. "WHERE id_room_type = '".$id_room_type."' "
+			. "AND start_date <= '".$current_date."' "
+			. "AND end_date >= '".$current_date."' "
+			. "order by is_priority DESC";
+	// echo '<script>alert("get_seasonal_price_by_room_date: '.$sql.'")</script>';
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die(print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
+
+function get_room_type_photos ($conn,$id_room_type) {
+	$result = array();
+	$sql = "select * from room_type_photo where id_room_type = '".$id_room_type."' order by display_sequence asc ";	
+	// echo '<script>alert("get_room_type_photos: '.$sql.'")</script>';
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die(print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
 
 // function get_room_type($conn) {
 // 	$result = array();

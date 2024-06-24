@@ -13,6 +13,8 @@ function get_project($conn) {
 	return $result;
 }
 
+
+
 function get_project_top($conn) {
 	$result = array();
  	$sql ="SELECT * FROM project_info pj_i

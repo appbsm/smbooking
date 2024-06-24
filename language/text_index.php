@@ -48,7 +48,7 @@
 
     function updateProjectList(language) {
         var projectListHtml = '<span><i class="fas fa-map-marker-alt"></i></span>' +
-            '<select id="project-select" style="max-width: 100%; border-bottom: none !important;">';
+            '<select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">';
 
         <?php foreach ($project_list as $value) { ?>
             if (language === 'en') {

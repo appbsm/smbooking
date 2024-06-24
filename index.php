@@ -266,6 +266,7 @@ Author:
 	}
 	
 </style>
+
 <body>
 
     <!-- return-to-top start-->
@@ -278,8 +279,8 @@ Author:
             
             <? include('includes/topbar.php'); ?>
 
-            <!-- project_info.php -->
-          <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
+        <!-- project_info.php -->
+        <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
         <form name="frm_search" id="frm_search" method="post" action="search.php">
 
             <div class="sb_banner_content_wrapper animated-row float_left">
@@ -297,7 +298,7 @@ Author:
 
                                     <li class="s-box" id="project-list" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <select style="max-width: 100%; border-bottom: none !important;">
+                                        <select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -881,7 +882,7 @@ Author:
                 </div>
 
 <form name="frm_room" id="frm_room" method="post" action="hotel-single-page.php">
-	<input type="hidden" name="project_id" id="project_id" value="">
+	<!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
 	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
 	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
 	<input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
