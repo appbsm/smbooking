@@ -1,51 +1,51 @@
 <?php 
-include('includes/connect_sql.php');
-include('includes/fx_room_detail_db.php');
+	include('includes/connect_sql.php');
+	include('includes/fx_room_detail_db.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
-	$_SESSION['id_room'] = $_POST['id_room'];
-    $room_list   = get_room($conn,$_POST['id_room']);
-}else if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['id_room'])) {
-	$_SESSION['id_room'] = $_GET['id_room'];
-	$room_list   = get_room($conn,$_GET['id_room']);
-}else{
-	if (isset($_SESSION['id_room']) && !empty($_SESSION['id_room'])) {
-		$room_list   = get_room($conn,$_SESSION['id_room']);
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_room'])) {
+		$_SESSION['id_room'] = $_POST['id_room'];
+		$room_list   = get_room($conn,$_POST['id_room']);
+	}else if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['id_room'])) {
+		$_SESSION['id_room'] = $_GET['id_room'];
+		$room_list   = get_room($conn,$_GET['id_room']);
 	}else{
-		$room_list   = get_room_top($conn);
+		if (isset($_SESSION['id_room']) && !empty($_SESSION['id_room'])) {
+			$room_list   = get_room($conn,$_SESSION['id_room']);
+		}else{
+			$room_list   = get_room_top($conn);
+		}
 	}
-}
 
-$start_id = "true";
-foreach ($room_list as $value) {
-    if($start_id == "true"){
-        $id_project_info  = $value['id_project_info'];
-        $id_room_type		= $value['id_room_type'];
-        $room_type_name_en  = $value['room_type_name_en'];
-        $room_type_name_th  = $value['room_type_name_th'];
-        $description_en     = $value['description_en'];  
-        $description_th     = $value['description_th'];
-        $short_description_en= $value['short_description_en'];
-        $short_description_th= $value['short_description_th'];
-        $default_rate       = $value['default_rate'];
-        $latitude           = $value['latitude'];
-        $longitude          = $value['longitude'];
-        $link_map           = $value['link_map'];
-        $start_id = "false";
-    }
-}
+	$start_id = "true";
+	foreach ($room_list as $value) {
+		if($start_id == "true"){
+			$id_project_info  = $value['id_project_info'];
+			$id_room_type		= $value['id_room_type'];
+			$room_type_name_en  = $value['room_type_name_en'];
+			$room_type_name_th  = $value['room_type_name_th'];
+			$description_en     = $value['description_en'];  
+			$description_th     = $value['description_th'];
+			$short_description_en= $value['short_description_en'];
+			$short_description_th= $value['short_description_th'];
+			$default_rate       = $value['default_rate'];
+			$latitude           = $value['latitude'];
+			$longitude          = $value['longitude'];
+			$link_map           = $value['link_map'];
+			$start_id = "false";
+		}
+	}
 
-// $seasonal_list  = get_seasonal_price($conn,$id_room_type);
-$icon_room_list = get_icon_room($conn,$id_project_info);
+	// $seasonal_list  = get_seasonal_price($conn,$id_room_type);
+	$icon_room_list = get_icon_room($conn,$id_project_info);
 
-$project_highlights_list  = get_project_highlights($conn,$id_project_info);
-$point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
+	$project_highlights_list  = get_project_highlights($conn,$id_project_info);
+	$point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
 
-$project_policy_list  = get_project_policy($conn,$id_project_info);
+	$project_policy_list  = get_project_policy($conn,$id_project_info);
 
-// echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
+	// echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
-sqlsrv_close($conn);
+	sqlsrv_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -288,6 +288,14 @@ sqlsrv_close($conn);
 
 	.book-now:hover {
 		background-color: #e65a50;
+	}
+	
+	.icon-user {
+		position: absolute;
+		right: 10%;
+		top: 15px;
+		bottom: 0;
+		margin: auto;
 	}
 	
 
@@ -957,7 +965,7 @@ sqlsrv_close($conn);
                                                 fill: #1b72ea
                                             }
                                         </style>
-                                        <i id="Icon1" class="fas fa-user"></i>
+                                        <i id="Icon1" class="fas fa-user icon-user"></i>
                                        <!--  <path id="Icon1" class="shp0"
                                             d="M17.94 5.32C17.83 4.78 17.57 4.3 17.2 3.93C17.08 3.82 16.95 3.7 16.8 3.61L16.78 3.59C16.77 3.57 16.75 3.57 16.73 3.56C16.67 3.52 16.62 3.48 16.56 3.46L16.54 3.46C16.15 3.26 15.72 3.15 15.23 3.15L14.07 3.15L14.07 2.35C14.07 2.17 13.93 2 13.72 2C13.53 2 13.36 2.15 13.36 2.35L13.36 3.11L6.65 3.11L6.65 2.35C6.65 2.17 6.49 2 6.3 2C6.11 2 5.94 2.15 5.94 2.35L5.94 3.11L4.78 3.11C4.43 3.11 4.07 3.18 3.76 3.31C3.4 3.46 3.08 3.67 2.82 3.93C2.67 4.08 2.54 4.24 2.43 4.41C2.32 4.59 2.22 4.78 2.15 4.98C2.11 5.09 2.07 5.21 2.06 5.32C2.02 5.5 2 5.69 2 5.87L2 7.73L2 16.27C2 17.03 2.32 17.72 2.8 18.2C3.31 18.7 4 19 4.75 19L15.25 19C16.02 19 16.71 18.68 17.2 18.2C17.7 17.7 18 17.01 18 16.27L18 7.73L18 5.87C18 5.69 17.98 5.5 17.94 5.32ZM2.73 5.85C2.73 5.71 2.75 5.58 2.77 5.45C2.78 5.32 2.84 5.19 2.88 5.06C2.95 4.89 3.05 4.74 3.14 4.61C3.2 4.54 3.25 4.48 3.31 4.41C3.42 4.3 3.55 4.2 3.68 4.11C4 3.93 4.35 3.82 4.75 3.82L5.91 3.82L5.91 4.57C5.91 4.76 6.06 4.93 6.26 4.93C6.45 4.93 6.62 4.78 6.62 4.57L6.62 3.82L13.42 3.82L13.42 4.57C13.42 4.76 13.57 4.93 13.78 4.93C13.96 4.93 14.13 4.78 14.13 4.57L14.13 3.82L15.29 3.82C15.68 3.82 16.06 3.93 16.36 4.11C16.49 4.2 16.62 4.3 16.73 4.41C17.01 4.69 17.21 5.04 17.29 5.45C17.31 5.58 17.33 5.72 17.33 5.85L17.33 7.37L2.73 7.37L2.73 5.85ZM17.35 16.25C17.35 16.83 17.12 17.35 16.75 17.72C16.37 18.09 15.85 18.31 15.29 18.31L4.78 18.31C4.22 18.31 3.7 18.09 3.33 17.72C2.95 17.35 2.73 16.83 2.73 16.27L2.73 8.06L17.35 8.06L17.35 16.25L17.35 16.25Z">
                                         </path> -->
