@@ -277,13 +277,11 @@ Author:
             <!-- main_menu_navbar start -->
             
             <? include('includes/topbar.php'); ?>
-<<<<<<< HEAD
+
             <!-- project_info.php -->
           <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
         <form name="frm_search" id="frm_search" method="post" action="search.php">
-=======
-           
->>>>>>> origin/main
+
             <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container" style="width: 90%;">
                     <div class="row">
@@ -296,7 +294,8 @@ Author:
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+
+                                    <li class="s-box" id="project-list" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
                                         <select style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
@@ -316,9 +315,10 @@ Author:
 										</div>
 									</li>
 									-->
-									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
-										<i class="fas fa-calendar icon-ckinout"></i>
-										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out Date">
+
+									<li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+										<i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
+										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
 									</li>
 									
 									<!--<div class="dropdown-container input-with-icon">

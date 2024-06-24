@@ -34,6 +34,44 @@ function get_room_top($conn) {
 	return $result;
 }
 
+function get_room_for_project($conn,$id) {
+	$result = array();
+ 	$sql ="SELECT * FROM room_type rt
+ 	LEFT JOIN project_info pj ON pj.id_project_info = rt.id_project_info 
+ 	LEFT JOIN room_type_photo rp ON rp.id_room_type = rt.id_room_type
+ 	WHERE pj.id_project_info = '".$id."' and active = '1' ";
+ 	// echo '<script>alert("get_room: '.$sql.'")</script>'; 
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die( print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
+
+function get_room_for_project_top($conn) {
+	$result = array();
+ 	$sql ="SELECT * FROM room_type rt
+ 	LEFT JOIN project_info pj ON pj.id_project_info = rt.id_project_info 
+ 	LEFT JOIN room_type_photo rp ON rp.id_room_type = rt.id_room_type
+ 	WHERE pj.id_project_info = (
+    SELECT TOP 1 id_project_info 
+    FROM project_info 
+    ORDER BY id_project_info) and rt.active = '1' ";
+ 	// echo '<script>alert("get_room: '.$sql.'")</script>'; 
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die( print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
+
+
 function get_icon_room($conn,$id) {
 	$result = array();
  	$sql =" SELECT * FROM room_type rt
@@ -106,6 +144,40 @@ function get_seasonal_price($conn,$id) {
 	} 
 	return $result;
 }
+function get_day_rate ($id_room_type, $current_date) {			
+		$rate = 0;		
+		$seasonal_price = $this->get_seasonal_price_by_room_date ($id_room_type, $current_date); 
+		if (isset($seasonal_price->rate)) {
+			$day_of_date = strtolower(date('D', strtotime($current_date)));
+			$str_rate = $day_of_date.'_rate';
+			$rate = $seasonal_price->$str_rate;
+		}		
+		else  {
+			$room_type = $this->get_room_type_by_ID (1, $id_room_type);
+			if (isset($room_type->default_rate)) {
+				$rate = $room_type->default_rate;
+			} 
+		}
+		return $rate;
+	}
+
+function get_seasonal_price_by_room_date($id_room_type, $current_date) {
+		//
+		$result = new stdClass();
+		$select = "select TOP 1 * "
+				. "from seasonal_price "
+				. "WHERE id_room_type = '".$id_room_type."' "
+				. "AND start_date <= '".$current_date."' "
+				. "AND end_date >= '".$current_date."' "
+				. "order by is_priority DESC";
+		$query = $this->db->query($select);
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0) {
+			$r = $query->result();
+			$result = $r[0];
+		}
+		return $result;
+	}
 
 // function get_room_type($conn) {
 // 	$result = array();

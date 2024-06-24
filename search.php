@@ -14,14 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['project_id'] !='') {
     if (!empty($_POST)) {
         $_SESSION['project_id'] = $_POST['project_id'];
         $project_list  = get_project_id($conn,$_POST['project_id']);
+        $room_list     = get_room_for_project($conn,$_POST['project_id']);
     }
 }else{
     if (isset($_SESSION['project_id']) && !empty($_SESSION['project_id']) && $_SESSION['project_id'] !='') {
         $project_list  = get_project_id($conn,$_SESSION['project_id']);
+        $room_list     = get_room_for_project($conn,$_SESSION['project_id']);
     }else{
         $project_list  = get_project_top($conn);
     }
 }
+
+
 
 sqlsrv_close($conn);
 
@@ -319,7 +323,7 @@ sqlsrv_close($conn);
                         <h5 style="color: black !important;">SM Resort Showroom @ Khaoyai</h5>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="<?php //echo site_url('project_info'); ?>" class="btn" id="">Project Info Details</a>
+                        <a href="project_info.php" class="btn" id="">Project Info Details</a>
                     </div>
                 </div>
 
@@ -339,7 +343,7 @@ sqlsrv_close($conn);
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 ml-2 text-left">
-                    <h5><?php //echo $this->lang->line('room_types'); ?></h5>
+                    <h5 style="color: black !important;">Room Types</h5>
                 </div>
             </div>
             <div class="row">
