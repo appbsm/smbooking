@@ -65,8 +65,6 @@ Author:
 
     <link rel="stylesheet" type="text/css" href="css/style_index.css" />
 	
-	
-
 </head>
 <style>
 	.btn-search {
@@ -266,6 +264,7 @@ Author:
 	}
 	
 </style>
+
 <body>
 
     <!-- return-to-top start-->
@@ -277,7 +276,11 @@ Author:
             <!-- main_menu_navbar start -->
             
             <? include('includes/topbar.php'); ?>
-           
+
+        <!-- project_info.php -->
+        <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
+        <form name="frm_search" id="frm_search" method="post" action="search.php">
+
             <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container" style="width: 90%;">
                     <div class="row">
@@ -290,9 +293,10 @@ Author:
                                         <span><i class="fas fa-street-view"></i></span>
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+
+                                    <li class="s-box" id="project-list" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <select style="max-width: 100%; border-bottom: none !important;">
+                                        <select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">
                                             <?php foreach ($project_list as $value) { ?>
                                                 <option class="en" value="<? echo $value['id_project_info']; ?>"><? echo $value['project_name_en']; ?></option>
                                             <? } ?>
@@ -310,9 +314,10 @@ Author:
 										</div>
 									</li>
 									-->
-									<li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
-										<i class="fas fa-calendar icon-ckinout"></i>
-										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out Date">
+
+									<li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+										<i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
+										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
 									</li>
 									
 									<!--<div class="dropdown-container input-with-icon">
@@ -348,9 +353,9 @@ Author:
 									</div>
 
                                     <li style="flex-grow: 1;">
-										<a href="https://smsmartbooking.buildersmart.com/home/search">
-											<button type="button" class="btn btn-primary btn-search">Search</button>
-										</a>
+										<!-- <a href="search.php"> -->
+											<button type="submit" class="btn btn-primary btn-search">Search</button>
+										<!-- </a> -->
                                     </li>
 
                                 </ul>
@@ -360,10 +365,11 @@ Author:
                     </div>
                 </div>
             </div>
+        </form>
 
         </div>
-
     </div>
+
     <!-- sidebar end -->
 
 
@@ -584,16 +590,17 @@ Author:
                                             <img src="includes/image.php?filename=<?php echo trim($value['room_photo_url']); ?>" />
                                         </a>
                                     </div>
-                                    <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
+                                    <!--<span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>-->
+									<span style="font-size: smaller;"><?php echo number_format(trim($value['default_rate'])); ?> / Night</span>									 
                                 </div>
-                                <div class="slider-content" style="padding-bottom: 20px;">
+                                <div class="slider-content">
                                     <span style="font-size: small !important;">
                                         <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
                                             Review</a>
                                     </span>
                                     <h5>
-                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                        <form action="detail.php" method="post" class="tx-title">
                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                 <? echo $value['room_type_name_en']; ?>
@@ -604,13 +611,12 @@ Author:
                                             </a>
                                         </form>
                                     </h5>
-                                    <a href="javascript:;"> 
-										<span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
+                                    <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
-                                            USA</span>
-									</a>
-									<div class="footer">
-										<div class="d-flex justify-content-end mr-2 mt-2 mb-0">
+                                            USA</span></a>
+
+                                    <div class="footer">
+										<div class="d-flex justify-content-end mr-2">
 											<button type="button" class="btn btn-primary add_to_cart en"
 											data-id="<?php echo $value['id_room_type']; ?>" 
 											data-price="<?php echo $value['default_rate']; ?>"
@@ -631,10 +637,8 @@ Author:
 
 										</div>
 									</div>
+       
                                 </div>
-								
-
-
                             </div>
                         </div>
                     <? } ?>
@@ -643,6 +647,7 @@ Author:
             </div>
         </div>
     </div>
+
     <!-- destination section start-->
 	<!--
     <div class="t-dest-wrapper">
@@ -831,7 +836,7 @@ Author:
                                                         </a>
 
                                                     </div>
-                                                    <span><?php echo trim($value['default_rate']); ?> / Night</span>
+                                                    <span><?php echo number_format(trim($value['default_rate'])); ?> / Night</span>
                                                 </div>
 
                                                 <div class="slider-content" style="padding: 20px 15px !important;">
@@ -844,7 +849,7 @@ Author:
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                                        <form action="detail.php" method="post" class="tx-title">
                                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                                 <? echo $value['room_type_name_en']; ?>
@@ -898,8 +903,8 @@ Author:
                     </div>
                 </div>
 
-<form name="frm_room" id="frm_room" method="post" action="hotel-single-page.php">
-	<input type="hidden" name="project_id" id="project_id" value="">
+<form name="frm_room" id="frm_room" method="post" action="detail.php">
+	<!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
 	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
 	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
 	<input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
@@ -987,7 +992,7 @@ $('.book_now').click(function() {
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <form action="hotel-single-page.php" method="post">
+                                                        <form action="detail.php" method="post">
                                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
                                                                 <? echo $value_room['room_type_name_en']; ?>
