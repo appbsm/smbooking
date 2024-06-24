@@ -13,8 +13,26 @@ include('includes/fx_room_detail_db.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['project_id'] !='') {
     if (!empty($_POST)) {
         $_SESSION['project_id'] = $_POST['project_id'];
+        $_SESSION['daterange'] = $_POST['daterange'];
         $project_list  = get_project_id($conn,$_POST['project_id']);
         $room_list     = get_room_for_project($conn,$_POST['project_id']);
+
+        $daterange = $_POST['daterange'];
+        list($start_date, $end_date) = explode(" - ", $daterange);
+        if (count($dates) == 2) {
+            $start_date = DateTime::createFromFormat('d/m/Y', trim($start_date))->format('Y-m-d');
+            $end_date = DateTime::createFromFormat('d/m/Y', trim($end_date))->format('Y-m-d');
+
+            if ($start_date && $start_date->format('d/m/Y') === trim($dates[0]) && $end_date && $end_date->format('d/m/Y') === trim($dates[1])) {
+                $start_date = $start_date->format('Y-m-d');
+                $end_date = $end_date->format('Y-m-d');
+
+            }else {
+                // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+            }
+        }else {
+            // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+        }
     }
 }else{
     if (isset($_SESSION['project_id']) && !empty($_SESSION['project_id']) && $_SESSION['project_id'] !='') {
@@ -22,9 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['project_id'] !='') {
         $room_list     = get_room_for_project($conn,$_SESSION['project_id']);
     }else{
         $project_list  = get_project_top($conn);
+        $room_list     = get_room_for_project_top($conn,$_SESSION['project_id']);
     }
 }
 
+// $_POST['daterange'];
+// echo '<script>alert("daterange: '.$_POST['daterange'].'")</script>'; 
 
 
 sqlsrv_close($conn);
@@ -351,12 +372,12 @@ sqlsrv_close($conn);
                 $room_ctr = 0;
                 $date = date('Y-m-d');
 
-                foreach ($result as $key => $rt) {
-                    $rate = $CI->m_room_type->get_day_rate($rt->id_room_type, date('Y-m-d', strtotime($check_in_date)));
-                    if ($rate == '') {
-                        $rate = $rt->default_rate;
-                    }
-                    $photos = $CI->m_room_type->get_room_type_photos($rt->id_room_type);
+                foreach ($room_list as $key => $rt) {
+                    // $rate = $CI->m_room_type->get_day_rate($rt->id_room_type, date('Y-m-d', strtotime($check_in_date)));
+                    // if ($rate == '') {
+                    //     $rate = $rt->default_rate;
+                    // }
+                    // $photos = $CI->m_room_type->get_room_type_photos($rt->id_room_type);
                 ?>
 
                     <div class="col-md-6 mt-3">
@@ -483,7 +504,8 @@ sqlsrv_close($conn);
                     </div>
                 <?php
                     $room_ctr++;
-                } ?>
+                    } 
+                ?>
             </div>
         </div>
 

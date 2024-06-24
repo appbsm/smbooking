@@ -15,4 +15,8 @@
 	session_name("sm_booking");
 	session_start();
 
+	if (empty($_SESSION['lang'])) {
+    	$_SESSION['lang'] = 'th';
+	}
+
 ?>

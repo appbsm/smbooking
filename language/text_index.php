@@ -29,6 +29,9 @@
         // $('#daterange').attr('placeholder', translations[language]['daterange']);
 
         updateProjectList(language);
+        // $('#daterange').attr('placeholder', translations[language]['daterange']);
+        // alert('daterange');
+        
         // updateDaterangePlaceholder(language);
 
         // $('#register_topbar').html(translations[language]['register_topbar']);
@@ -79,17 +82,20 @@
     $('#th-link').click(function(event) {
         event.preventDefault();
         updateSessionLanguage('th');
-        updateDaterangePlaceholder('th');
+        $('#daterange').attr('placeholder',translations[language]['daterange']);
+        // updateDaterangePlaceholder('th');
     });
 
     $('#en-link').click(function(event) {
         event.preventDefault();
         updateSessionLanguage('en');
-        updateDaterangePlaceholder('en');
+        $('#daterange').attr('placeholder',translations[language]['daterange']);
+        // updateDaterangePlaceholder('en');
     });
 
     $(document).ready(function() {
         var initialLanguage = '<?php echo $_SESSION['lang']; ?>';
+
         switchLanguage(initialLanguage);
         if (initialLanguage === 'th') {
             $('.en').hide();

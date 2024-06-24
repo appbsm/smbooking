@@ -354,9 +354,9 @@ Author:
 									</div>
 
                                     <li style="flex-grow: 1;">
-										<a href="https://smsmartbooking.buildersmart.com/home/search">
-											<button type="button" class="btn btn-primary btn-search">Search</button>
-										</a>
+										<!-- <a href="search.php"> -->
+											<button type="submit" class="btn btn-primary btn-search">Search</button>
+										<!-- </a> -->
                                     </li>
 
                                 </ul>
@@ -366,6 +366,7 @@ Author:
                     </div>
                 </div>
             </div>
+        </form>
 
         </div>
 
@@ -592,7 +593,7 @@ Author:
                                     </div>
                                     <span style="font-size: smaller;"><?php echo trim($value['default_rate']); ?> / Night</span>
                                 </div>
-                                <div class="slider-content" style="padding-bottom: 20px;">
+                                <div class="slider-content">
                                     <span style="font-size: small !important;">
                                         <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                             <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
@@ -610,35 +611,10 @@ Author:
                                             </a>
                                         </form>
                                     </h5>
-                                    <a href="javascript:;"> 
-										<span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
+                                    <a href="javascript:;"> <span class="clr-text tx-map"><i class="fas fa-map-marker-alt"></i>
                                             Republic of Cuba,
-                                            USA</span>
-									</a>
-									<div class="footer">
-										<div class="d-flex justify-content-end mr-2 mt-2 mb-0">
-											<button type="button" class="btn btn-primary add_to_cart en"
-											data-id="<?php echo $value['id_room_type']; ?>" 
-											data-price="<?php echo $value['default_rate']; ?>"
-											>Add To Cart</button>
-											<button type="button" class="btn btn-primary add_to_cart th"
-											data-id="<?php echo $value['id_room_type']; ?>" 
-											data-price="<?php echo $value['default_rate']; ?>"
-											>เก็บใส่ตะกร้า</button>
-
-											<div style="margin-left: 10px;"></div>
-
-											<button type="button" class="btn btn-primary book_now en"
-											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
-											>Book Now</button>
-											<button type="button" class="btn btn-primary book_now th"
-											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
-											>จองตอนนี้</button>
-
-										</div>
-									</div>
+                                            USA</span></a>
                                 </div>
-								
 
 
                             </div>
