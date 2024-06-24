@@ -58,16 +58,34 @@ if ($id_guest != '') {
     }
 	
 	@media (max-width: 767px) {
-    .sub-top-menu {
-        display: none;
-    }
-	.btn-signin {
-		width: 85px;
-		height: auto;
-		max-width: 100%;
+		.sub-top-menu {
+			display: none;
+		}
+		.toggle-main-wrapper.active .sub-top-menu {
+		  display: block;
+		}
+		.toggle-main-wrapper {
+		  display: block;
+		}
+		.toggle-main-wrapper.active {
+		  display: block;
+		}
+		.btn-signin {
+			width: 85px;
+			height: auto;
+			max-width: 100%;
+		}
+		.navbar-toggler {
+			position: absolute; /* ตำแหน่งที่ถูกต้องเพื่อปรับปรุงการแสดงผล */
+			right: 0;
+		}
 	}
+	@media only screen and (max-width: 580px) {
+    .navbar-toggler {
+        right: 0;
+    }
 }
-
+	
   </style>
 
 			<div class="main_menu_navbar" style="background-color: #f8f9fa !important;">
@@ -81,23 +99,39 @@ if ($id_guest != '') {
                                             <img src="images/10.png" alt="" alt="" style="width: 70px;">
                                         </a>
                                     </div>
-									<div class="col-8" style="display: flex; justify-content: flex-end;">
+									<div class="col-9" style="display: flex; justify-content: flex-end;">
                                         <div class="sub-top-menu">
 											<ul class="u-list" style="font-size: 14px;">
-                                                <li class="n-border">
-                                                    <img src="images/resort_11834928.png" style="width: 17.5px;"><a href="">&nbsp;<a id="resort_topbar">Resort</a></a>
+                                                <li class="n-border dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                                    <img src="images/resort_11834928.png" style="width: 16px;"><a href="javascript:;">&nbsp;<a id="resort_topbar">Resort</a></a>
+													<ul class="top-dropdown">
+                                                        <li><i class="fas fa-question-circle"></i><a href="">&nbsp;Resort 1</a></li>
+                                                        <li><i class="fas fa-address-book"></i><a href="">&nbsp;Resort 2</a></li>
+                                                    </ul>
                                                 </li>
-                                                <li class="n-border">
-                                                    <img src="images/hotel_8434855.png" style="width: 17.5px;"><a href="">&nbsp;<a id="hotel_topbar">Hotel</a></a>
+                                                <li class="n-border dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                                    <img src="images/hotel_8434855.png" style="width: 16px;"><a href="">&nbsp;<a id="hotel_topbar">Hotel</a></a>
+													<ul class="top-dropdown">
+                                                        <li><i class="fas fa-question-circle"></i><a href="">&nbsp;Hotel 1</a></li>
+                                                        <li><i class="fas fa-address-book"></i><a href="">&nbsp;Hotel 2</a></li>
+                                                    </ul>
                                                 </li>
-                                                <li class="n-border">
-                                                    <img src="images/building_11822374.png" style="width: 17.5px;"><a href="">&nbsp;<a id="condo_topbar">Condo & Apartment</a></a>
+                                                <li class="n-border dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                                    <img src="images/building_11822374.png" style="width: 16px;"><a href="">&nbsp;<a id="condo_topbar">Condo & Apartment</a></a>
+													<ul class="top-dropdown">
+                                                        <li><i class="fas fa-question-circle"></i><a href="">&nbsp;Condo & Apartment 1</a></li>
+                                                        <li><i class="fas fa-address-book"></i><a href="">&nbsp;Condo & Apartment 2</a></li>
+                                                    </ul>
                                                 </li>
-												<li class="n-border">
+												<li class="n-border dropdown-toggle p-rel d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
                                                     <i class="fas fa-tags"></i>
                                                     <a href="">&nbsp;
                                                         <a id="promotion_topbar">Promotion & Package</a>
                                                     </a>
+													<ul class="top-dropdown">
+                                                        <li><i class="fas fa-question-circle"></i><a href="">&nbsp;Promotion & Package 1</a></li>
+                                                        <li><i class="fas fa-address-book"></i><a href="">&nbsp;Promotion & Package 2</a></li>
+                                                    </ul>
                                                 </li>
                                                 <li class="n-border">
                                                     <img src="images/support.png" style="width: 17.5px;"><a href="">&nbsp;<a id="contact_topbar">Contact us</a></a>
@@ -151,7 +185,7 @@ if ($id_guest != '') {
                                             </ul>
                                         </div>
                                     </div>-->
-                                    <div class="col-3 d-flex th-en" style="justify-content: flex-end;">
+                                    <div class="col-2 d-flex th-en" style="justify-content: flex-end; padding: 0px;">
 										<div class="button mx-1">
 											<a  id="sign_in" class="btn btn-signin" href="login.php" height="20" style="font-size: 14px; background-color: #839287 !important; color: #FFF !important; border: #839287;" >Sign In</a>
 										</div>
@@ -305,4 +339,5 @@ if ($id_guest != '') {
                     </div>-->
                 </div>
             </div>
+		
             <? include('language/text_index.php'); ?>
