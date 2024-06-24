@@ -277,7 +277,13 @@ Author:
             <!-- main_menu_navbar start -->
             
             <? include('includes/topbar.php'); ?>
+<<<<<<< HEAD
+            <!-- project_info.php -->
+          <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
+        <form name="frm_search" id="frm_search" method="post" action="search.php">
+=======
            
+>>>>>>> origin/main
             <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container" style="width: 90%;">
                     <div class="row">
