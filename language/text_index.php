@@ -29,6 +29,15 @@
         // $('#daterange').attr('placeholder', translations[language]['daterange']);
 
         updateProjectList(language);
+
+
+        // if (language === 'th') {
+        //     document.getElementById('daterange').placeholder = 'วันที่เช็คอิน - วันที่เช็คเอาท์';
+        // } else if (language === 'en') {
+        //     document.getElementById('daterange').placeholder = 'Check-in - Check-out Date';
+        // }
+        // alert('language:'+language);
+
         // $('#daterange').attr('placeholder', translations[language]['daterange']);
         // alert('daterange');
         

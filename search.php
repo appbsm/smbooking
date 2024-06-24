@@ -288,7 +288,7 @@ $project_id = $project_list[0]['id_project_info'];
                                         <input type="text" placeholder="Your Destination?">
                                     </li> -->
 
-                                    <li class="s-box" id="project-list" style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
+                                    <li class="s-box"  style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
                                         <select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">
                                             <?php //foreach ($project_list as $value) { ?>
@@ -468,7 +468,7 @@ $project_id = $project_list[0]['id_project_info'];
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 ml-2 text-left">
-                    <h5 style="color: black !important;">Room Types <? echo "testse:". $start_date; ?></h5>
+                    <h5 style="color: black !important;">Room Types</h5>
                 </div>
             </div>
             <div class="row">
@@ -478,7 +478,7 @@ $project_id = $project_list[0]['id_project_info'];
 
                 foreach ($room_list as $key => $rt) {
                     $rate = get_day_rate($conn,$rt['id_room_type'], date('Y-m-d', strtotime($start_date)),$project_id);
-                    
+
                     // if ($rate == '') {
                     //     $rate = $rt$rt['default_rate'];
                     // }
@@ -723,16 +723,15 @@ $project_id = $project_list[0]['id_project_info'];
             },
             autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
         }, function(start, end, label) {
-            // var startDate = '<?php echo $start_date; ?>';
-            // var endDate = '<?php echo $end_date; ?>';
-            // var startDate = '2024-06-26'; // ตัวอย่างว่าง startDate ที่ได้จาก PHP
-            // var endDate = '2024-06-30'; // ตัวอย่างว่าง endDate ที่ได้จาก PHP
-            // var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
-            // var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
+            var startDate = '<?php echo $start_date; ?>';
+            var endDate = '<?php echo $end_date; ?>';
+
+            var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
+            var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
             
-            // // กำหนดค่าให้กับ input
-            // $('#daterange').val(''+formattedStartDate + ' - ' + formattedEndDate);
-            // $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            // กำหนดค่าให้กับ input
+            // $('#daterange').val(formattedStartDate + ' - ' + formattedEndDate);
+            $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
         var startDate = '<?php echo $start_date; ?>';
@@ -740,7 +739,12 @@ $project_id = $project_list[0]['id_project_info'];
         var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
         var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
 
-        $('#daterange').val(formattedStartDate + ' - ' + formattedEndDate);
+        if(formattedStartDate!='Invalid date'){
+            $('#daterange').val(formattedStartDate + ' - ' + formattedEndDate);
+        }else{
+            $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        }
+
     });
 
     // alert('startDate');

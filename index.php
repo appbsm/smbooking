@@ -315,10 +315,12 @@ Author:
 									</li>
 									-->
 
-									<li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+									<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
+
+									<!-- <li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
 										<i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
 										<input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
-									</li>
+									</li> -->
 									
 									<!--<div class="dropdown-container input-with-icon">
 										<i class="far fa-calendar"></i>
@@ -1248,6 +1250,8 @@ $('.book_now').click(function() {
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
+<? include('language/text_index.php'); ?>
+
 <script>
     $(document).ready(function() {
         $('#daterange').daterangepicker({
@@ -1279,11 +1283,23 @@ $('.book_now').click(function() {
 
         // เมื่อมีการยกเลิกการเลือกวันที่ จะแสดงข้อความ "Check In - Out Date"
         $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
-            $(this).val('Check-in - Check-out Date');
+        	var initialLanguage = '<?php echo $_SESSION['lang']; ?>';
+        	if (initialLanguage === 'th') {
+	            $(this).val('วันที่เข้าพัก - วันที่ออก');
+	        } else if (initialLanguage === 'en') {
+	            $(this).val('Check-in - Check-out Date');
+	        }
         });
 
         // ตั้งค่า placeholder เริ่มต้น
-        $('#daterange').val('Check-in - Check-out Date');
+        // $('#daterange').val('Check-in - Check-out Date');
+        var initialLanguage = '<?php echo $_SESSION['lang']; ?>';
+    	if (initialLanguage === 'th') {
+            $('#daterange').val('วันที่เข้าพัก - วันที่ออก');
+        } else if (initialLanguage === 'en') {
+            $('#daterange').val('Check-in - Check-out Date');
+        }
+
     });
 
     function updateCount(type, change) {
@@ -1321,6 +1337,6 @@ $('.book_now').click(function() {
 
 </html>
 
-<? include('language/text_index.php'); ?>
+
 
 
