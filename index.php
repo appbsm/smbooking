@@ -65,8 +65,6 @@ Author:
 
     <link rel="stylesheet" type="text/css" href="css/style_index.css" />
 	
-	
-
 </head>
 <style>
 	.btn-search {
@@ -370,8 +368,8 @@ Author:
         </form>
 
         </div>
-
     </div>
+
     <!-- sidebar end -->
 
 
@@ -601,7 +599,7 @@ Author:
                                             Review</a>
                                     </span>
                                     <h5>
-                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                        <form action="detail.php" method="post" class="tx-title">
                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                 <? echo $value['room_type_name_en']; ?>
@@ -827,7 +825,7 @@ Author:
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <form action="hotel-single-page.php" method="post" class="tx-title">
+                                                        <form action="detail.php" method="post" class="tx-title">
                                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value['id_room_type']; ?>" >
                                                                 <? echo $value['room_type_name_en']; ?>
@@ -881,7 +879,7 @@ Author:
                     </div>
                 </div>
 
-<form name="frm_room" id="frm_room" method="post" action="hotel-single-page.php">
+<form name="frm_room" id="frm_room" method="post" action="detail.php">
 	<!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
 	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
 	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
@@ -970,7 +968,7 @@ $('.book_now').click(function() {
                                                             Review</a>
                                                     </span>
                                                     <h5>
-                                                        <form action="hotel-single-page.php" method="post">
+                                                        <form action="detail.php" method="post">
                                                             <a class="en" onclick="this.closest('form').submit(); return false;" >
                                                                 <input type="hidden" name="id_room" value="<?php echo $value_room['id_room_type']; ?>" >
                                                                 <? echo $value_room['room_type_name_en']; ?>

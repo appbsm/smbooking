@@ -654,8 +654,6 @@ $project_id = $project_list[0]['id_project_info'];
         <div>
             
         </div>
-
-
 </main>
 
 
@@ -705,7 +703,9 @@ $project_id = $project_list[0]['id_project_info'];
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
+<script > alert('startDate');     </script>
 <script>
+
     $(document).ready(function() {
         // $('#daterange').daterangepicker({
         //     opens: 'center',
@@ -730,7 +730,7 @@ $project_id = $project_list[0]['id_project_info'];
         //     $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         // });
 
-         $('#daterange').daterangepicker({
+        $('#daterange').daterangepicker({
         opens: 'center',
         minDate: moment(),
         autoApply: true,
@@ -747,29 +747,46 @@ $project_id = $project_list[0]['id_project_info'];
             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             firstDay: 1
         },
-        startDate: moment('<?php echo $start_date; ?>', 'YYYY-MM-DD'),
-        endDate: moment('<?php echo $end_date; ?>', 'YYYY-MM-DD')
+            autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
+        // startDate: moment('<?php echo $start_date; ?>', 'YYYY-MM-DD'),
+        // endDate: moment('<?php echo $end_date; ?>', 'YYYY-MM-DD')
         }, function(start, end, label) {
-            $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            // $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
         // Set initial value for the input field
-        $('#daterange').val('<?php echo DateTime::createFromFormat("Y-m-d", $start_date)->format("d/m/Y"); ?> - <?php echo DateTime::createFromFormat("Y-m-d", $end_date)->format("d/m/Y"); ?>');
+        // $('#daterange').val('<?php echo DateTime::createFromFormat("Y-m-d", $start_date)->format("d/m/Y"); ?> - <?php echo DateTime::createFromFormat("Y-m-d", $end_date)->format("d/m/Y"); ?>');
     });
 
-    // $(document).ready(function() {
-    //     $("#daterange").datepicker({
-    //         dateFormat: 'dd/mm/yy',
-    //         numberOfMonths: 2,
-    //         minDate: 0,
-    //         onSelect: function(selectedDate) {
-    //             var option = this.id == "start_date" ? "minDate" : "maxDate",
-    //                 instance = $(this).data("datepicker"),
-    //                 date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-    //             $("#end_date").datepicker("option", option, date);
-    //         }
-    //     });
-    // });
+    alert('startDate');
+    alert('ss1:');
+    $(document).ready(function() {
+        alert('ss1:');
+        // $("#daterange").datepicker({
+        //     dateFormat: 'dd/mm/yy',
+        //     numberOfMonths: 2,
+        //     minDate: 0,
+        //     onSelect: function(selectedDate) {
+        //         var option = this.id == "start_date" ? "minDate" : "maxDate",
+        //             instance = $(this).data("datepicker"),
+        //             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        //         $("#end_date").datepicker("option", option, date);
+        //     }
+        // });
+
+        // Set initial dates
+        var startDate = '<?php echo $start_date; ?>';
+        var endDate = '<?php echo $end_date; ?>';
+
+        alert('ssss:'+startDate);
+
+        $("#start_date").datepicker("setDate", startDate);
+        $("#end_date").datepicker("setDate", endDate);
+
+        // Update minDate and maxDate based on initial values
+        $("#end_date").datepicker("option", "minDate", $("#start_date").datepicker("getDate"));
+        $("#start_date").datepicker("option", "maxDate", $("#end_date").datepicker("getDate"));
+    });
 
     function updateCount(type, change) {
         const element = document.getElementById(type);
