@@ -40,6 +40,9 @@ $icon_room_list = get_icon_room($conn,$id_project_info);
 
 $project_highlights_list  = get_project_highlights($conn,$id_project_info);
 $point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
+
+$project_policy_list  = get_project_policy($conn,$id_project_info);
+
 // echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
 sqlsrv_close($conn);
@@ -518,6 +521,33 @@ sqlsrv_close($conn);
                         </ul> -->
                         
                     </div>
+
+                    <div class="hs-servicer-sec">
+						<ul>
+							<div class="col-md-12 ">
+								<h4 class="en" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">Nearby Locations</h4>
+								<h4 class="th" style="color: #000 !important; padding-top: 0; padding-bottom: 30px;">สถานที่ใกล้เคียง</h4>
+								<ul style="flex-direction: column; padding: 0 15px;">
+
+									<? foreach($point_of_interest_list as $value){ ?>
+									<li class="en">
+										<i class="fas fa-map-marker-alt" style="font-size: small; padding: 5px;"></i>
+										<span class="location"><? echo $value['location_name_en']; ?></span>
+										<span class="location" style="float: right;"><? echo $value['distance_km']; ?>&nbsp;ม.</span>
+									</li>
+									<li class="th">
+										<i class="fas fa-map-marker-alt" style="font-size: small; padding: 5px;"></i>
+										<span class="location"><? echo $value['location_name_th']; ?></span>
+										<span class="location" style="float: right;"><? echo $value['distance_km']; ?>&nbsp;ม.</span>
+									</li>
+									<? } ?>
+
+								</ul>
+							</div>
+						</ul>
+					</div>
+					
+
                     <!--
                     <div class="hs-pricing-table page-content p-30">
                         <h4><a href="">Pricing-plan</a></h4>
