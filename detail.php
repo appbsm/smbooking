@@ -952,7 +952,7 @@
 									<span class="th" >ผู้ใหญ่</span>
 								</p>
                                 <li>
-                                	<input type="text" name="adult" >
+                                	<input type="text" name="adult"  style="border-radius: 5px;" >
                                     <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 19 20" width="19" height="20">
                                         <title>Icon </title>
@@ -964,6 +964,7 @@
                                             .shp0 {
                                                 fill: #1b72ea
                                             }
+											
                                         </style>
                                         <i id="Icon1" class="fas fa-user icon-user"></i>
                                        <!--  <path id="Icon1" class="shp0"
@@ -977,7 +978,7 @@
 									<span class="th" >เด็ก</span>
 								</p>
                                 <li>
-                                    <select name="SelectChild1" id="SelectChild1">
+                                    <select name="SelectChild1" id="SelectChild1" style="border-radius: 5px;">
                                         <option value=""> 0 Child</option>
                                         <option value=""> 1 Child</option>
                                         <option value=""> 0 Child</option>
@@ -991,7 +992,7 @@
 									<span class="th" >ห้อง</span>
 								</p>
                                 <li>
-                                    <select name="SelectChild2" id="SelectChild2">
+                                    <select name="SelectChild2" id="SelectChild2" style="border-radius: 5px;">
                                         <option value="" disabled selected>Room Type</option>
                                         <option value="">Room Type</option>
                                         <option value="">Room Type</option>
