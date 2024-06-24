@@ -19,28 +19,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
         $project_list  = get_project_id($conn,$_POST['project_id']);
         $room_list     = get_room_for_project($conn,$_POST['project_id']);
-        $daterange = $_POST['daterange'];
-        list($start_date, $end_date) = explode(" - ", $daterange);
-        
 
-        if (count($dates) == 2) {
+        $daterange = $_POST['daterange'];
+
+        if (preg_match('/^\d{1,2}\/\d{1,2}\/\d{4}\s*-\s*\d{1,2}\/\d{1,2}\/\d{4}$/', $daterange)) {
+            list($start_date, $end_date) = explode(" - ", $daterange);
+            
             $start_date = DateTime::createFromFormat('d/m/Y', trim($start_date))->format('Y-m-d');
             $end_date = DateTime::createFromFormat('d/m/Y', trim($end_date))->format('Y-m-d');
 
-            if ($start_date && $start_date->format('d/m/Y') === trim($dates[0]) && $end_date && $end_date->format('d/m/Y') === trim($dates[1])) {
-                $start_date = $start_date->format('Y-m-d');
-                $end_date = $end_date->format('Y-m-d');
-            }else {
-                // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+            if ($start_date && $end_date) {
+                // กำหนดค่าให้กับ $start_date และ $end_date ที่ถูกต้อง
+                $start_date = $start_date;
+                $end_date = $end_date;
+            } else {
+                // ในกรณีที่ไม่สามารถแปลงรูปแบบวันที่ได้ถูกต้อง
                 $start_date = $currentDate->format('Y-m-d');
                 $end_date = $currentDate->format('Y-m-d');
             }
-        }else {
-            // echo "รูปแบบวันที่ไม่ถูกต้อง กรุณากรอกวันที่ในรูปแบบ d/m/Y - d/m/Y";
+        }else{
             $start_date = $currentDate->format('Y-m-d');
             $end_date = $currentDate->format('Y-m-d');
         }
-        // echo '<script>alert("end: '.$daterange.'")</script>'; 
+
     }
 }else{
     if (isset($_SESSION['project_id']) && !empty($_SESSION['project_id']) && $_SESSION['project_id'] !='') {
@@ -60,13 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 $project_id = $project_list[0]['id_project_info'];
 
-echo '<script>alert("start_date: '.$start_date.'")</script>'; 
+// echo '<script>alert("start_date: '.$start_date.'")</script>'; 
 
 // $_POST['daterange'];
 // echo '<script>alert("daterange: '.$_POST['daterange'].'")</script>'; 
-
-
-
 
 ?>
 
@@ -470,7 +468,7 @@ echo '<script>alert("start_date: '.$start_date.'")</script>';
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 ml-2 text-left">
-                    <h5 style="color: black !important;">Room Types</h5>
+                    <h5 style="color: black !important;">Room Types <? echo "testse:". $start_date; ?></h5>
                 </div>
             </div>
             <div class="row">
@@ -480,6 +478,7 @@ echo '<script>alert("start_date: '.$start_date.'")</script>';
 
                 foreach ($room_list as $key => $rt) {
                     $rate = get_day_rate($conn,$rt['id_room_type'], date('Y-m-d', strtotime($start_date)),$project_id);
+                    
                     // if ($rate == '') {
                     //     $rate = $rt$rt['default_rate'];
                     // }
@@ -741,7 +740,7 @@ echo '<script>alert("start_date: '.$start_date.'")</script>';
         var formattedStartDate = moment(startDate).format('DD/MM/YYYY');
         var formattedEndDate = moment(endDate).format('DD/MM/YYYY');
 
-        $('#daterange').val('test:'+startDate + ' - ' + formattedEndDate);
+        $('#daterange').val(formattedStartDate + ' - ' + formattedEndDate);
     });
 
     // alert('startDate');
