@@ -187,7 +187,18 @@ $link_map           = $project_info[0]['link_map'];
         display: flex;
         flex-direction: row;
         justify-content: end;
+		margin-bottom: 16px;
     }
+	
+	.product-card {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
 
     /* Styles for Mobile Phones */
     @media (max-width: 480px) {
@@ -377,7 +388,7 @@ $link_map           = $project_info[0]['link_map'];
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="padding: 8px;">
             <?php
                 $first_photo = $project_list[0];
             ?>
