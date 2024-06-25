@@ -13,8 +13,6 @@ function get_project($conn) {
 	return $result;
 }
 
-
-
 function get_project_top($conn) {
 	$result = array();
  	$sql ="SELECT * FROM project_info pj_i
@@ -33,6 +31,18 @@ function get_project_top($conn) {
 	return $result;
 }
 
+function get_project_info($conn,$id) {
+	$result = array();
+ 	$sql ="SELECT * FROM project_info where id_project_info ='".$id."' ";
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die( print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
 
 function get_project_id($conn,$id) {
 	$result = array();

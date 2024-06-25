@@ -330,7 +330,8 @@ Author:
 									<div class="dropdown-container" style="width: 100%;">
 										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
 											<span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
-											ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+											<a class="th">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</a>
+											<a class="en">Adults 2 person , Adults 0 person , 1 room</a>
 										</button>
 										<div class="dropdown-content">
 											<div class="counter">
@@ -351,9 +352,12 @@ Author:
 												<span id="rooms">1</span>
 												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
 											</div>
+											<!-- type="hidden" -->
+											<input type="hidden" name="adults" id="adults_input" value="2">
+										    <input type="hidden" name="children" id="children_input" value="0">
+										    <input type="hidden" name="rooms" id="rooms_input" value="1">
 										</div>
 									</div>
-
                                     <li style="flex-grow: 1;">
 										<!-- <a href="search.php"> -->
 											<button type="submit" class="btn btn-primary btn-search">Search</button>
@@ -633,6 +637,7 @@ Author:
 											<button type="button" class="btn btn-primary book_now en"
 											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
 											>Book Now</button>
+
 											<button type="button" class="btn btn-primary book_now th"
 											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
 											>จองตอนนี้</button>
@@ -881,10 +886,10 @@ Author:
 															<div style="margin-left: 10px;"></div>
 
 															<button type="button" class="btn btn-primary book_now en"
-															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															data-roomtype="<?php echo $value['id_room_type']; ?>" 
 															>Book Now</button>
 															<button type="button" class="btn btn-primary book_now th"
-															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															data-roomtype="<?php echo $value['id_room_type']; ?>" 
 															>จองตอนนี้</button>
 
 														</div>
@@ -907,13 +912,15 @@ Author:
 
 <form name="frm_room" id="frm_room" method="post" action="detail.php">
 	<!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
-	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
+	<input type="hidden" name="id_room" id="id_room" value="">
+
 	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
 	<input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
 	<input type="hidden" name="h_num_of_children" id="h_num_of_children" value="">
 	<input type="hidden" name="h_children_ages" id="h_children_ages" value="">
 	<input type="hidden" name="h_check_in_date" id="h_check_in_date" value="">
 	<input type="hidden" name="h_check_out_date" id="h_check_out_date" value="">
+
 </form>
 
 <script type="text/javascript">
@@ -941,12 +948,16 @@ $('.add_to_cart').click(function() {
 });
 
 $('.book_now').click(function() {
-	$('#h_id_room_type').val($(this).attr('data-roomtype'));
+	$('#id_room').val($(this).attr('data-roomtype'));
+	
 	$('#h_check_in_date').val($('#check_in_date').val());
 	$('#h_check_out_date').val($('#check_out_date').val());
 	$('#h_num_of_adult').val($('#div_adult').text());
 	$('#h_num_of_room').val($('#div_room').text());
 	$('#h_num_of_children').val($('#div_children').text());
+
+	$('#h_num_of_children').val($('#div_children').text());
+
 	// var children_ages = [];
 	// var ages = document.getElementsByClassName("select_age");
 	// for (var i = 0; i < ages.length; i++) {
@@ -1250,8 +1261,6 @@ $('.book_now').click(function() {
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
-<? include('language/text_index.php'); ?>
-
 <script>
     $(document).ready(function() {
         $('#daterange').daterangepicker({
@@ -1316,7 +1325,19 @@ $('.book_now').click(function() {
         const adults = document.getElementById('adults').textContent;
         const children = document.getElementById('children').textContent;
         const button = document.querySelector('.dropdown-container button');
-        button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+
+        document.getElementById('adults_input').value = adults;
+        document.getElementById('children_input').value = children;
+        document.getElementById('rooms_input').value = rooms;
+
+        // button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+
+        var initialLanguage = '<?php echo $_SESSION['lang']; ?>';
+    	// if (initialLanguage === 'th') {
+            button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+        // } else if (initialLanguage === 'en') {
+            // button.textContent = `Adults ${adults} person , Children ${children} person , ${rooms} room `;
+        // }
     }
 
     document.getElementById('bookingForm').addEventListener('submit', function(event) {
@@ -1336,6 +1357,8 @@ $('.book_now').click(function() {
 </script>
 
 </html>
+
+<? include('language/text_index.php'); ?>
 
 
 

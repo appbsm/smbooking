@@ -340,4 +340,4 @@ if ($id_guest != '') {
                 </div>
             </div>
 		
-            <? include('language/text_index.php'); ?>
+            <? //include('language/text_index.php'); ?>

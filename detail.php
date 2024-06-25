@@ -41,8 +41,6 @@
 	$project_highlights_list  = get_project_highlights($conn,$id_project_info);
 	$point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
 
-	$project_policy_list  = get_project_policy($conn,$id_project_info);
-
 	// echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
 	sqlsrv_close($conn);
@@ -731,7 +729,6 @@
                                                 </h6>
                                             </div>
 
-
                                         </div>
 
                                         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -754,6 +751,159 @@
 					-->
 					
 					
+<<<<<<< HEAD
+=======
+<div class="container">
+	<br>
+	<div class="row" id="pj-fac">
+		<div class="col-md-8">
+			<div class="section_header " style="font-weight: 600;">รายละเอียดโครงการ</div>		
+			<div class="row mb-2">	
+				<div class="container-fluid mb-4">		
+					<div class="col-md-12">			
+		    			เอส เอ็ม รีสอร์ท โชว์รูม เขาใหญ่		    		
+		    		</div>
+		    	</div>
+			</div>
+	
+			<div class="section_header " style="font-weight: 600;">จุดเด่นของโครงการ</div>
+			<div class="row mb-2">			
+				<div class="container-fluid mb-4">
+					<div class="col-md-12">		
+						<div class="h_container" style="display: flex; flex-direction: row; ">	
+		    					    				<div style="bottom: 0; padding-right: 50px;">
+		    				
+		    				<!-- <input type="checkbox" style="vertical-align:middle;"> -->
+		    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/project_highlight/1_63bb731cd4018.png" width="18">
+		    				<span class="highlights_desc" style="font-size: 1.1em;">ไวไฟ</span>
+		    				</div>
+		    					    				<div style="bottom: 0; padding-right: 50px;">
+		    				
+		    				<!-- <input type="checkbox" style="vertical-align:middle;"> -->
+		    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/project_highlight/1_63bb7dd7c487e.png" width="18">
+		    				<span class="highlights_desc" style="font-size: 1.1em;">วิวภูเขา</span>
+		    				</div>
+		    			    
+		    			</div>		
+		    		</div>
+				</div>
+			</div>
+			
+			<div class="section_header " style="font-weight: 600;">สิ่งอำนวยความสะดวกของโครงการ</div>
+	<div class="row">			
+		<div class="container-fluid mb-4">
+			<div class="col-md-12">	
+				<div class="row" id="pj-con">	
+				<!-- <div class="h_container" style="display: flex; flex-direction: column; "> -->	
+				
+    			    				<div class="col-md-6" style="bottom: 0; ">
+    				
+    				<input type="checkbox" checked="checked" style="vertical-align:middle; pointer-events:none;">
+    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/facility_icon/24_63bba1a28104f.png" width="18">
+    				<span class="highlights_desc" style="font-size: 1.1em;"> สวน</span>
+    				</div>
+    			    				<div class="col-md-6" style="bottom: 0; ">
+    				
+    				<input type="checkbox" checked="checked" style="vertical-align:middle; pointer-events:none;">
+    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/facility_icon/2_63bb9f9e65dcb.png" width="18">
+    				<span class="highlights_desc" style="font-size: 1.1em;"> ไวไฟฟรี</span>
+    				</div>
+    			    				<div class="col-md-6" style="bottom: 0; ">
+    				
+    				<input type="checkbox" checked="checked" style="vertical-align:middle; pointer-events:none;">
+    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/facility_icon/21_63bba16c5dc37.png" width="18">
+    				<span class="highlights_desc" style="font-size: 1.1em;"> บริการทำความสะอาดรายวัน</span>
+    				</div>
+    			    				<div class="col-md-6" style="bottom: 0; ">
+    				
+    				<input type="checkbox" checked="checked" style="vertical-align:middle; pointer-events:none;">
+    				&nbsp;<img src="https://sharefolder.buildersmart.com/sms_booking/upload/facility_icon/1_641d577616c9f.png" width="18">
+    				<span class="highlights_desc" style="font-size: 1.1em;"> วิวภูเขา</span>
+    				</div>
+    			    
+    			<!-- </div>	-->
+    			</div>	
+    		</div>
+		</div>
+	</div>
+	
+	<div class="section_header " style="font-weight: 600;">เงื่อนไขและข้อกำหนดในการเข้าพัก</div>
+	<div class="row">			
+		<div class="container-fluid mb-4">
+			<div class="col-md-12">			
+    			
+    			<span>นโยบายการยกเลิกการจอง</span>    			<ol>
+								
+						<li>การโอนเงินต้องเสร็จสิ้นภายใน 2 ชั่วโมงหลังการจอง มิฉะนั้นระบบจะยกเลิกการจองโดยอัตโนมัติ</li>			
+									</ol>
+				<span>นโยบายโชว์รูม</span>    			<ol>
+								
+						<li>เวลาเช็คอิน 14.00 น. เวลาเช็คเอ้าท์ 12.00 น. หากเข้าพักก่อน หรือ เช็คเอ้าท์เกิน ชั่วโมงละ 500 บาท ตามเงื่อนไขโชว์รูม</li>			
+								
+						<li>ไม่อนุญาตให้นำสัตว์เลี้ยงเข้าพักภายในบริเวณโชว์รูม</li>			
+								
+						<li>ไม่อนุญาตให้ประกอบอาหารภายในบริเวณที่พัก ยกเว้นเฉพาะพื้นที่ที่ทางโชว์รูมจัดไว้ให้เท่านั้น</li>			
+								
+						<li>ขอความกรุณางดใช้เสียง ตั้งแต่เวลา 22.00 น. - 06.00 น.</li>			
+								
+						<li>ในกรณีทำให้ทรัพย์สินของโชว์รูมเสียหายให้ชดใช้คืนตามมูลค่าของทรัพย์สินนั้น</li>			
+								
+						<li>งดสูบบุหรี่ในห้องพัก และบริเวณโชว์รูม ฝ่าฝืนปรับ 2,000 บาท (ลูกค้าสามารถสูบบุหรี่ในพื้นที่ที่โชว์รูมจัดไว้ให้เท่านั้น)</li>			
+								
+						<li>งดจุดพลุ, ประทัด, ดอกไม้ไฟ หรือ โคมลอย ในบริเวณโชว์รูม ฝ่าฝืนปรับ 2,000 บาท</li>			
+									</ol>
+				    		</div>
+		</div>
+	</div>
+		</div>	
+		<div class="col-md-4">
+			<div class="section_header " style="font-weight: 600;">สถานที่ใกล้เคียง</div>
+			<div class="row mb4">
+				<div class="col-md-12">		
+					<div class="table-responsive" style="font-size: small;">
+						<table class="table table-bordered">
+							<tbody><tr>
+								<th>ชื่อสถานที่</th>
+								<th>ระยะทาง(km)</th>
+							</tr>
+													<tr>
+								<td>ครัวอิ่มแปล้</td>
+								<td style="text-align: center;">0.07</td>
+							</tr>
+													<tr>
+								<td>The Pandora Camp Khaoyai</td>
+								<td style="text-align: center;">10</td>
+							</tr>
+													<tr>
+								<td>Toscana Valley</td>
+								<td style="text-align: center;">10</td>
+							</tr>
+													<tr>
+								<td>เขาใหญ่อาร์ตมิวเซียม</td>
+								<td style="text-align: center;">15</td>
+							</tr>
+													<tr>
+								<td>My Ozone Animal Club</td>
+								<td style="text-align: center;">25</td>
+							</tr>
+													<tr>
+								<td>Scenical World </td>
+								<td style="text-align: center;">30</td>
+							</tr>
+													<tr>
+								<td>Khao Yai National Park</td>
+								<td style="text-align: center;">30</td>
+							</tr>
+						  
+						</tbody></table>  
+					</div>		
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+>>>>>>> origin/main
                     <!-- <div class="hs-rating-section">
                         <div class="row">
                             <div class="col-lg-6">
@@ -1296,25 +1446,24 @@
 </html>
 
 <script>
-		const link = '<? echo $link_map; ?>';
-        const latitude = '<? echo $latitude; ?>';
-        const longitude = '<? echo $longitude; ?>';
+	const link = '<? echo $link_map; ?>';
+    const latitude = '<? echo $latitude; ?>';
+    const longitude = '<? echo $longitude; ?>';
 
-        let coordinates = null;
-        
-        if (link) {
-            coordinates = extractCoordinates(link);
-        } else if (latitude && longitude) {
-            coordinates = {
-                lat: parseFloat(latitude),
-                lng: parseFloat(longitude)
-            };
-        }
-        
-        if (coordinates) {
-            initMap(coordinates.lat, coordinates.lng);
-        }
-
+    let coordinates = null;
+    
+    if (link) {
+        coordinates = extractCoordinates(link);
+    } else if (latitude && longitude) {
+        coordinates = {
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+        };
+    }
+    
+    if (coordinates) {
+        initMap(coordinates.lat, coordinates.lng);
+    }
 
     function extractCoordinates(link) {
         const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;

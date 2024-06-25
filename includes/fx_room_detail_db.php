@@ -96,9 +96,9 @@ function get_project_highlights($conn,$id) {
 	return $result;
 }
 
-function get_project_policy($conn,$id) {
+function get_project_policy_group($conn,$id) {
 	$result = array();
- 	$sql ="SELECT * from project_policy WHERE id_project_info = '".$id."' ";
+ 	$sql ="SELECT policy_type_en from project_policy WHERE id_project_info = '".$id."' GROUP by policy_type_en ";
 	$stmt = sqlsrv_query($conn,$sql);
 	if( $stmt === false) {
 		die(print_r( sqlsrv_errors(), true) );
@@ -108,6 +108,33 @@ function get_project_policy($conn,$id) {
 	} 
 	return $result;
 }
+
+function get_project_policy($conn,$policy_type) {
+	$result = array();
+ 	$sql ="SELECT * from project_policy WHERE policy_type_en = '".$policy_type."' ORDER BY policy_type_en,id_project_policy ";
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die(print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
+
+function get_project_facility($conn,$id) {
+	$result = array();
+ 	$sql ="SELECT * from project_facility WHERE id_project_info = '".$id."' ";
+	$stmt = sqlsrv_query($conn,$sql);
+	if( $stmt === false) {
+		die(print_r( sqlsrv_errors(), true) );
+	}
+	while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)){    
+		$result[] = $row;
+	} 
+	return $result;
+}
+
 
 function get_point_of_interest($conn,$id) {
 	$result = array();
