@@ -414,20 +414,22 @@
                         <h3 class="th">
                             <? echo $room_type_name_th; ?>
                         </h3>  
-
+						
+						
                         <div class="pt-20">
                             <a href="" class="text-color"><span><i class="fas fa-map-marker-alt text-color"></i></span>
                                 50 Vijay Nagar, Indore, INDIA</a>
                             &nbsp; &nbsp; &nbsp; &nbsp;
-                            <span class="res-block">
+                            <!--<span class="res-block">
                                 <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i>
                                     <i class="far fa-star"></i><i class="far fa-star"></i> <span>| 251 + Review</span>
                                 </a>
-                            </span>
+                            </span>-->
                         </div>
+						
                         <div class="pt-20">
-                            Start From- <span class="text-design"><? echo $default_rate; ?> ฿ / Night</span>
+                            Start From- <span class="text-design"><?php echo number_format(trim($value['default_rate'])); ?> ฿ / Night</span>
                         </div>
                         <p class="en" class="pt-20"><? echo $description_en; ?></p>
                         <p class="th" class="pt-20"><? echo $description_th; ?></p>
