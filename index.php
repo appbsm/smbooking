@@ -637,6 +637,7 @@ Author:
 											<button type="button" class="btn btn-primary book_now en"
 											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
 											>Book Now</button>
+
 											<button type="button" class="btn btn-primary book_now th"
 											data-roomtype="<?php //echo $rt->id_room_type; ?>" 
 											>จองตอนนี้</button>
@@ -885,10 +886,10 @@ Author:
 															<div style="margin-left: 10px;"></div>
 
 															<button type="button" class="btn btn-primary book_now en"
-															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															data-roomtype="<?php echo $value['id_room_type']; ?>" 
 															>Book Now</button>
 															<button type="button" class="btn btn-primary book_now th"
-															data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+															data-roomtype="<?php echo $value['id_room_type']; ?>" 
 															>จองตอนนี้</button>
 
 														</div>
@@ -911,13 +912,15 @@ Author:
 
 <form name="frm_room" id="frm_room" method="post" action="detail.php">
 	<!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
-	<input type="hidden" name="h_id_room_type" id="h_id_room_type" value="">
+	<input type="hidden" name="id_room" id="id_room" value="">
+
 	<input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
 	<input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
 	<input type="hidden" name="h_num_of_children" id="h_num_of_children" value="">
 	<input type="hidden" name="h_children_ages" id="h_children_ages" value="">
 	<input type="hidden" name="h_check_in_date" id="h_check_in_date" value="">
 	<input type="hidden" name="h_check_out_date" id="h_check_out_date" value="">
+
 </form>
 
 <script type="text/javascript">
@@ -945,12 +948,16 @@ $('.add_to_cart').click(function() {
 });
 
 $('.book_now').click(function() {
-	$('#h_id_room_type').val($(this).attr('data-roomtype'));
+	$('#id_room').val($(this).attr('data-roomtype'));
+	
 	$('#h_check_in_date').val($('#check_in_date').val());
 	$('#h_check_out_date').val($('#check_out_date').val());
 	$('#h_num_of_adult').val($('#div_adult').text());
 	$('#h_num_of_room').val($('#div_room').text());
 	$('#h_num_of_children').val($('#div_children').text());
+
+	$('#h_num_of_children').val($('#div_children').text());
+
 	// var children_ages = [];
 	// var ages = document.getElementsByClassName("select_age");
 	// for (var i = 0; i < ages.length; i++) {

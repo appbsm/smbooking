@@ -41,8 +41,6 @@
 	$project_highlights_list  = get_project_highlights($conn,$id_project_info);
 	$point_of_interest_list  = get_point_of_interest($conn,$id_project_info);
 
-	$project_policy_list  = get_project_policy($conn,$id_project_info);
-
 	// echo '<script>alert("room_type_name_en: '.$room_type_name_en.'")</script>';
 
 	sqlsrv_close($conn);
@@ -636,7 +634,6 @@
                                                 </h6>
                                             </div>
 
-
                                         </div>
 
                                         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -657,7 +654,8 @@
                         </div>
                     </div>
 					
-					<div class="container">
+<div class="container">
+	<br>
 	<div class="row" id="pj-fac">
 		<div class="col-md-8">
 			<div class="section_header " style="font-weight: 600;">รายละเอียดโครงการ</div>		
@@ -1308,25 +1306,24 @@
 </html>
 
 <script>
-		const link = '<? echo $link_map; ?>';
-        const latitude = '<? echo $latitude; ?>';
-        const longitude = '<? echo $longitude; ?>';
+	const link = '<? echo $link_map; ?>';
+    const latitude = '<? echo $latitude; ?>';
+    const longitude = '<? echo $longitude; ?>';
 
-        let coordinates = null;
-        
-        if (link) {
-            coordinates = extractCoordinates(link);
-        } else if (latitude && longitude) {
-            coordinates = {
-                lat: parseFloat(latitude),
-                lng: parseFloat(longitude)
-            };
-        }
-        
-        if (coordinates) {
-            initMap(coordinates.lat, coordinates.lng);
-        }
-
+    let coordinates = null;
+    
+    if (link) {
+        coordinates = extractCoordinates(link);
+    } else if (latitude && longitude) {
+        coordinates = {
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+        };
+    }
+    
+    if (coordinates) {
+        initMap(coordinates.lat, coordinates.lng);
+    }
 
     function extractCoordinates(link) {
         const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;

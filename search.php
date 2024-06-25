@@ -366,6 +366,18 @@ $project_id = $project_list[0]['id_project_info'];
         </div>
     </div>
 
+<form name="frm_room" id="frm_room" method="post" action="detail.php">
+    <!-- <input type="hidden" name="project_id" id="project_id" value=""> -->
+    <!-- <input type="hidden" name="h_id_room_type" id="h_id_room_type" value=""> -->
+    <input type="hidden" name="id_room" id="id_room" value="">
+    <input type="hidden" name="h_num_of_adult" id="h_num_of_adult" value="">
+    <input type="hidden" name="h_num_of_room" id="h_num_of_room" value="">
+    <input type="hidden" name="h_num_of_children" id="h_num_of_children" value="">
+    <input type="hidden" name="h_children_ages" id="h_children_ages" value="">
+    <input type="hidden" name="h_check_in_date" id="h_check_in_date" value="">
+    <input type="hidden" name="h_check_out_date" id="h_check_out_date" value="">
+</form>    
+
 <!-- sidebar end -->
 
 <!-- ////////////////////////////////////////////////////////////////// -->
@@ -448,7 +460,8 @@ $project_id = $project_list[0]['id_project_info'];
             <div class="col-md-12 mt-1 mb-3">
                 <div class="row">
                     <div class="col-md-6 text-left">
-                        <h5 style="color: black !important;">SM Resort Showroom @ Khaoyai</h5>
+                        <h5 style="color: black !important;" class="en" ><? echo $project_list[0]['project_name_en']; ?></h5>
+                        <h5 style="color: black !important;" class="th" ><? echo $project_list[0]['project_name_th']; ?></h5>
                     </div>
                     <div class="col-md-6 text-right">
                         <a href="project_info.php" class="btn" id="">Project Info Details</a>
@@ -470,7 +483,8 @@ $project_id = $project_list[0]['id_project_info'];
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 ml-2 text-left">
-                    <h5 style="color: black !important;">Room Types</h5>
+                    <h5 style="color: black !important;" class="en">Room Types</h5>
+                    <h5 style="color: black !important;" class="th">ประเภทของห้อง</h5>
                 </div>
             </div>
             <div class="row">
@@ -615,21 +629,21 @@ $project_id = $project_list[0]['id_project_info'];
                             <div class="footer">
                                 <div class="d-flex justify-content-end mr-2">
                                     <button type="button" class="btn btn-primary add_to_cart en"
-                                    data-id="<?php //echo $rt['id_room_type']; ?>" 
+                                    data-id="<?php echo $rt['id_room_type']; ?>" 
                                     data-price="<?php echo $rt['default_rate']; ?>"
                                     >Add To Cart</button>
                                     <button type="button" class="btn btn-primary add_to_cart th"
-                                    data-id="<?php //echo $rt['id_room_type']; ?>" 
-                                    data-price="<?php //echo $rt['default_rate']; ?>"
+                                    data-id="<?php echo $rt['id_room_type']; ?>" 
+                                    data-price="<?php echo $rt['default_rate']; ?>"
                                     >เก็บใส่ตะกร้า</button>
 
                                     <div style="margin-left: 10px;"></div>
 
                                     <button type="button" class="btn btn-primary book_now en"
-                                    data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+                                    data-roomtype="<?php echo $rt['id_room_type']; ?>" 
                                     >Book Now</button>
                                     <button type="button" class="btn btn-primary book_now th"
-                                    data-roomtype="<?php //echo $rt->id_room_type; ?>" 
+                                    data-roomtype="<?php echo $rt['id_room_type']; ?>" 
                                     >จองตอนนี้</button>
 
                                 </div>
@@ -705,6 +719,48 @@ $project_id = $project_list[0]['id_project_info'];
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
 <script>
+    var cart_count = $('.button__badge').text();
+    $('.add_to_cart').click(function() {
+        var id_room_type = $(this).attr('data-id');
+        var room_rate = $(this).attr('data-price');
+
+        //alert(id_room_type)
+        var _url = "add_to_cart.php";
+
+        $.ajax({
+                method: "POST",
+                url: _url,
+                data: {
+                    'id_room_type': id_room_type,
+                    'room_rate': room_rate
+                }
+            })
+            .done(function(res) {
+                var obj = eval('(' + res + ')');
+                alert(obj.message);
+                $('.button__badge').text(obj.count);
+            });
+    });
+
+    $('.book_now').click(function() {
+        $('#id_room').val($(this).attr('data-roomtype'));
+
+        $('#h_check_in_date').val($('#check_in_date').val());
+        $('#h_check_out_date').val($('#check_out_date').val());
+        $('#h_num_of_adult').val($('#div_adult').text());
+        $('#h_num_of_room').val($('#div_room').text());
+        $('#h_num_of_children').val($('#div_children').text());
+
+        // var children_ages = [];
+        // var ages = document.getElementsByClassName("select_age");
+        // for (var i = 0; i < ages.length; i++) {
+        //  //console.log(ages[i].value);
+        //  children_ages.push(ages[i].value);
+        // }
+        // $('#h_children_ages').val(children_ages.toString());
+        $('#frm_room').submit();
+    });
+
     $(document).ready(function() {
         $('#daterange').daterangepicker({
             opens: 'center',
@@ -746,24 +802,6 @@ $project_id = $project_list[0]['id_project_info'];
         }else{
             $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         }
-
-    });
-
-    // alert('startDate');
-    
-    $(document).ready(function() {
-        // alert('ss2:');
-        // $("#daterange").datepicker({
-        //     dateFormat: 'dd/mm/yy',
-        //     numberOfMonths: 2,
-        //     minDate: 0,
-        //     onSelect: function(selectedDate) {
-        //         var option = this.id == "start_date" ? "minDate" : "maxDate",
-        //             instance = $(this).data("datepicker"),
-        //             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-        //         $("#end_date").datepicker("option", option, date);
-        //     }
-        // });
 
     });
 
