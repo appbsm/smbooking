@@ -330,7 +330,8 @@ Author:
 									<div class="dropdown-container" style="width: 100%;">
 										<button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
 											<span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
-											ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+											<a class="th">ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง</a>
+											<a class="en">Adults 2 person , Adults 0 person , 1 room</a>
 										</button>
 										<div class="dropdown-content">
 											<div class="counter">
@@ -351,9 +352,12 @@ Author:
 												<span id="rooms">1</span>
 												<button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
 											</div>
+											<!-- type="hidden" -->
+											<input type="hidden" name="adults" id="adults_input" value="2">
+										    <input type="hidden" name="children" id="children_input" value="0">
+										    <input type="hidden" name="rooms" id="rooms_input" value="1">
 										</div>
 									</div>
-
                                     <li style="flex-grow: 1;">
 										<!-- <a href="search.php"> -->
 											<button type="submit" class="btn btn-primary btn-search">Search</button>
@@ -1314,7 +1318,19 @@ $('.book_now').click(function() {
         const adults = document.getElementById('adults').textContent;
         const children = document.getElementById('children').textContent;
         const button = document.querySelector('.dropdown-container button');
-        button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+
+        document.getElementById('adults_input').value = adults;
+        document.getElementById('children_input').value = children;
+        document.getElementById('rooms_input').value = rooms;
+
+        // button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+
+        var initialLanguage = '<?php echo $_SESSION['lang']; ?>';
+    	// if (initialLanguage === 'th') {
+            button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
+        // } else if (initialLanguage === 'en') {
+            // button.textContent = `Adults ${adults} person , Children ${children} person , ${rooms} room `;
+        // }
     }
 
     document.getElementById('bookingForm').addEventListener('submit', function(event) {

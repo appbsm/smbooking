@@ -318,31 +318,33 @@ $project_id = $project_list[0]['id_project_info'];
                                         <i class="far fa-calendar"></i>
                                         <input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
                                     </div>-->
-
                                     <div class="dropdown-container" style="width: 100%;">
                                         <button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
                                             <span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
-                                            ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
+                                            ผู้ใหญ่ <? if (!empty($_POST['adults'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "2"; } ?> คน , เด็ก <? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "0"; } ?> คน , <? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['rooms']); }else{ echo "1"; } ?> ห้อง
                                         </button>
                                         <div class="dropdown-content">
                                             <div class="counter">
                                                 <label><i class="fas fa-user"></i>ผู้ใหญ่</label>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
-                                                <span id="adults">2</span>
+                                                <span id="adults"><? if (!empty($_POST['adults'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "2"; } ?></span>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
                                             </div>
                                             <div class="counter">
                                                 <label><i class="fas fa-child"></i>เด็ก</label>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
-                                                <span id="children">0</span>
+                                                <span id="children"><? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "0"; } ?></span>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
                                             </div>
                                             <div class="counter">
                                                 <label><i class="fas fa-bed"></i>ห้อง</label>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
-                                                <span id="rooms">1</span>
+                                                <span id="rooms"><? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['rooms']); }else{ echo "1"; } ?></span>
                                                 <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
                                             </div>
+                                            <input type="hidden" name="adults" id="adults_input" value="2">
+                                            <input type="hidden" name="children" id="children_input" value="0">
+                                            <input type="hidden" name="rooms" id="rooms_input" value="1">
                                         </div>
                                     </div>
 
@@ -779,6 +781,10 @@ $project_id = $project_list[0]['id_project_info'];
         const adults = document.getElementById('adults').textContent;
         const children = document.getElementById('children').textContent;
         const button = document.querySelector('.dropdown-container button');
+
+        document.getElementById('adults_input').value = adults;
+        document.getElementById('children_input').value = children;
+        document.getElementById('rooms_input').value = rooms;
         // ผู้ใหญ่ 2 คน , เด็ก 0 คน , 1 ห้อง
         button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
     }

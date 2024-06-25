@@ -29,7 +29,7 @@
         // $('#daterange').attr('placeholder', translations[language]['daterange']);
 
         updateProjectList(language);
-
+        
         // $('#daterange').daterangepicker({
         //     opens: 'center',
         //     minDate: moment(),
