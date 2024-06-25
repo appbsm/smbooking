@@ -257,6 +257,7 @@ $project_id = $project_list[0]['id_project_info'];
             /* height: 400px; */
         }
     }
+
 </style>
 
 <body>
@@ -280,13 +281,8 @@ $project_id = $project_list[0]['id_project_info'];
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                               <!--  <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3> -->
+
                                 <ul class="sb-filter">
-                                   <!--  <li>
-                                        <span><i class="fas fa-street-view"></i></span>
-                                        <input type="text" placeholder="Your Destination?">
-                                    </li> -->
 
                                     <li class="s-box"  style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
@@ -299,25 +295,12 @@ $project_id = $project_list[0]['id_project_info'];
                                             <? //} ?>
                                         </select>
                                     </li>
-                                    
-                                    <!--
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
-                                        <div class="input-with-icon">
-                                            <span><i class="fas fa-calendar"></i></span>
-                                            <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-                                        </div>
-                                    </li>
-                                    -->
 
                                     <li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
                                         <i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
                                         <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
                                     </li>
                                     
-                                    <!--<div class="dropdown-container input-with-icon">
-                                        <i class="far fa-calendar"></i>
-                                        <input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-                                    </div>-->
                                     <div class="dropdown-container" style="width: 100%;">
                                         <button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
                                             <span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
