@@ -153,13 +153,12 @@ sqlsrv_close($conn);
             </div>
 
         </div>
-        <div class="row" style=" padding: 20px 8px;">
+
+        <!-- <div class="row" style=" padding: 20px 8px;">
             <div class="col-md-4">
-                <!-- <div class="group"> -->
                 <label class="en" for="name">Check-in Date</label>
 				<label class="th" for="name">วันที่เข้าพัก</label>
                 <input type='text' class="form-control datepicker search_input data-input-style " name="check_in_date" id="check_in_date" value=""  />
-                <!-- </div> -->
             </div>
             <div class="col-md-4">
                 <label class="en" for="name">Checkout Date</label>
@@ -182,7 +181,119 @@ sqlsrv_close($conn);
 
                 </div>
             </div>
-        </div>
+        </div> -->
+
+<style type="text/css">
+    .sb_banner_cont_iner_wrapper2 {
+        float: left;
+        width: 100%;
+        padding: 30px 0px;
+        margin-top: 250px;
+    }
+    .sb_banner_cont_iner_wrapper2 ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 4px;
+        background-color: #fff;
+        /* padding-left: 0px; */
+        border-radius: 8px;
+        border: 4px solid #dae1e3;
+    }
+    .sb_banner_cont_iner_wrapper2 ul li span {
+        color: #839287;
+    }
+    .sb_banner_cont_iner_wrapper2 ul li input {
+        border-bottom: 2px solid #839287;
+        font-weight: 100 !important;
+        padding: 0px 16px;
+    }
+    .sb_banner_cont_iner_wrapper2 ul li select {
+        border-bottom: 2px solid #839287;
+        padding-bottom: 2px;
+        font-weight: 100 !important;
+    }
+
+    .sb_banner_content_wrapper2 {
+        background-image: url('https://sharefolder.buildersmart.com/sms_booking/upload/project_photo/1_64880b050bc5d.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /*max-width: 100%;
+        width: 100%;
+        height: 450px;*/
+    }
+    .sb_banner_content_wrapper2 h2,
+    .sb_banner_content_wrapper2 h3 {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    }
+    .sb_banner_cont_iner_wrapper2 {
+        float: left;
+        
+        padding: 30px 0px;
+        margin-top: 50px;
+    }
+</style>
+
+        <form name="frm_search" id="frm_search" method="post" action="search.php">
+
+            <div class="sb_banner_content_wrapper animated-row float_left">
+                <div class="container" style="width: 90%;">
+                    <div class="row">
+                        <div class="col-lg-12 align-self-center">
+                            <div class="sb_banner_cont_iner_wrapper float_left">
+
+                                <ul class="sb-filter">
+
+                                    <li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
+                                        <i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
+                                        <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
+                                    </li>
+                                    
+                                    <div class="dropdown-container" style="width: 100%;">
+                                        <button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
+                                            <span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
+                                            ผู้ใหญ่ <? if (!empty($_POST['adults'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "2"; } ?> คน , เด็ก <? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "0"; } ?> คน , <? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['rooms']); }else{ echo "1"; } ?> ห้อง
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <div class="counter">
+                                                <label><i class="fas fa-user"></i>ผู้ใหญ่</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', -1)">-</button>
+                                                <span id="adults"><? if (!empty($_POST['adults'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "2"; } ?></span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('adults', 1)">+</button>
+                                            </div>
+                                            <div class="counter">
+                                                <label><i class="fas fa-child"></i>เด็ก</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('children', -1)">-</button>
+                                                <span id="children"><? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['adults']); }else{ echo "0"; } ?></span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('children', 1)">+</button>
+                                            </div>
+                                            <div class="counter">
+                                                <label><i class="fas fa-bed"></i>ห้อง</label>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', -1)">-</button>
+                                                <span id="rooms"><? if (!empty($_POST['children'])) { echo htmlspecialchars($_POST['rooms']); }else{ echo "1"; } ?></span>
+                                                <button type="button" class="btn btn-secondary" onclick="updateCount('rooms', 1)">+</button>
+                                            </div>
+                                            <input type="hidden" name="adults" id="adults_input" value="2">
+                                            <input type="hidden" name="children" id="children_input" value="0">
+                                            <input type="hidden" name="rooms" id="rooms_input" value="1">
+                                        </div>
+                                    </div>
+
+                                    <li style="flex-grow: 1;">
+                                        <!-- <a href="search.php"> -->
+                                            <button type="submit" class="btn btn-primary btn-search">Search</button>
+                                        <!-- </a> -->
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <div class="row">
 
