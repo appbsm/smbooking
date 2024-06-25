@@ -30,12 +30,36 @@
 
         updateProjectList(language);
 
+        // $('#daterange').daterangepicker({
+        //     opens: 'center',
+        //     minDate: moment(),
+        //     autoApply: true,
+        //     locale: {
+        //         format: 'DD/MM/YYYY',
+        //         separator: ' - ',
+        //         applyLabel: 'Apply',
+        //         cancelLabel: 'Cancel',
+        //         fromLabel: 'From',
+        //         toLabel: 'To',
+        //         customRangeLabel: 'Custom',
+        //         weekLabel: 'W',
+        //         daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        //         firstDay: 1
+        //     },
+        //     autoUpdateInput: false // ป้องกันการอัปเดตค่าของ input อัตโนมัติ
+        // }, function(start, end, label) {
+        //     $('#daterange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        // });
 
         // if (language === 'th') {
-        //     document.getElementById('daterange').placeholder = 'วันที่เช็คอิน - วันที่เช็คเอาท์';
+        //     // $('#daterange').val('วันที่เข้าพัก - วันที่ออก');
+        //     $('#daterange').attr('placeholder','วันที่เข้าพัก - วันที่ออก');
         // } else if (language === 'en') {
-        //     document.getElementById('daterange').placeholder = 'Check-in - Check-out Date';
+        //     // $('#daterange').val('Check-in - Check-out Date');
+        //     $('#daterange').attr('placeholder','Check-in - Check-out Date');
         // }
+        
         // alert('language:'+language);
 
         // $('#daterange').attr('placeholder', translations[language]['daterange']);

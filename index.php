@@ -1250,8 +1250,6 @@ $('.book_now').click(function() {
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
-<? include('language/text_index.php'); ?>
-
 <script>
     $(document).ready(function() {
         $('#daterange').daterangepicker({
@@ -1336,6 +1334,8 @@ $('.book_now').click(function() {
 </script>
 
 </html>
+
+<? include('language/text_index.php'); ?>
 
 
 
