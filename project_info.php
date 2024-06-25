@@ -267,61 +267,37 @@ $link_map           = $project_info[0]['link_map'];
 
 <!-- sidebar start -->
     <!-- return-to-top start-->
+
     <a href="javascript:" id="return-to-top"><i class="fas fa-sort-up"></i></a>
-    <!-- return-to-top-end -->
 
     <div class="main_wrapper">
         <div class="main_menu_wrapper">
 
         <? include('includes/topbar.php'); ?>
-           
-        <!-- project_info.php -->
-        <!-- <form name="frm_search" id="frm_search" method="post" action="listing-grid-left.html"> -->
+        
         <form name="frm_search" id="frm_search" method="post" action="search.php">
 
-            <div class="sb_banner_content_wrapper animated-row float_left">
+            <!-- <div class="sb_banner_content_wrapper animated-row float_left">
                 <div class="container" style="width: 90%;">
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                               <!--  <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3> -->
+
                                 <ul class="sb-filter">
-                                   <!--  <li>
-                                        <span><i class="fas fa-street-view"></i></span>
-                                        <input type="text" placeholder="Your Destination?">
-                                    </li> -->
 
                                     <li class="s-box"  style="border: 1px solid #ced4da; padding: 9px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
                                         <select id="project_id" name="project_id" style="max-width: 100%; border-bottom: none !important;">
-                                            <?php //foreach ($project_list as $value) { ?>
-                                                <option class="en" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_en']; ?></option>
-                                            <? //} ?>
-                                            <?php //foreach ($project_list as $value) {?>
-                                                <option class="th" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_th']; ?></option>
-                                            <? //} ?>
+                                            <option class="en" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_en']; ?></option>
+                                            <option class="th" value="<? echo $project_list[0]['id_project_info']; ?>"><? echo $project_list[0]['project_name_th']; ?></option>
                                         </select>
                                     </li>
-                                    
-                                    <!--
-                                    <li class="s-box" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%;">
-                                        <div class="input-with-icon">
-                                            <span><i class="fas fa-calendar"></i></span>
-                                            <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-                                        </div>
-                                    </li>
-                                    -->
 
                                     <li class="s-box" id="daterange-container" style="border: 1px solid #ced4da; padding: 6px 0; border-radius: 5px; flex-grow: 1; width: 100%; position: relative;">
                                         <i class="fas fa-calendar icon-ckinout" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
                                         <input type="text" style="max-width: 100%; width: 100%; border-bottom: none !important; text-align: center; padding-right: 30px;" id="daterange" name="daterange" class="form-control-calen" placeholder=" Check-in - Check-out Date">
                                     </li>
-                                    
-                                    <!--<div class="dropdown-container input-with-icon">
-                                        <i class="far fa-calendar"></i>
-                                        <input type="text" style="max-width: 100%; width: 100%;" id="daterange" name="daterange" class="form-control-calen" placeholder="Check-in - Check-out">
-                                    </div>-->
+
                                     <div class="dropdown-container" style="width: 100%;">
                                         <button style="max-width: 100%; width: 100%; text-align: center;" type="button" class="btn btn-light">
                                             <span><i class="fa fa-user" style="color: #839287 !important;"></i></span>
@@ -353,9 +329,7 @@ $link_map           = $project_info[0]['link_map'];
                                     </div>
 
                                     <li style="flex-grow: 1;">
-                                        <!-- <a href="search.php"> -->
-                                            <button type="submit" class="btn btn-primary btn-search">Search</button>
-                                        <!-- </a> -->
+                                        <button type="submit" class="btn btn-primary btn-search">Search</button>
                                     </li>
 
                                 </ul>
@@ -364,7 +338,7 @@ $link_map           = $project_info[0]['link_map'];
 
                     </div>
                 </div>
-            </div>
+            </div> -->
         </form>
 
         </div>
@@ -398,40 +372,6 @@ $link_map           = $project_info[0]['link_map'];
             <input type="hidden" name="s_children_ages" id="s_children_ages" value="<?php //echo $children_ages; ?>">
             <input type="hidden" name="search_type" id="search_type" value="">
             <input type="hidden" name="project_id" id="project_id" value="">
-
-            <!-- <div class="row search_room_header">
-                <div class="col-lg-3 col-sm-12">
-                    <div class="col-md-12 col-sm-12 text-left">
-                        <label class="ml-1 en" for="name">Location</label>
-                        <label class="ml-1 th" for="name">สถานที่</label>
-
-                        <select class="form-control selectpicker search_input" data-live-search="true" name="project_id" id="project_id">
-                            
-                        </select>
-
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-12 text-left">
-                        <label for="name" class="ml-1"><?php //echo $this->lang->line('check_in_date'); ?></label>
-                        <input type='text' class="form-control datepicker search_input" name="check_in_date" id="check_in_date" value="<?php echo $check_in_date; ?>" />
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-12 text-left">
-                        <label for="name" class="ml-1"><?php //echo $this->lang->line('check_out_date'); ?></label>
-                        <input type='text' class="form-control datepicker search_input" name="check_out_date" id="check_out_date" value="<?php echo $check_out_date; ?>" />
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-12 text-left">
-                        <label for="name">&nbsp;</label>
-                        <button id="search" class="form-control search_input btn-default" data-search-type="search_room" style="cursor: pointer; padding: 0 50px 0 50px;">Search</button>
-                    </div>
-                </div>
-
-            </div> -->
 
         </form>
     </div>
@@ -877,61 +817,7 @@ $link_map           = $project_info[0]['link_map'];
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdcxrCA3fydYz4cKu-Gpqm0MSe6S9voMw&libraries=places"></script>
 
 <script>
-    const link = '<? echo $link_map; ?>';
-    const latitude = '<? echo $latitude; ?>';
-    const longitude = '<? echo $longitude; ?>';
-
-    let coordinates = null;
     
-    if (link) {
-        coordinates = extractCoordinates(link);
-    } else if (latitude && longitude) {
-        coordinates = {
-            lat: parseFloat(latitude),
-            lng: parseFloat(longitude)
-        };
-    }
-    
-    if (coordinates) {
-        initMap(coordinates.lat, coordinates.lng);
-    }
-
-     function extractCoordinates(link) {
-        const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
-        const match = link.match(regex);
-        if (match) {
-            return {
-                lat: parseFloat(match[1]),
-                lng: parseFloat(match[2])
-            };
-        } else {
-            return null;
-        }
-    }
-
-    function initMap(lat, lng) {
-        //document.getElementById('map').style.display = 'block'; // แสดงแผนที่เมื่อมีข้อมูล
-        const location = {lat: lat, lng: lng};
-        map = new google.maps.Map(document.getElementById('google_map'), {
-            zoom: 15,
-            center: location
-        });
-
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-
-        const request = {
-            location: location,
-            radius: '500',
-            type: ['tourist_attraction']
-        };
-
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
-    }
-
     var cart_count = $('.button__badge').text();
     $('.add_to_cart').click(function() {
         var id_room_type = $(this).attr('data-id');
@@ -1040,21 +926,75 @@ $link_map           = $project_info[0]['link_map'];
         button.textContent = `ผู้ใหญ่ ${adults} คน , เด็ก ${children} คน , ${rooms} ห้อง `;
     }
 
-    document.getElementById('bookingForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const location = document.getElementById('location').value;
-        const daterange = document.getElementById('daterange').value;
-        const rooms = document.getElementById('rooms').textContent;
-        const adults = document.getElementById('adults').textContent;
-        const children = document.getElementById('children').textContent;
+    // document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     const location = document.getElementById('location').value;
+    //     const daterange = document.getElementById('daterange').value;
+    //     const rooms = document.getElementById('rooms').textContent;
+    //     const adults = document.getElementById('adults').textContent;
+    //     const children = document.getElementById('children').textContent;
 
-        console.log(`Location: ${location}`);
-        console.log(`Date Range: ${daterange}`);
-        console.log(`Rooms: ${rooms}`);
-        console.log(`Adults: ${adults}`);
-        console.log(`Children: ${children}`);
-    });
-        
+    //     console.log(`Location: ${location}`);
+    //     console.log(`Date Range: ${daterange}`);
+    //     console.log(`Rooms: ${rooms}`);
+    //     console.log(`Adults: ${adults}`);
+    //     console.log(`Children: ${children}`);
+    // });
+
+    const link = '<? echo $link_map; ?>';
+    const latitude = '<? echo $latitude; ?>';
+    const longitude = '<? echo $longitude; ?>';
+
+    let coordinates = null;
+    if (link) {
+        coordinates = extractCoordinates(link);
+    } else if (latitude && longitude) {
+        coordinates = {
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+        };
+    }
+    
+    if (coordinates) {
+        initMap(coordinates.lat, coordinates.lng);
+    }
+
+
+    function extractCoordinates(link) {
+        const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+        const match = link.match(regex);
+        if (match) {
+            return {
+                lat: parseFloat(match[1]),
+                lng: parseFloat(match[2])
+            };
+        } else {
+            return null;
+        }
+    }
+
+    function initMap(lat, lng) {
+        const location = {lat: lat, lng: lng};
+        map = new google.maps.Map(document.getElementById('google_map'), {
+            zoom: 15,
+            center: location
+        });
+
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        const request = {
+            location: location,
+            radius: '500',
+            type: ['tourist_attraction']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+    }
+
 </script>
 </html>
 
